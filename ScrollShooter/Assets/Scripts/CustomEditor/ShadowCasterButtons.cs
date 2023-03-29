@@ -20,6 +20,11 @@ public class ShadowCasterButtons : Editor
         {
             shadowCasterGenerator.RemoveShadowCaster();
         }
+
+        if (GUILayout.Button("Check Neighbours"))
+        {
+            shadowCasterGenerator.SeparateShadowCastersIntoGroups(ShadowCasterGenerator.TilePos);
+        }
     }
 }
 #endif
