@@ -26,16 +26,21 @@ public class TileController : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButtonDown(0))
         {
-            Vector3 mousePos = _camera.ScreenToWorldPoint(Input.mousePosition);
-            Vector3Int tilePos = _tilemap.WorldToCell(mousePos);
-            if (_tilemap.GetTile(tilePos) != null)
-            {
-                TileBase tile = _tilemap.GetTile(tilePos);
-                bool tileInfo = _dataFromTiles[tile].IsBro;
-                Debug.Log(tile.name + " is at position " + tilePos + " and bool IsBro = " + tileInfo);
-            }          
+            CheckTileData();
+        }
+    }
+
+    private void CheckTileData()
+    {
+        Vector3 mousePos = _camera.ScreenToWorldPoint(Input.mousePosition);
+        Vector3Int tilePos = _tilemap.WorldToCell(mousePos);
+        if (_tilemap.GetTile(tilePos) != null)
+        {
+            TileBase tile = _tilemap.GetTile(tilePos);
+            bool tileInfo = _dataFromTiles[tile].IsBro;
+            Debug.Log(tile + " is at position " + tilePos + " and bool IsBro = " + tileInfo);
         }
     }
 }
