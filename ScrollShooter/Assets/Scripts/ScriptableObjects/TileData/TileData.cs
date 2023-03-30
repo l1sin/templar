@@ -5,6 +5,5 @@ using UnityEngine.Tilemaps;
 public class TileData : ScriptableObject
 {
     [SerializeField] public TileBase[] Tiles;
-    [SerializeField] public bool IsBro;
-    
+    [SerializeField] public bool IsBro;   
 }

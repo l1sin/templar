@@ -2,22 +2,16 @@ using UnityEngine;
 
 public class AimGun : MonoBehaviour
 {
+    [SerializeField] private GameObject _cam;
+    [SerializeField] public static Vector3 MousePosOffset;
     [SerializeField] private Vector3 _cameraMovementScale;
-    private GameObject _cam;
-    private Vector3 _mousePos;
-    private Vector3 _mousePosVeiwport;
-    public static Vector3 _mousePosOffset;
-    private Vector3 _difference;
-    private float _rotationZ;
-
     [SerializeField] private Vector3 _cameraOffset;
-
     [SerializeField] private bool _moveCameraToCursor;
 
-    private void Awake()
-    {
-        _cam = Camera.main.gameObject;
-    }
+    [HideInInspector] private Vector3 _mousePos;
+    [HideInInspector] private Vector3 _mousePosVeiwport;
+    [HideInInspector] private Vector3 _difference;
+    [HideInInspector] private float _rotationZ; 
 
     private void Update()
     {
@@ -47,8 +41,8 @@ public class AimGun : MonoBehaviour
     private void MoveCameraToCursor()
     {
         _mousePosVeiwport = Camera.main.WorldToViewportPoint(_mousePos);
-        _mousePosOffset = MoveViewportZeroToCenter(_mousePosVeiwport);
-        _cam.transform.localPosition = new Vector3 (_mousePosOffset.x * _cameraMovementScale.x, _mousePosOffset.y * _cameraMovementScale.y, _cam.transform.position.z) + _cameraOffset;
+        MousePosOffset = MoveViewportZeroToCenter(_mousePosVeiwport);
+        _cam.transform.localPosition = new Vector3 (MousePosOffset.x * _cameraMovementScale.x, MousePosOffset.y * _cameraMovementScale.y, _cam.transform.position.z) + _cameraOffset;
     }
 
     private Vector3 MoveViewportZeroToCenter(Vector3 ViewPortCoordinates)

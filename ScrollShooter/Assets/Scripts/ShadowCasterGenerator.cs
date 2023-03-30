@@ -59,8 +59,6 @@ public class ShadowCasterGenerator : MonoBehaviour
             {
                 InstantiateShadowCaster(tile, figureGameObject.transform);
             }
-            Debug.Log("Tiles in figure: " + figure.Count);
-            Debug.Log("Tiles in checkedTiles: " + checkedTiles.Count);
             SeparateShadowCastersIntoGroups(checkedTiles);
         } 
     }

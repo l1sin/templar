@@ -5,7 +5,6 @@ public class Controlls : MonoBehaviour
     [SerializeField] private SpriteRenderer _spriteRenderer;
 
     [Header("Movement Stuff")]
-    private Rigidbody2D _rb2d;
     [SerializeField] private float _acceleration;
     [SerializeField] private float _maxVelocity;
     [SerializeField] private float _deceleration;
@@ -18,11 +17,14 @@ public class Controlls : MonoBehaviour
     [SerializeField] private Transform _overlapBoxPoint;
     [SerializeField] private Vector2 _overlapBoxSize;
 
+    [Header("Component references")]
+    [SerializeField] private Rigidbody2D _rigidbody2D;
+
     private void Awake()
     {
-        _rb2d = GetComponent<Rigidbody2D>();
         _isGrounded = false;
     }
+
     private void Update()
     {
         CheckGround();
@@ -39,35 +41,35 @@ public class Controlls : MonoBehaviour
     {
         if (PlayerInput.Jump && _isGrounded)
         {
-            float jumpForce = Mathf.Sqrt(_jumpHeight * -2 * (Physics2D.gravity.y * _rb2d.gravityScale));
-            _rb2d.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+            float jumpForce = Mathf.Sqrt(_jumpHeight * -2 * (Physics2D.gravity.y * _rigidbody2D.gravityScale));
+            _rigidbody2D.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
         }
     }
 
     private void Move()
     {
-        if (_rb2d.velocity.x < _maxVelocity && PlayerInput.Movement > 0)
+        if (_rigidbody2D.velocity.x < _maxVelocity && PlayerInput.Movement > 0)
         {
-            _rb2d.AddForce(new Vector2(PlayerInput.Movement * _acceleration, 0), ForceMode2D.Force);
+            _rigidbody2D.AddForce(new Vector2(PlayerInput.Movement * _acceleration, 0), ForceMode2D.Force);
         }
-        else if (_rb2d.velocity.x > -_maxVelocity && PlayerInput.Movement < 0)
+        else if (_rigidbody2D.velocity.x > -_maxVelocity && PlayerInput.Movement < 0)
         {
-            _rb2d.AddForce(new Vector2(PlayerInput.Movement * _acceleration, 0), ForceMode2D.Force);
+            _rigidbody2D.AddForce(new Vector2(PlayerInput.Movement * _acceleration, 0), ForceMode2D.Force);
         }
-        else if (_rb2d.velocity.x > _maxVelocity)
+        else if (_rigidbody2D.velocity.x > _maxVelocity)
         {
-            _rb2d.velocity = new Vector2(_maxVelocity, _rb2d.velocity.y);
+            _rigidbody2D.velocity = new Vector2(_maxVelocity, _rigidbody2D.velocity.y);
         }
-        else if (_rb2d.velocity.x < -_maxVelocity)
+        else if (_rigidbody2D.velocity.x < -_maxVelocity)
         {
-            _rb2d.velocity = new Vector2(-_maxVelocity, _rb2d.velocity.y);
+            _rigidbody2D.velocity = new Vector2(-_maxVelocity, _rigidbody2D.velocity.y);
         }
 
-        if (AimGun._mousePosOffset.x > 0)
+        if (AimGun.MousePosOffset.x > 0)
         {
             _spriteRenderer.flipX = false;
         }
-        if (AimGun._mousePosOffset.x < 0)
+        if (AimGun.MousePosOffset.x < 0)
         {
             _spriteRenderer.flipX = true;
         }
@@ -89,7 +91,7 @@ public class Controlls : MonoBehaviour
     {
         if (PlayerInput.Movement == 0 && _isGrounded)
         {
-            _rb2d.AddForce(new Vector2(-_rb2d.velocity.x * _deceleration, 0));
+            _rigidbody2D.AddForce(new Vector2(-_rigidbody2D.velocity.x * _deceleration, 0));
         }
     }
 
