@@ -10,6 +10,8 @@ public class AimGun : MonoBehaviour
     private Vector3 _difference;
     private float _rotationZ;
 
+    [SerializeField] private Vector3 _cameraOffset;
+
     [SerializeField] private bool _moveCameraToCursor;
 
     private void Awake()
@@ -46,7 +48,7 @@ public class AimGun : MonoBehaviour
     {
         _mousePosVeiwport = Camera.main.WorldToViewportPoint(_mousePos);
         _mousePosOffset = MoveViewportZeroToCenter(_mousePosVeiwport);
-        _cam.transform.localPosition = new Vector3 (_mousePosOffset.x * _cameraMovementScale.x, _mousePosOffset.y * _cameraMovementScale.y, _cam.transform.position.z);
+        _cam.transform.localPosition = new Vector3 (_mousePosOffset.x * _cameraMovementScale.x, _mousePosOffset.y * _cameraMovementScale.y, _cam.transform.position.z) + _cameraOffset;
     }
 
     private Vector3 MoveViewportZeroToCenter(Vector3 ViewPortCoordinates)

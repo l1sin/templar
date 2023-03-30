@@ -7,6 +7,7 @@ public class ShadowCasterGenerator : MonoBehaviour
 {
     [SerializeField] private Tilemap _tilemap;  
     [SerializeField] private GameObject _shadowCasterParentObject;
+    [SerializeField] private bool _selfShadows = true;
 
     [SerializeField] private List<GameObject> _shadowCasterList;
     [SerializeField] private List<GameObject> _figures;
@@ -128,7 +129,7 @@ public class ShadowCasterGenerator : MonoBehaviour
     private void InstantiateShadowCaster(Vector3Int tile, Transform parent)
     {
         GameObject shadowCaster = new GameObject("ShadowCaster");
-        shadowCaster.AddComponent<ShadowCaster2D>().selfShadows = true;
+        shadowCaster.AddComponent<ShadowCaster2D>().selfShadows = _selfShadows;
         shadowCaster.transform.position = _tilemap.CellToWorld(tile) + new Vector3(0.5f, 0.5f, 0);
         shadowCaster.transform.SetParent(parent);
         _shadowCasterList.Add(shadowCaster);
