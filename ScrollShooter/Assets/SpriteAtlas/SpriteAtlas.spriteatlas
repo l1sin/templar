@@ -1,0 +1,126 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: SpriteAtlas
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 0
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: DefaultTexturePlatform
+      m_MaxTextureSize: 2048
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: -1
+      m_TextureCompression: 0
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 0
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 1
+      enableAlphaDilation: 0
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 102900000, guid: 0cf80282d89c515419bc651986baaefc, type: 3}
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 900167230, guid: ae2c2f28d5ccf1d40b811653f85c463a, type: 3}
+  - {fileID: 912514613, guid: ae2c2f28d5ccf1d40b811653f85c463a, type: 3}
+  - {fileID: 467341820, guid: ae2c2f28d5ccf1d40b811653f85c463a, type: 3}
+  - {fileID: 938811775, guid: ae2c2f28d5ccf1d40b811653f85c463a, type: 3}
+  - {fileID: -29278428, guid: ae2c2f28d5ccf1d40b811653f85c463a, type: 3}
+  - {fileID: 1942822125, guid: ae2c2f28d5ccf1d40b811653f85c463a, type: 3}
+  - {fileID: -1844212213, guid: ae2c2f28d5ccf1d40b811653f85c463a, type: 3}
+  - {fileID: 1880270020, guid: ae2c2f28d5ccf1d40b811653f85c463a, type: 3}
+  - {fileID: -1824780714, guid: ae2c2f28d5ccf1d40b811653f85c463a, type: 3}
+  - {fileID: -944099446, guid: ae2c2f28d5ccf1d40b811653f85c463a, type: 3}
+  - {fileID: -1290077764, guid: ae2c2f28d5ccf1d40b811653f85c463a, type: 3}
+  - {fileID: -1099167690, guid: ae2c2f28d5ccf1d40b811653f85c463a, type: 3}
+  - {fileID: -631207321, guid: ae2c2f28d5ccf1d40b811653f85c463a, type: 3}
+  - {fileID: 678717931, guid: ae2c2f28d5ccf1d40b811653f85c463a, type: 3}
+  - {fileID: -1776945394, guid: ae2c2f28d5ccf1d40b811653f85c463a, type: 3}
+  - {fileID: 2032619833, guid: ae2c2f28d5ccf1d40b811653f85c463a, type: 3}
+  - {fileID: 1119722123, guid: ae2c2f28d5ccf1d40b811653f85c463a, type: 3}
+  - {fileID: 541718321, guid: ae2c2f28d5ccf1d40b811653f85c463a, type: 3}
+  - {fileID: -2035465767, guid: ae2c2f28d5ccf1d40b811653f85c463a, type: 3}
+  - {fileID: 1423848363, guid: ae2c2f28d5ccf1d40b811653f85c463a, type: 3}
+  - {fileID: 760519851, guid: ae2c2f28d5ccf1d40b811653f85c463a, type: 3}
+  - {fileID: -788304289, guid: ae2c2f28d5ccf1d40b811653f85c463a, type: 3}
+  - {fileID: 1109631756, guid: ae2c2f28d5ccf1d40b811653f85c463a, type: 3}
+  - {fileID: 1107541309, guid: ae2c2f28d5ccf1d40b811653f85c463a, type: 3}
+  - {fileID: -1835564903, guid: ae2c2f28d5ccf1d40b811653f85c463a, type: 3}
+  - {fileID: -1650922022, guid: ae2c2f28d5ccf1d40b811653f85c463a, type: 3}
+  - {fileID: -586038833, guid: ae2c2f28d5ccf1d40b811653f85c463a, type: 3}
+  - {fileID: -1928359653, guid: ae2c2f28d5ccf1d40b811653f85c463a, type: 3}
+  - {fileID: -980208872, guid: ae2c2f28d5ccf1d40b811653f85c463a, type: 3}
+  - {fileID: -1808686287, guid: ae2c2f28d5ccf1d40b811653f85c463a, type: 3}
+  - {fileID: -162990573, guid: ae2c2f28d5ccf1d40b811653f85c463a, type: 3}
+  - {fileID: 2025216617, guid: ae2c2f28d5ccf1d40b811653f85c463a, type: 3}
+  - {fileID: 14137135, guid: ae2c2f28d5ccf1d40b811653f85c463a, type: 3}
+  - {fileID: 2056884419, guid: ae2c2f28d5ccf1d40b811653f85c463a, type: 3}
+  - {fileID: 1482272247, guid: ae2c2f28d5ccf1d40b811653f85c463a, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - Grass_6
+  - Grass_7
+  - Grass_4
+  - Grass_5
+  - Grass_2
+  - Grass_3
+  - Grass_0
+  - Grass_1
+  - Grass_8
+  - Grass_15
+  - Grass_9
+  - Grass_14
+  - Grass_17
+  - Grass_16
+  - Grass_11
+  - Grass_10
+  - Grass_13
+  - Grass_12
+  - Grass_19
+  - Grass_18
+  - Grass_34
+  - Grass_33
+  - Grass_32
+  - Grass_31
+  - Grass_30
+  - Grass_28
+  - Grass_29
+  - Grass_24
+  - Grass_25
+  - Grass_26
+  - Grass_27
+  - Grass_20
+  - Grass_21
+  - Grass_22
+  - Grass_23
+  m_RenderDataMap: {}
+  m_Tag: SpriteAtlas
+  m_IsVariant: 0
