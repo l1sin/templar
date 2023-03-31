@@ -56,13 +56,16 @@ public class Controlls : MonoBehaviour
         {
             _rigidbody2D.AddForce(new Vector2(PlayerInput.Movement * _acceleration, 0), ForceMode2D.Force);
         }
-        else if (_rigidbody2D.velocity.x > _maxVelocity)
+        if (_isGrounded)
         {
-            _rigidbody2D.velocity = new Vector2(_maxVelocity, _rigidbody2D.velocity.y);
-        }
-        else if (_rigidbody2D.velocity.x < -_maxVelocity)
-        {
-            _rigidbody2D.velocity = new Vector2(-_maxVelocity, _rigidbody2D.velocity.y);
+            if (_rigidbody2D.velocity.x > _maxVelocity)
+            {
+                _rigidbody2D.velocity = new Vector2(_maxVelocity, _rigidbody2D.velocity.y);
+            }
+            else if (_rigidbody2D.velocity.x < -_maxVelocity)
+            {
+                _rigidbody2D.velocity = new Vector2(-_maxVelocity, _rigidbody2D.velocity.y);
+            }
         }
 
         if (AimGun.MousePosOffset.x > 0)
