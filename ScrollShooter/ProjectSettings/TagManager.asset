@@ -47,3 +47,6 @@ TagManager:
   - name: Ground
     uniqueID: 3620265647
     locked: 0
+  - name: Projectile
+    uniqueID: 114949963
+    locked: 0
