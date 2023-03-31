@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Rail
+  m_Name: PistolProjectileMaterial
   m_Shader: {fileID: -6465566751694194690, guid: 9c60e10c5d651904eb8c7a669b85ee79, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
@@ -43,5 +43,5 @@ Material:
     m_Ints: []
     m_Floats: []
     m_Colors:
-    - _Color: {r: 21.361254, g: 0.08376963, b: 0, a: 0}
+    - _Color: {r: 0, g: 0.0627451, b: 16, a: 0}
   m_BuildTextureStacks: []
