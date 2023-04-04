@@ -26,7 +26,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 257472474344466498}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -98,8 +98,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 299793dd3e7656848aa3022e89c18a78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 20
+  Speed: 0
+  Damage: 0
   _lifeTime: 10
+  _overlapBoxOffset: {x: 0, y: 0, z: 0}
+  _overlapBoxSize: {x: 0.55, y: 0.03, z: 0}
+  _layers:
+    serializedVersion: 2
+    m_Bits: 512
 --- !u!114 &-6455258503675424304
 MonoBehaviour:
   m_ObjectHideFlags: 0
