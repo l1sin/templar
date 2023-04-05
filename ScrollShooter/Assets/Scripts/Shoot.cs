@@ -49,11 +49,6 @@ public class Shoot : MonoBehaviour
         if (Input.GetMouseButton(0) && !Input.GetMouseButton(1) && Time.time >= _nextFirePistol)
         {
             GameObject pistolProjectile = Instantiate(_pistolProjectilePrefab, _pistolShootingPoint.position, Quaternion.Euler(_aimGun.ActiveHand.transform.localEulerAngles));
-            
-            if (!(_bodyController.HeadAndBody.transform.rotation.y == 0))
-            {
-                pistolProjectile.transform.rotation = Quaternion.Euler(_aimGun.ActiveHand.transform.localEulerAngles + new Vector3(0, 0, 180));
-            }
             PlayerProjectile projectileParameters = pistolProjectile.GetComponent<PlayerProjectile>();
             projectileParameters.Damage = _pistolDamage;
             projectileParameters.Speed = _pistolProjectileSpeed;
@@ -67,10 +62,6 @@ public class Shoot : MonoBehaviour
         if (Input.GetMouseButton(0) && Input.GetMouseButton(1) && Time.time >= _nextFireRailgun)
         {
             GameObject railgunProjectile = Instantiate(_railgunProjectilePrefab, _railgunShootingPoint.position, Quaternion.Euler(_aimGun.ActiveHand.transform.localEulerAngles));
-            if (!(_bodyController.HeadAndBody.transform.rotation.y == 0))
-            {
-                railgunProjectile.transform.rotation = Quaternion.Euler(_aimGun.ActiveHand.transform.localEulerAngles + new Vector3(0, 0, 180));
-            }
             PlayerProjectile projectileParameters = railgunProjectile.GetComponent<PlayerProjectile>();
             projectileParameters.Damage = _railgunDamage;
             projectileParameters.Speed = _railgunProjectileSpeed;

@@ -10,6 +10,8 @@ public class AimGun : MonoBehaviour
     [SerializeField] private bool _moveCameraToCursor;
     [SerializeField] private BodyController _bodyController;
 
+    [SerializeField] private Transform _centerAimPos;
+
     [HideInInspector] private Vector3 _mousePos;
     [HideInInspector] private Vector3 _mousePosVeiwport;
     [HideInInspector] private Vector3 _difference;
@@ -28,7 +30,6 @@ public class AimGun : MonoBehaviour
 
     private void Update()
     {
-        ChangeActiveHand();
         RotateGun();
         if (_moveCameraToCursor)
         {
@@ -39,21 +40,26 @@ public class AimGun : MonoBehaviour
     private void RotateGun()
     {
         _mousePos = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0));
-        _difference = _mousePos - ActiveHand.transform.position;
-        _rotationZ = Mathf.Atan2(_difference.normalized.y, _difference.normalized.x) * Mathf.Rad2Deg; 
+        _difference = _mousePos - _centerAimPos.position;
+        _rotationZ = Mathf.Atan2(_difference.normalized.y, _difference.normalized.x) * Mathf.Rad2Deg;
+
+        _bodyController.LeftHandActiveBackR.transform.rotation = Quaternion.Euler(0f, 0f, _rotationZ);
+        _bodyController.RightHandActiveFrontR.transform.rotation = Quaternion.Euler(0f, 0f, _rotationZ);
+
+        _bodyController.LeftHandActiveFrontL.transform.rotation = Quaternion.Euler(0f, 0f, _rotationZ - 180);
+        _bodyController.RightHandActiveBackL.transform.rotation = Quaternion.Euler(0f, 0f, _rotationZ - 180);
+
         if (_difference.x > 0)
         {
+            ChangeHandsToLookRight();
+            ChangeActiveHandWhileLookingRight();
             _bodyController.HeadAndBody.transform.rotation = Quaternion.Euler(0, 0, 0);
-
-            ActiveHand = _activeHandR;
-            ActiveHand.transform.rotation = Quaternion.Euler(0f, 0f, _rotationZ);
         }
         else if (_difference.x < 0)
         {
+            ChangeHandsToLookLeft();
+            ChangeActiveHandWhileLookingLeft();
             _bodyController.HeadAndBody.transform.rotation = Quaternion.Euler(0, 180, 0);
-
-            ActiveHand = _activeHandL;
-            ActiveHand.transform.rotation = Quaternion.Euler(0f, 0f, _rotationZ - 180);
         }
     }
 
@@ -73,37 +79,65 @@ public class AimGun : MonoBehaviour
         return new Vector3(x, y, z);
     }
 
-    private void ChangeActiveHand()
+    private void ChangeHandsToLookRight()
+    {
+        _bodyController.LeftHandActiveBackRRenderer.enabled = true;
+        _bodyController.LeftHandInactiveBackRRenderer.enabled = false;
+        _bodyController.RightHandActiveFrontRRenderer.enabled = false;
+        _bodyController.RightHandInactiveFrontRRenderer.enabled = true;
+
+        _bodyController.LeftHandActiveFrontLRenderer.enabled = false;
+        _bodyController.LeftHandInactiveFrontLRenderer.enabled = false;
+        _bodyController.RightHandActiveBackLRenderer.enabled = false;
+        _bodyController.RightHandInactiveBackLRenderer.enabled = false;
+    }
+
+    private void ChangeHandsToLookLeft()
+    {
+        _bodyController.LeftHandActiveBackRRenderer.enabled = false;
+        _bodyController.LeftHandInactiveBackRRenderer.enabled = false;
+        _bodyController.RightHandActiveFrontRRenderer.enabled = false;
+        _bodyController.RightHandInactiveFrontRRenderer.enabled = false;
+
+        _bodyController.LeftHandActiveFrontLRenderer.enabled = true;
+        _bodyController.LeftHandInactiveFrontLRenderer.enabled = false;
+        _bodyController.RightHandActiveBackLRenderer.enabled = false;
+        _bodyController.RightHandInactiveBackLRenderer.enabled = true;
+    }
+
+    private void ChangeActiveHandWhileLookingRight()
     {
         if (Input.GetMouseButton(1))
         {
-            _activeHandL = _bodyController.RightHandActiveBackL;
-            _activeHandR = _bodyController.RightHandActiveFrontR;
-
-            _bodyController.LeftHandActiveBackR.SetActive(false);
-            _bodyController.LeftHandInactiveBackR.SetActive(true);
-            _bodyController.RightHandActiveFrontR.SetActive(true);
-            _bodyController.RightHandInactiveFrontR.SetActive(false);
-
-            _bodyController.LeftHandActiveFrontL.SetActive(false);
-            _bodyController.LeftHandInactiveFrontL.SetActive(true);
-            _bodyController.RightHandActiveBackL.SetActive(true);
-            _bodyController.RightHandInactiveBackL.SetActive(false);
+            _bodyController.LeftHandActiveBackRRenderer.enabled = false;
+            _bodyController.LeftHandInactiveBackRRenderer.enabled = true;
+            _bodyController.RightHandActiveFrontRRenderer.enabled = true;
+            _bodyController.RightHandInactiveFrontRRenderer.enabled = false;
         }
         else
         {
-            _activeHandL = _bodyController.LeftHandActiveFrontL;
-            _activeHandR = _bodyController.LeftHandActiveBackR;
+            _bodyController.LeftHandActiveBackRRenderer.enabled = true;
+            _bodyController.LeftHandInactiveBackRRenderer.enabled = false;
+            _bodyController.RightHandActiveFrontRRenderer.enabled = false;
+            _bodyController.RightHandInactiveFrontRRenderer.enabled = true;
+        }
+    }
 
-            _bodyController.LeftHandActiveBackR.SetActive(true);
-            _bodyController.LeftHandInactiveBackR.SetActive(false);
-            _bodyController.RightHandActiveFrontR.SetActive(false);
-            _bodyController.RightHandInactiveFrontR.SetActive(true);
-
-            _bodyController.LeftHandActiveFrontL.SetActive(true);
-            _bodyController.LeftHandInactiveFrontL.SetActive(false);
-            _bodyController.RightHandActiveBackL.SetActive(false);
-            _bodyController.RightHandInactiveBackL.SetActive(true);
+    private void ChangeActiveHandWhileLookingLeft()
+    {
+        if (Input.GetMouseButton(1))
+        {
+            _bodyController.LeftHandActiveFrontLRenderer.enabled = false;
+            _bodyController.LeftHandInactiveFrontLRenderer.enabled = true;
+            _bodyController.RightHandActiveBackLRenderer.enabled = true;
+            _bodyController.RightHandInactiveBackLRenderer.enabled = false;
+        }
+        else
+        {
+            _bodyController.LeftHandActiveFrontLRenderer.enabled = true;
+            _bodyController.LeftHandInactiveFrontLRenderer.enabled = false;
+            _bodyController.RightHandActiveBackLRenderer.enabled = false;
+            _bodyController.RightHandInactiveBackLRenderer.enabled = true;
         }
     }
 }
