@@ -15,6 +15,7 @@ public class PlayerInput : MonoBehaviour
         Jump = false;
     }
 
+    // Set execution order later than other scripts.
     private void GetInput()
     {
         if (Input.GetButtonDown(GlobalStrings.JumpInput))

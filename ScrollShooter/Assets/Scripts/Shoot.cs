@@ -48,7 +48,7 @@ public class Shoot : MonoBehaviour
     {
         if (Input.GetMouseButton(0) && !Input.GetMouseButton(1) && Time.time >= _nextFirePistol)
         {
-            GameObject pistolProjectile = Instantiate(_pistolProjectilePrefab, _pistolShootingPoint.position, Quaternion.Euler(_aimGun.ActiveHand.transform.localEulerAngles));
+            GameObject pistolProjectile = Instantiate(_pistolProjectilePrefab, _pistolShootingPoint.position, Quaternion.Euler(new Vector3 (0, 0, AimGun.RotationZ)));
             PlayerProjectile projectileParameters = pistolProjectile.GetComponent<PlayerProjectile>();
             projectileParameters.Damage = _pistolDamage;
             projectileParameters.Speed = _pistolProjectileSpeed;
@@ -61,7 +61,7 @@ public class Shoot : MonoBehaviour
     {
         if (Input.GetMouseButton(0) && Input.GetMouseButton(1) && Time.time >= _nextFireRailgun)
         {
-            GameObject railgunProjectile = Instantiate(_railgunProjectilePrefab, _railgunShootingPoint.position, Quaternion.Euler(_aimGun.ActiveHand.transform.localEulerAngles));
+            GameObject railgunProjectile = Instantiate(_railgunProjectilePrefab, _railgunShootingPoint.position, Quaternion.Euler(new Vector3(0, 0, AimGun.RotationZ)));
             PlayerProjectile projectileParameters = railgunProjectile.GetComponent<PlayerProjectile>();
             projectileParameters.Damage = _railgunDamage;
             projectileParameters.Speed = _railgunProjectileSpeed;
@@ -75,15 +75,8 @@ public class Shoot : MonoBehaviour
     private Vector2 CalculateRecoilDirection()
     {
         Vector2 direction;
-        if (transform.localEulerAngles.y == 0)
-        {
-            direction.x = Mathf.Cos(transform.localEulerAngles.z * Mathf.Deg2Rad);
-        }
-        else
-        {
-            direction.x = -Mathf.Cos(transform.localEulerAngles.z * Mathf.Deg2Rad);
-        }
-        direction.y = Mathf.Sin(transform.localEulerAngles.z * Mathf.Deg2Rad);
+        direction.x = Mathf.Cos(AimGun.RotationZ * Mathf.Deg2Rad);
+        direction.y = Mathf.Sin(AimGun.RotationZ * Mathf.Deg2Rad);
         return -direction;
     }
 

@@ -15,18 +15,7 @@ public class AimGun : MonoBehaviour
     [HideInInspector] private Vector3 _mousePos;
     [HideInInspector] private Vector3 _mousePosVeiwport;
     [HideInInspector] private Vector3 _difference;
-    [HideInInspector] private float _rotationZ;
-
-    [HideInInspector] private GameObject _activeHandL;
-    [HideInInspector] private GameObject _activeHandR;
-    [HideInInspector] public GameObject ActiveHand;
-
-    private void Start()
-    {
-        _activeHandL = _bodyController.LeftHandActiveFrontL;
-        _activeHandR = _bodyController.LeftHandActiveBackR;
-        ActiveHand = _activeHandR;
-    }
+    [HideInInspector] public static float RotationZ;
 
     private void Update()
     {
@@ -41,13 +30,13 @@ public class AimGun : MonoBehaviour
     {
         _mousePos = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0));
         _difference = _mousePos - _centerAimPos.position;
-        _rotationZ = Mathf.Atan2(_difference.normalized.y, _difference.normalized.x) * Mathf.Rad2Deg;
+        RotationZ = Mathf.Atan2(_difference.normalized.y, _difference.normalized.x) * Mathf.Rad2Deg;
 
-        _bodyController.LeftHandActiveBackR.transform.rotation = Quaternion.Euler(0f, 0f, _rotationZ);
-        _bodyController.RightHandActiveFrontR.transform.rotation = Quaternion.Euler(0f, 0f, _rotationZ);
+        _bodyController.LeftHandActiveBackR.transform.rotation = Quaternion.Euler(0f, 0f, RotationZ);
+        _bodyController.RightHandActiveFrontR.transform.rotation = Quaternion.Euler(0f, 0f, RotationZ);
 
-        _bodyController.LeftHandActiveFrontL.transform.rotation = Quaternion.Euler(0f, 0f, _rotationZ - 180);
-        _bodyController.RightHandActiveBackL.transform.rotation = Quaternion.Euler(0f, 0f, _rotationZ - 180);
+        _bodyController.LeftHandActiveFrontL.transform.rotation = Quaternion.Euler(0f, 0f, RotationZ - 180);
+        _bodyController.RightHandActiveBackL.transform.rotation = Quaternion.Euler(0f, 0f, RotationZ - 180);
 
         if (_difference.x > 0)
         {
@@ -78,6 +67,8 @@ public class AimGun : MonoBehaviour
 
         return new Vector3(x, y, z);
     }
+
+    // It just works.
 
     private void ChangeHandsToLookRight()
     {

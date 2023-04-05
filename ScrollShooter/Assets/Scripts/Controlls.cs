@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class Controlls : MonoBehaviour
 {
-    [SerializeField] private SpriteRenderer _spriteRenderer;
 
     [Header("Movement Stuff")]
     [SerializeField] private float _acceleration;
@@ -66,15 +65,6 @@ public class Controlls : MonoBehaviour
             {
                 _rigidbody2D.velocity = new Vector2(-_maxVelocity, _rigidbody2D.velocity.y);
             }
-        }
-
-        if (AimGun.MousePosOffset.x > 0)
-        {
-            _spriteRenderer.flipX = false;
-        }
-        if (AimGun.MousePosOffset.x < 0)
-        {
-            _spriteRenderer.flipX = true;
         }
     }
 
