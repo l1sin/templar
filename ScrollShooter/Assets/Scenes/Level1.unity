@@ -139,7 +139,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &14073278
 Transform:
   m_ObjectHideFlags: 0
@@ -254,7 +254,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &105887724
 Transform:
   m_ObjectHideFlags: 0
@@ -370,7 +370,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &235557858
 Transform:
   m_ObjectHideFlags: 0
@@ -454,7 +454,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &297270957
 Transform:
   m_ObjectHideFlags: 0
@@ -1394,7 +1394,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &915650532
 Transform:
   m_ObjectHideFlags: 0
@@ -5546,7 +5546,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &979137317
 Transform:
   m_ObjectHideFlags: 0
@@ -5801,6 +5801,7 @@ MonoBehaviour:
   _cameraOffset: {x: 0, y: 3, z: 0}
   _moveCameraToCursor: 1
   _bodyController: {fileID: 0}
+  _centerAimPos: {fileID: 0}
   ActiveHand: {fileID: 0}
 --- !u!114 &1043091485
 MonoBehaviour:
@@ -5996,6 +5997,7 @@ Transform:
   - {fileID: 859949515}
   - {fileID: 1498034404}
   - {fileID: 519420032}
+  - {fileID: 1887333135}
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -6019,11 +6021,19 @@ MonoBehaviour:
   LeftHandInactiveBackR: {fileID: 235557857}
   RightHandActiveFrontR: {fileID: 297270956}
   RightHandInactiveFrontR: {fileID: 14073277}
+  LeftHandActiveBackRRenderer: {fileID: 105887725}
+  LeftHandInactiveBackRRenderer: {fileID: 235557859}
+  RightHandActiveFrontRRenderer: {fileID: 297270958}
+  RightHandInactiveFrontRRenderer: {fileID: 14073279}
   LookingLeft: {fileID: 1498034403}
   LeftHandActiveFrontL: {fileID: 1917693414}
   LeftHandInactiveFrontL: {fileID: 1516856104}
   RightHandActiveBackL: {fileID: 979137316}
   RightHandInactiveBackL: {fileID: 915650531}
+  LeftHandActiveFrontLRenderer: {fileID: 1917693416}
+  LeftHandInactiveFrontLRenderer: {fileID: 1516856106}
+  RightHandActiveBackLRenderer: {fileID: 979137318}
+  RightHandInactiveBackLRenderer: {fileID: 915650533}
   _aimGun: {fileID: 1305053614}
 --- !u!114 &1305053614
 MonoBehaviour:
@@ -6042,6 +6052,7 @@ MonoBehaviour:
   _cameraOffset: {x: 0, y: 0, z: 0}
   _moveCameraToCursor: 1
   _bodyController: {fileID: 1305053613}
+  _centerAimPos: {fileID: 1887333135}
   ActiveHand: {fileID: 0}
 --- !u!61 &1305053615
 BoxCollider2D:
@@ -6315,7 +6326,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1516856105
 Transform:
   m_ObjectHideFlags: 0
@@ -6582,6 +6593,37 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1887333134
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1887333135}
+  m_Layer: 0
+  m_Name: CenterAimPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1887333135
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1887333134}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.0934, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1305053612}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1917693414
 GameObject:
   m_ObjectHideFlags: 0
@@ -6598,7 +6640,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1917693415
 Transform:
   m_ObjectHideFlags: 0
