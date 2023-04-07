@@ -17,9 +17,13 @@ public class AimGun : MonoBehaviour
     [HideInInspector] private Vector3 _difference;
     [HideInInspector] public static float RotationZ;
 
+    [SerializeField] private float _headFlex = 30f;
+    [SerializeField] private float _headRotationPower;
+
     private void Update()
     {
         RotateGun();
+        RotateHead();
         if (_moveCameraToCursor)
         {
             MoveCameraToCursor();
@@ -50,6 +54,19 @@ public class AimGun : MonoBehaviour
             ChangeActiveHandWhileLookingLeft();
             _bodyController.HeadAndBody.transform.rotation = Quaternion.Euler(0, 180, 0);
         }
+    }
+
+    private void RotateHead()
+    {
+        if (RotationZ > -_headFlex && RotationZ < _headFlex)
+        {
+            _bodyController.Head.transform.rotation = Quaternion.Euler(0f, 0f, RotationZ * _headRotationPower);
+        }
+        else if (RotationZ > 180 - _headFlex || RotationZ < -180 + _headFlex)
+        {
+            _bodyController.Head.transform.rotation = Quaternion.Euler(180, 0, -RotationZ  * _headRotationPower);
+        }
+        Debug.Log(RotationZ);
     }
 
     private void MoveCameraToCursor()
