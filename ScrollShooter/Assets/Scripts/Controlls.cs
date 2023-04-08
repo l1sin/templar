@@ -18,6 +18,7 @@ public class Controlls : MonoBehaviour
 
     [Header("Component references")]
     [SerializeField] private Rigidbody2D _rigidbody2D;
+    [SerializeField] private Animator _animator;
 
     private void Awake()
     {
@@ -34,6 +35,7 @@ public class Controlls : MonoBehaviour
         Jump();
         Move();
         Brake();
+        Animate();
     }
 
     private void Jump()
@@ -85,6 +87,18 @@ public class Controlls : MonoBehaviour
         if (PlayerInput.Movement == 0 && _isGrounded)
         {
             _rigidbody2D.AddForce(new Vector2(-_rigidbody2D.velocity.x * _deceleration, 0));
+        }
+    }
+
+    private void Animate()
+    {
+        if (PlayerInput.Movement == 0)
+        {
+            _animator.SetBool(GlobalStrings.XInput, false);
+        }
+        else
+        {
+            _animator.SetBool(GlobalStrings.XInput, true);
         }
     }
 

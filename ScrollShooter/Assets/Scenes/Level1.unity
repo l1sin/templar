@@ -733,7 +733,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 2.09
+  orthographic size: 6
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -5421,7 +5421,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1105518223}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.04686, y: 0, z: 0}
+  m_LocalPosition: {x: 0.01562, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5469,12 +5469,12 @@ SpriteRenderer:
   m_SortingLayerID: 1435086543
   m_SortingLayer: 3
   m_SortingOrder: 3
-  m_Sprite: {fileID: 389037725, guid: d3011dca352c94343957d56911c516a6, type: 3}
+  m_Sprite: {fileID: -787149199, guid: d3011dca352c94343957d56911c516a6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.625, y: 1.125}
+  m_Size: {x: 0.46875, y: 1.125}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -5722,6 +5722,7 @@ MonoBehaviour:
   _overlapBoxPoint: {fileID: 45171072}
   _overlapBoxSize: {x: 0.3, y: 0.2}
   _rigidbody2D: {fileID: 1305053616}
+  _animator: {fileID: 1305053620}
 --- !u!114 &1305053619
 MonoBehaviour:
   m_ObjectHideFlags: 0

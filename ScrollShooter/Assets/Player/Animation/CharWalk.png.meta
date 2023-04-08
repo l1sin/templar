@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: d3011dca352c94343957d56911c516a6
+guid: a698c1c2f6053634da3bfe6bdb03ee9d
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -141,169 +141,169 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: CharIdle_0
+      name: CharWalk_0
       rect:
         serializedVersion: 2
-        x: 12
+        x: 0
         y: 4
-        width: 15
-        height: 36
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        width: 32
+        height: 44
+      alignment: 9
+      pivot: {x: 0.609375, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e08129145f744f14ba2b6612daa90072
-      internalID: -787149199
+      spriteID: 28974d6583671f54b9de0abd3dbf2b64
+      internalID: 1064486014
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CharIdle_1
+      name: CharWalk_1
       rect:
         serializedVersion: 2
-        x: 44
+        x: 32
         y: 4
-        width: 15
-        height: 35
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        width: 32
+        height: 44
+      alignment: 9
+      pivot: {x: 0.609375, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3076c6ca56eac1a4b816add85da37276
-      internalID: -1450999992
+      spriteID: e683db52a6500f344a38d30b861bb0a6
+      internalID: 783297056
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CharIdle_2
+      name: CharWalk_2
       rect:
         serializedVersion: 2
-        x: 76
+        x: 64
         y: 4
-        width: 15
-        height: 36
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        width: 32
+        height: 44
+      alignment: 9
+      pivot: {x: 0.609375, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 77c853327b377c145a4591a130bca62e
-      internalID: -177313514
+      spriteID: 9cdd5a02cdb711143ba98ca01e48bcfb
+      internalID: 488720847
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CharIdle_3
+      name: CharWalk_3
       rect:
         serializedVersion: 2
-        x: 108
+        x: 96
         y: 4
-        width: 15
-        height: 37
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        width: 32
+        height: 44
+      alignment: 9
+      pivot: {x: 0.609375, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 39492c14f61619f449a543f13881cdd7
-      internalID: -1672686657
+      spriteID: c66517a512ffc224f9759aca970b90e2
+      internalID: -1990319593
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CharIdle_4
+      name: CharWalk_4
       rect:
         serializedVersion: 2
-        x: 140
+        x: 128
         y: 4
-        width: 15
-        height: 36
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        width: 32
+        height: 44
+      alignment: 9
+      pivot: {x: 0.609375, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9676eaac11e3a674991d713f22026bac
-      internalID: 608912427
+      spriteID: a449f09b083ed8e469e44476d27a3f04
+      internalID: -590182799
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CharIdle_5
+      name: CharWalk_5
       rect:
         serializedVersion: 2
-        x: 172
+        x: 160
         y: 4
-        width: 15
-        height: 35
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        width: 32
+        height: 44
+      alignment: 9
+      pivot: {x: 0.609375, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b6de9a98848d0d7418d278e984e4d506
-      internalID: 1768441978
+      spriteID: e3e1f4304d881c141bc8ba890d5d5e2a
+      internalID: 1060194287
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CharIdle_6
+      name: CharWalk_6
       rect:
         serializedVersion: 2
-        x: 204
+        x: 192
         y: 4
-        width: 15
-        height: 36
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        width: 32
+        height: 44
+      alignment: 9
+      pivot: {x: 0.609375, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ea63bc770715f5848a7a59c7b2f5f261
-      internalID: -1952167899
+      spriteID: 4e901b9cfa2d4a048bdffaaecbe37cf7
+      internalID: 1785544743
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CharIdle_7
+      name: CharWalk_7
       rect:
         serializedVersion: 2
-        x: 236
+        x: 224
         y: 4
-        width: 15
-        height: 37
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        width: 32
+        height: 44
+      alignment: 9
+      pivot: {x: 0.609375, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6720e00c681d073478f0f1ff5a1b64cb
-      internalID: -1698812106
+      spriteID: 0a09578e3079f2a4c889906e107bb895
+      internalID: 924623054
       vertices: []
       indices: 
       edges: []
@@ -319,14 +319,14 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      CharIdle_5: 1768441978
-      CharIdle_2: -177313514
-      CharIdle_3: -1672686657
-      CharIdle_1: -1450999992
-      CharIdle_4: 608912427
-      CharIdle_7: -1698812106
-      CharIdle_0: -787149199
-      CharIdle_6: -1952167899
+      CharWalk_6: 1785544743
+      CharWalk_0: 1064486014
+      CharWalk_2: 488720847
+      CharWalk_5: 1060194287
+      CharWalk_7: 924623054
+      CharWalk_1: 783297056
+      CharWalk_4: -590182799
+      CharWalk_3: -1990319593
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
