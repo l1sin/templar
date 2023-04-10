@@ -141,13 +141,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: R_LeftHandActiveBack
+      name: Limbs_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 59
-        width: 35
-        height: 10
+        y: 60
+        width: 34
+        height: 8
       alignment: 4
       pivot: {x: 0, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -155,104 +155,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c70d3107390b0d44f93e29176e17b75a
-      internalID: -2018281926
+      spriteID: f83f2ba02bf53df4aa0a3e7bd0fc8c56
+      internalID: -1243259098
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: R_LeftHandInactiveBack
+      name: Limbs_1
       rect:
         serializedVersion: 2
         x: 50
-        y: 41
-        width: 11
-        height: 34
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 9bb5a5d022bbb724ebf5bc8aaa00e44b
-      internalID: 2017555147
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: R_RightHandActiveFront
-      rect:
-        serializedVersion: 2
-        x: 69
-        y: 61
-        width: 22
-        height: 8
-      alignment: 4
-      pivot: {x: 0, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ca0b09e97d9eda14899690ab8cf1c0a9
-      internalID: -972999101
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: R_RightHandInctiveFront
-      rect:
-        serializedVersion: 2
-        x: 104
-        y: 50
-        width: 6
-        height: 20
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: bbf311a155e2c9f40b0ed001995f355f
-      internalID: 1019991411
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: L_LeftHandActiveFront
-      rect:
-        serializedVersion: 2
-        x: 2
-        y: 14
-        width: 35
-        height: 10
-      alignment: 5
-      pivot: {x: 1, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 2931ff593b87ba24aa3fbc97949ea5cd
-      internalID: 692033450
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: L_LeftHandInactiveFront
-      rect:
-        serializedVersion: 2
-        x: 49
-        y: 0
+        y: 42
         width: 10
-        height: 33
+        height: 32
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -260,19 +176,61 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b3540e7c1f138be45be399ba43ecc087
-      internalID: 1989518355
+      spriteID: b757952bcb800d142a12d007e47b5a80
+      internalID: -1629848945
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: L_RightHandActiveBack
+      name: Limbs_2
       rect:
         serializedVersion: 2
-        x: 73
-        y: 16
-        width: 22
+        x: 70
+        y: 62
+        width: 20
+        height: 6
+      alignment: 9
+      pivot: {x: 0, y: 0.25}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0d61e69bad1bcbb40b57bd8c8d316f88
+      internalID: 37515538
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Limbs_3
+      rect:
+        serializedVersion: 2
+        x: 105
+        y: 51
+        width: 5
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1aa1ce664c6f6d24da949e439eac3799
+      internalID: 679137009
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Limbs_4
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 15
+        width: 33
         height: 8
       alignment: 5
       pivot: {x: 1, y: 0.5}
@@ -281,20 +239,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: af49906d9e5ae2c418cbbb4508d6077d
-      internalID: 836098438
+      spriteID: f3e35228c27b58c43b1aca15a0fe982c
+      internalID: -1524489302
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: L_RightHandInactiveBack
+      name: Limbs_5
       rect:
         serializedVersion: 2
-        x: 113
-        y: 4
+        x: 50
+        y: 1
         width: 8
-        height: 24
+        height: 31
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -302,8 +260,50 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2d35a09edbeffbd46b61b280d0d88aa1
-      internalID: 1597921012
+      spriteID: 5aae69a9c52a6a14c94dcb15e81e5eba
+      internalID: -1206245425
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Limbs_6
+      rect:
+        serializedVersion: 2
+        x: 74
+        y: 17
+        width: 20
+        height: 6
+      alignment: 9
+      pivot: {x: 1, y: 0.25}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9db944dcf4eeb1345a24f27c84f26a01
+      internalID: -1260915341
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Limbs_7
+      rect:
+        serializedVersion: 2
+        x: 114
+        y: 5
+        width: 7
+        height: 22
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c8e2c2cfa9ee8d04390d2f1a7e32b077
+      internalID: 525717470
       vertices: []
       indices: 
       edges: []
@@ -319,14 +319,14 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      R_LeftHandInactiveBack: 2017555147
-      R_LeftHandActiveBack: -2018281926
-      R_RightHandActiveFront: -972999101
-      R_RightHandInctiveFront: 1019991411
-      L_RightHandActiveBack: 836098438
-      L_RightHandInactiveBack: 1597921012
-      L_LeftHandInactiveFront: 1989518355
-      L_LeftHandActiveFront: 692033450
+      Limbs_1: -1629848945
+      Limbs_5: -1206245425
+      Limbs_3: 679137009
+      Limbs_2: 37515538
+      Limbs_0: -1243259098
+      Limbs_7: 525717470
+      Limbs_4: -1524489302
+      Limbs_6: -1260915341
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
