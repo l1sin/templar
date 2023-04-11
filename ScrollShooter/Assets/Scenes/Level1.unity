@@ -5723,6 +5723,7 @@ MonoBehaviour:
   _overlapBoxSize: {x: 0.3, y: 0.2}
   _rigidbody2D: {fileID: 1305053616}
   _animator: {fileID: 1305053620}
+  _bodyController: {fileID: 1305053613}
 --- !u!114 &1305053619
 MonoBehaviour:
   m_ObjectHideFlags: 0

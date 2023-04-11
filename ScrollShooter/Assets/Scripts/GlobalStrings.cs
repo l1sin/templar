@@ -6,6 +6,7 @@ public class GlobalStrings
     #endregion
 
     #region Animation
-    public const string XInput = "XInput";
+    public const string XIsInput = "IsXInput";
+    public const string GoingFront = "GoingFront";
     #endregion
 }

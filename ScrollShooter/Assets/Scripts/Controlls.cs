@@ -6,8 +6,10 @@ public class Controlls : MonoBehaviour
     [Header("Movement Stuff")]
     [SerializeField] private float _acceleration;
     [SerializeField] private float _maxVelocity;
+    [SerializeField] private float _maxWalkVelocity;
     [SerializeField] private float _deceleration;
     [SerializeField] private float _jumpHeight;
+    [SerializeField] private bool _goingFront;
 
 
     [Header("IsGrounded Stuff")]
@@ -19,6 +21,7 @@ public class Controlls : MonoBehaviour
     [Header("Component references")]
     [SerializeField] private Rigidbody2D _rigidbody2D;
     [SerializeField] private Animator _animator;
+    [SerializeField] private BodyController _bodyController;
 
     private void Awake()
     {
@@ -57,6 +60,7 @@ public class Controlls : MonoBehaviour
         {
             _rigidbody2D.AddForce(new Vector2(PlayerInput.Movement * _acceleration, 0), ForceMode2D.Force);
         }
+
         if (_isGrounded)
         {
             if (_rigidbody2D.velocity.x > _maxVelocity)
@@ -94,11 +98,22 @@ public class Controlls : MonoBehaviour
     {
         if (PlayerInput.Movement == 0)
         {
-            _animator.SetBool(GlobalStrings.XInput, false);
+            _animator.SetBool(GlobalStrings.XIsInput, false);
         }
         else
         {
-            _animator.SetBool(GlobalStrings.XInput, true);
+            _animator.SetBool(GlobalStrings.XIsInput, true);
+        }
+
+        if ((_bodyController.HeadAndBody.transform.rotation.y == 0 && PlayerInput.Movement > 0) || (_bodyController.HeadAndBody.transform.rotation.y != 0 && PlayerInput.Movement < 0))
+        {
+            _goingFront = true;
+            _animator.SetBool(GlobalStrings.GoingFront, _goingFront);
+        }
+        else
+        {
+            _goingFront = false;
+            _animator.SetBool(GlobalStrings.GoingFront, _goingFront);
         }
     }
 

@@ -66,7 +66,6 @@ public class AimGun : MonoBehaviour
         {
             _bodyController.Head.transform.rotation = Quaternion.Euler(180, 0, -RotationZ  * _headRotationPower);
         }
-        Debug.Log(RotationZ);
     }
 
     private void MoveCameraToCursor()
