@@ -52,24 +52,54 @@ public class Controlls : MonoBehaviour
 
     private void Move()
     {
-        if (_rigidbody2D.velocity.x < _maxVelocity && PlayerInput.Movement > 0)
+        // Accelerate
+        if (_goingFront && !Input.GetKey(KeyCode.LeftShift))
         {
-            _rigidbody2D.AddForce(new Vector2(PlayerInput.Movement * _acceleration, 0), ForceMode2D.Force);
+            if (_rigidbody2D.velocity.x < _maxVelocity && PlayerInput.Movement > 0)
+            {
+                _rigidbody2D.AddForce(new Vector2(PlayerInput.Movement * _acceleration, 0), ForceMode2D.Force);
+            }
+            else if (_rigidbody2D.velocity.x > -_maxVelocity && PlayerInput.Movement < 0)
+            {
+                _rigidbody2D.AddForce(new Vector2(PlayerInput.Movement * _acceleration, 0), ForceMode2D.Force);
+            }
         }
-        else if (_rigidbody2D.velocity.x > -_maxVelocity && PlayerInput.Movement < 0)
+        else
         {
-            _rigidbody2D.AddForce(new Vector2(PlayerInput.Movement * _acceleration, 0), ForceMode2D.Force);
+            if (_rigidbody2D.velocity.x < _maxWalkVelocity && PlayerInput.Movement > 0)
+            {
+                _rigidbody2D.AddForce(new Vector2(PlayerInput.Movement * _acceleration, 0), ForceMode2D.Force);
+            }
+            else if (_rigidbody2D.velocity.x > -_maxWalkVelocity && PlayerInput.Movement < 0)
+            {
+                _rigidbody2D.AddForce(new Vector2(PlayerInput.Movement * _acceleration, 0), ForceMode2D.Force);
+            }
         }
-
+        
+        // Limit acceleration
         if (_isGrounded)
         {
-            if (_rigidbody2D.velocity.x > _maxVelocity)
+            if (_goingFront && !Input.GetKey(KeyCode.LeftShift))
             {
-                _rigidbody2D.velocity = new Vector2(_maxVelocity, _rigidbody2D.velocity.y);
+                if (_rigidbody2D.velocity.x > _maxVelocity)
+                {
+                    _rigidbody2D.velocity = new Vector2(_maxVelocity, _rigidbody2D.velocity.y);
+                }
+                else if (_rigidbody2D.velocity.x < -_maxVelocity)
+                {
+                    _rigidbody2D.velocity = new Vector2(-_maxVelocity, _rigidbody2D.velocity.y);
+                }
             }
-            else if (_rigidbody2D.velocity.x < -_maxVelocity)
+            else
             {
-                _rigidbody2D.velocity = new Vector2(-_maxVelocity, _rigidbody2D.velocity.y);
+                if (_rigidbody2D.velocity.x > _maxWalkVelocity)
+                {
+                    _rigidbody2D.velocity = new Vector2(_maxWalkVelocity, _rigidbody2D.velocity.y);
+                }
+                else if (_rigidbody2D.velocity.x < -_maxWalkVelocity)
+                {
+                    _rigidbody2D.velocity = new Vector2(-_maxWalkVelocity, _rigidbody2D.velocity.y);
+                }
             }
         }
     }

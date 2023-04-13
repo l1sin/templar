@@ -5713,8 +5713,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _acceleration: 30
   _maxVelocity: 10
+  _maxWalkVelocity: 2
   _deceleration: 15
   _jumpHeight: 4.3
+  _goingFront: 0
   _isGrounded: 0
   _whatIsGround:
     serializedVersion: 2
