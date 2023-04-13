@@ -10,6 +10,7 @@ public class Controlls : MonoBehaviour
     [SerializeField] private float _deceleration;
     [SerializeField] private float _jumpHeight;
     [SerializeField] private bool _goingFront;
+    [SerializeField] private bool _isRunning;
 
 
     [Header("IsGrounded Stuff")]
@@ -63,6 +64,7 @@ public class Controlls : MonoBehaviour
             {
                 _rigidbody2D.AddForce(new Vector2(PlayerInput.Movement * _acceleration, 0), ForceMode2D.Force);
             }
+            _isRunning = true;
         }
         else
         {
@@ -74,6 +76,7 @@ public class Controlls : MonoBehaviour
             {
                 _rigidbody2D.AddForce(new Vector2(PlayerInput.Movement * _acceleration, 0), ForceMode2D.Force);
             }
+            _isRunning = false;
         }
         
         // Limit acceleration
@@ -145,6 +148,9 @@ public class Controlls : MonoBehaviour
             _goingFront = false;
             _animator.SetBool(GlobalStrings.GoingFront, _goingFront);
         }
+
+        _animator.SetBool(GlobalStrings.IsGrounded, _isGrounded);
+        _animator.SetBool(GlobalStrings.IsRunning, _isRunning);
     }
 
     private void OnDrawGizmosSelected()

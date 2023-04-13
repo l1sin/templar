@@ -8,5 +8,7 @@ public class GlobalStrings
     #region Animation
     public const string XIsInput = "IsXInput";
     public const string GoingFront = "GoingFront";
+    public const string IsGrounded = "IsGrounded";
+    public const string IsRunning = "IsRunning";
     #endregion
 }
