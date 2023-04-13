@@ -10,5 +10,6 @@ public class GlobalStrings
     public const string GoingFront = "GoingFront";
     public const string IsGrounded = "IsGrounded";
     public const string IsRunning = "IsRunning";
+    public const string YVelocity = "YVelocity";
     #endregion
 }

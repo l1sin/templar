@@ -151,6 +151,7 @@ public class Controlls : MonoBehaviour
 
         _animator.SetBool(GlobalStrings.IsGrounded, _isGrounded);
         _animator.SetBool(GlobalStrings.IsRunning, _isRunning);
+        _animator.SetFloat(GlobalStrings.YVelocity, _rigidbody2D.velocity.y);
     }
 
     private void OnDrawGizmosSelected()
