@@ -46,7 +46,7 @@ public class Shoot : MonoBehaviour
 
     private void FirePistol()
     {
-        if (Input.GetMouseButton(0) && !Input.GetMouseButton(1) && Time.time >= _nextFirePistol)
+        if (Input.GetMouseButton(0) && !Input.GetMouseButton(1) && !Input.GetMouseButton(2) && Time.time >= _nextFirePistol)
         {
             GameObject pistolProjectile = Instantiate(_pistolProjectilePrefab, _pistolShootingPoint.position, Quaternion.Euler(new Vector3 (0, 0, AimGun.RotationZ)));
             PlayerProjectile projectileParameters = pistolProjectile.GetComponent<PlayerProjectile>();
@@ -59,7 +59,7 @@ public class Shoot : MonoBehaviour
 
     private void FireRailgun()
     {
-        if (Input.GetMouseButton(0) && Input.GetMouseButton(1) && Time.time >= _nextFireRailgun)
+        if (Input.GetMouseButton(0) && Input.GetMouseButton(1) && !Input.GetMouseButton(2) && Time.time >= _nextFireRailgun)
         {
             GameObject railgunProjectile = Instantiate(_railgunProjectilePrefab, _railgunShootingPoint.position, Quaternion.Euler(new Vector3(0, 0, AimGun.RotationZ)));
             PlayerProjectile projectileParameters = railgunProjectile.GetComponent<PlayerProjectile>();

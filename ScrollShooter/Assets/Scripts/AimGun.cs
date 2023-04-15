@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class AimGun : MonoBehaviour
 {
-    [SerializeField] private GameObject _cam;
+    [SerializeField] private Camera _cam;
     [SerializeField] public static Vector3 MousePosOffset;
     [SerializeField] private Vector3 _cameraMovementScale;
     [SerializeField] private Vector3 _cameraOffset;
@@ -32,7 +32,7 @@ public class AimGun : MonoBehaviour
 
     private void RotateGun()
     {
-        _mousePos = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0));
+        _mousePos = _cam.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0));
         _difference = _mousePos - _centerAimPos.position;
         RotationZ = Mathf.Atan2(_difference.normalized.y, _difference.normalized.x) * Mathf.Rad2Deg;
 
