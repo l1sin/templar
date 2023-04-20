@@ -19,6 +19,7 @@ public class Drone : Enemy
     [SerializeField] private float _rotationZDeg;
     [SerializeField] private Vector3 _difference;
     [SerializeField] private LayerMask _layerMask;
+    [SerializeField] private LineRenderer _lineRenderer;
 
     private void Start()
     {
@@ -55,9 +56,14 @@ public class Drone : Enemy
 
     private void Shoot()
     {
+        
         if (Input.GetKey(KeyCode.V) && Time.time >= _nextFire)
         {
             var hit = Physics2D.Raycast(_shootingPoint.position, _difference, _distance, _layerMask);
+
+            _lineRenderer.enabled = true;
+            _lineRenderer.SetPosition(1, new Vector3(Mathf.Abs(hit.point.x - _shootingPoint.transform.position.x), 0, 0));
+
             if (hit.collider.gameObject.layer == 7)
             {
                 hit.collider.gameObject.GetComponent<BaseEntity>().GetDamage(_damage);
@@ -67,10 +73,6 @@ public class Drone : Enemy
             {
                 Debug.Log("Deflect");
             }
-            //GameObject projectile = Instantiate(_projectile, _shootingPoint.position, Quaternion.Euler(new Vector3(0, 0, _rotationZDeg)));
-            //EnemyProjectile projectileParameters = projectile.GetComponent<EnemyProjectile>();
-            //projectileParameters.Damage = _damage;
-            //projectileParameters.Speed = _projectileSpeed;
 
             _nextFire = Time.time + _firePeriod;
         }
