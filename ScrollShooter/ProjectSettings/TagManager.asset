@@ -15,7 +15,7 @@ TagManager:
   - Player
   - Projectile
   - Enemy
-  - 
+  - EnergyShield
   - 
   - 
   - 
@@ -52,4 +52,7 @@ TagManager:
     locked: 0
   - name: Player
     uniqueID: 1435086543
+    locked: 0
+  - name: Enemy
+    uniqueID: 4166008189
     locked: 0

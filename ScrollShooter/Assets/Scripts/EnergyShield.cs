@@ -8,6 +8,7 @@ public class EnergyShield : MonoBehaviour
     [SerializeField] private float _distanceMulitplier;
     [SerializeField] public bool IsActive;
     [SerializeField] private Renderer _energyShieldRenderer;
+    [SerializeField] private Collider2D _collider;
 
     private void Update()
     {
@@ -20,11 +21,13 @@ public class EnergyShield : MonoBehaviour
         if (!Input.GetMouseButton(0) && Input.GetMouseButton(1) && Input.GetMouseButton(2))
         {
             IsActive = true;
+            _collider.enabled = true;
             _energyShieldRenderer.enabled = true;
         }
         else
         {
             IsActive = false;
+            _collider.enabled = false;
             _energyShieldRenderer.enabled = false;
         }
     }
