@@ -16,7 +16,7 @@ public class Controlls : MonoBehaviour
     [Header("IsGrounded Stuff")]
     [SerializeField] private bool _isGrounded;
     [SerializeField] private LayerMask _whatIsGround;
-    [SerializeField] private Transform _overlapBoxPoint;
+    [SerializeField] private Vector2 _overlapBoxPoint;
     [SerializeField] private Vector2 _overlapBoxSize;
 
     [Header("Component references")]
@@ -109,7 +109,7 @@ public class Controlls : MonoBehaviour
 
     private void CheckGround()
     {
-        if (Physics2D.OverlapBox(_overlapBoxPoint.position, _overlapBoxSize, 0, _whatIsGround))
+        if (Physics2D.OverlapBox((Vector2)transform.position + _overlapBoxPoint, _overlapBoxSize, 0, _whatIsGround))
         {
             _isGrounded = true;
         }
@@ -157,6 +157,6 @@ public class Controlls : MonoBehaviour
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireCube(_overlapBoxPoint.position, _overlapBoxSize);
+        Gizmos.DrawWireCube((Vector2)transform.position + _overlapBoxPoint, _overlapBoxSize);
     }
 }
