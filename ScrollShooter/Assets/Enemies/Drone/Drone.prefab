@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2976927900254206698}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.39050007, y: 0.031240106, z: 0}
+  m_LocalPosition: {x: 0.4, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -42,12 +42,12 @@ GameObject:
   - component: {fileID: 2976927900355572686}
   - component: {fileID: 2976927900355572681}
   m_Layer: 0
-  m_Name: Line
+  m_Name: LaserPointer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2976927900355572686
 Transform:
   m_ObjectHideFlags: 0
@@ -429,18 +429,24 @@ MonoBehaviour:
   _minigun: {fileID: 2976927900934665863}
   _shootingPoint: {fileID: 2976927900254206709}
   _target: {fileID: 0}
-  _lineRenderer: {fileID: 2976927900355572681}
-  _firePeriod: 0.2
-  _projectileSpeed: 50
+  _laserPointer: {fileID: 2976927900355572681}
+  _tracePrefab: {fileID: 6369805344875795321, guid: f8d622ff4f73ef842ba4a05e015093e9, type: 3}
+  _minigunAnimator: {fileID: 2976927900934665862}
+  _firePeriod: 0.1
   _damage: 1
   _distance: 5
+  _missRad: 10
   _layerMask:
     serializedVersion: 2
-    m_Bits: 1152
-  _moveSpeed: 500
+    m_Bits: 1216
+  _minigunAnimationSpeed: 20
+  _burstAmount: 5
+  _burstReloadLength: 2
+  _moveSpeed: 10
   _spotDistance: 3
   _patrolDistance: {x: 3, y: 0}
   _maxVelocity: 10
+  _canMove: 1
   _traceLength: 0.1
 --- !u!61 &2976927901525278955
 BoxCollider2D:

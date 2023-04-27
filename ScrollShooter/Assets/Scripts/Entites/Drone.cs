@@ -9,21 +9,23 @@ public class Drone : Enemy
     [SerializeField] private Transform _shootingPoint;
     [SerializeField] private Transform _target;
     [SerializeField] private LineRenderer _laserPointer;
-    [SerializeField] private LineRenderer _trace;
     [SerializeField] private GameObject _tracePrefab;
     [SerializeField] private Animator _minigunAnimator;
 
     [Header("Shooting")]
-    
     [SerializeField] private float _firePeriod;
-    [SerializeField] private float _projectileSpeed;
     [SerializeField] private float _damage;
     [SerializeField] private float _distance;
     [SerializeField] private float _missRad;
-    [SerializeField] private float _shootingAngle;
-    [SerializeField] private Vector2 _shootingDirection;
+    private float _shootingAngle;
+    private Vector2 _shootingDirection;
     [SerializeField] private LayerMask _layerMask;
-    [SerializeField] private float _minigunRotationSpeed = 20f;
+    [SerializeField] private float _minigunAnimationSpeed = 20f;
+    [SerializeField] private float _burstAmount = 5;
+    private float _shotAmount;
+    [SerializeField] private float _burstReloadLength = 2;
+    private float _burstReloadTimer;
+
     private float _nextFire;
     private RaycastHit2D _laserTrackHit;
     private RaycastHit2D _hit;
@@ -45,10 +47,10 @@ public class Drone : Enemy
 
     [Header("Trace")]
     [SerializeField] private float _traceLength;
-    private float _traceTimer;
 
     private void Start()
     {
+        _burstReloadTimer = _burstReloadLength;
         _minigunAnimator.SetFloat(GlobalStrings.MinigunSpeed, 0);
         _difference = _target.transform.position + Vector3.up - transform.position;
         _goForth = true;
@@ -67,7 +69,21 @@ public class Drone : Enemy
         {
             RotateMinigun();
             TrackTarget();
-            Shoot();
+            if (_shotAmount < _burstAmount)
+            {
+                Shoot();
+            }
+            else
+            {
+                _minigunAnimator.SetFloat(GlobalStrings.MinigunSpeed, 0);
+                _burstReloadTimer -= Time.deltaTime;
+                if (_burstReloadTimer < 0)
+                {
+                    _shotAmount = 0;
+                    _burstReloadTimer = _burstReloadLength;
+                }
+            }
+            
         }
         Flip(); 
     }
@@ -112,25 +128,30 @@ public class Drone : Enemy
 
     private void Shoot()
     {
-        _minigunAnimator.SetFloat(GlobalStrings.MinigunSpeed, _minigunRotationSpeed);
+        _minigunAnimator.SetFloat(GlobalStrings.MinigunSpeed, _minigunAnimationSpeed);
 
         if (_difference.magnitude < _distance && Time.time >= _nextFire)
         {
             _shootingAngle = _rotationZDeg + Random.Range(-_missRad, _missRad);
             _shootingDirection = new Vector2(Mathf.Cos(_shootingAngle * Mathf.Deg2Rad), Mathf.Sin(_shootingAngle * Mathf.Deg2Rad));
 
-            _hit = Physics2D.Raycast(_shootingPoint.position, _shootingDirection, Mathf.Infinity, _layerMask);
+            _hit = Physics2D.Raycast(_shootingPoint.position, _shootingDirection, _distance, _layerMask);
+
+            _shotAmount++;
 
             if (_hit)
             {
-                Trace(_hit.point - (Vector2)_shootingPoint.position);
+                var trace = Trace(_hit.point - (Vector2)_shootingPoint.position);
                 if (_hit.collider.gameObject.layer == 7)
                 {
                     _hit.collider.gameObject.GetComponent<BaseEntity>().GetDamage(_damage);
                 }
                 else if (_hit.collider.gameObject.layer == 10)
                 {
-                    // Stuff.
+                    Vector3 normal = _hit.normal;
+                    trace.positionCount++;
+                    var newRay = Physics2D.Raycast(trace.GetPosition(1), Vector2.Reflect(_shootingDirection, normal).normalized * _distance, Mathf.Infinity, _layerMask);
+                    trace.SetPosition(2, newRay.point);
                 }
                 _nextFire = Time.time + _firePeriod;
             }
@@ -155,11 +176,12 @@ public class Drone : Enemy
         _rigidbody2D.AddForce(_direction * _moveSpeed, ForceMode2D.Force);
     }
 
-    private void Trace(Vector2 endpos)
+    private LineRenderer Trace(Vector2 endpos)
     {
         var trace = Instantiate(_tracePrefab, _shootingPoint.position, Quaternion.identity);
         var lineRenderer = trace.GetComponent<LineRenderer>();
         lineRenderer.SetPosition(1, endpos);
+        return lineRenderer;
     }
 
     private void Patrol()
