@@ -10,6 +10,16 @@ public class Shoot : MonoBehaviour
     [SerializeField] private float _pistolDamage;
     [SerializeField] private float _pistolProjectileSpeed;
 
+    [Header("Pistol powerup")]
+    [SerializeField] private float _pistolFirePeriodPU;
+    [SerializeField] private float _pistolDamagePU;
+    [SerializeField] private float _pistolProjectileSpeedPU;
+
+    private float _pistolFirePeriodCurrent;
+    private float _pistolDamageCurrent;
+    private float _pistolProjectileSpeedCurrent;
+
+
     [Header("Railgun preferences")]
     [SerializeField] private Transform _railgunShootingPointR;
     [SerializeField] private Transform _railgunShootingPointL;
@@ -18,11 +28,23 @@ public class Shoot : MonoBehaviour
     [SerializeField] private float _railgunDamage;
     [SerializeField] private float _railgunProjectileSpeed;
     [SerializeField] private float _recoilForce;
-    
+
+    [Header("Railgun powerup")]
+    [SerializeField] private float _railgunFirePeriodPU;
+    [SerializeField] private float _railgunDamagePU;
+    [SerializeField] private float _railgunProjectileSpeedPU;
+    [SerializeField] private float _recoilForcePU;
+
+    private float _railgunFirePeriodCurrent;
+    private float _railgunDamageCurrent;
+    private float _railgunProjectileSpeedCurrent;
+    private float _recoilForceCurrent;
+
     [Header("Component references")]
     [SerializeField] private Rigidbody2D _rigidbody2D;
     [SerializeField] private BodyController _bodyController;
     [SerializeField] private AimGun _aimGun;
+    [SerializeField] private Player _player;
 
     [Header("Hidden")]
     [HideInInspector] private float _nextFirePistol;
@@ -39,6 +61,7 @@ public class Shoot : MonoBehaviour
 
     private void Update()
     {
+        CheckIfPowerUp();
         ChangeShootingPoint();
         FirePistol();
         FireRailgun();
@@ -48,12 +71,12 @@ public class Shoot : MonoBehaviour
     {
         if (Input.GetMouseButton(0) && !Input.GetMouseButton(1) && !Input.GetMouseButton(2) && Time.time >= _nextFirePistol)
         {
-            GameObject pistolProjectile = Instantiate(_pistolProjectilePrefab, _pistolShootingPoint.position, Quaternion.Euler(new Vector3 (0, 0, AimGun.RotationZ)));
+            GameObject pistolProjectile = Instantiate(_pistolProjectilePrefab, _pistolShootingPoint.position, Quaternion.Euler(new Vector3(0, 0, AimGun.RotationZ)));
             PlayerProjectile projectileParameters = pistolProjectile.GetComponent<PlayerProjectile>();
-            projectileParameters.Damage = _pistolDamage;
-            projectileParameters.Speed = _pistolProjectileSpeed;
+            projectileParameters.Damage = _pistolDamageCurrent;
+            projectileParameters.Speed = _pistolProjectileSpeedCurrent;
 
-            _nextFirePistol = Time.time + _pistolFirePeriod;
+            _nextFirePistol = Time.time + _pistolFirePeriodCurrent;
         }
     }
 
@@ -63,12 +86,12 @@ public class Shoot : MonoBehaviour
         {
             GameObject railgunProjectile = Instantiate(_railgunProjectilePrefab, _railgunShootingPoint.position, Quaternion.Euler(new Vector3(0, 0, AimGun.RotationZ)));
             PlayerProjectile projectileParameters = railgunProjectile.GetComponent<PlayerProjectile>();
-            projectileParameters.Damage = _railgunDamage;
-            projectileParameters.Speed = _railgunProjectileSpeed;
+            projectileParameters.Damage = _railgunDamageCurrent;
+            projectileParameters.Speed = _railgunProjectileSpeedCurrent;
 
-            _rigidbody2D.AddForce(CalculateRecoilDirection() * _recoilForce, ForceMode2D.Impulse);
+            _rigidbody2D.AddForce(CalculateRecoilDirection() * _recoilForceCurrent, ForceMode2D.Impulse);
 
-            _nextFireRailgun = Time.time + _railgunFirePeriod;
+            _nextFireRailgun = Time.time + _railgunFirePeriodCurrent;
         }
     }
 
@@ -92,5 +115,38 @@ public class Shoot : MonoBehaviour
             _pistolShootingPoint = _pistolShootingPointL;
             _railgunShootingPoint = _railgunShootingPointL;
         }
+    }
+
+    private void CheckIfPowerUp()
+    {
+        if (_player._powerUp)
+        {
+            SetPowerUpOn();
+        }
+        else
+        {
+            SetPowerUpOff();
+        }
+    }
+
+    private void SetPowerUpOn()
+    {
+        _pistolFirePeriodCurrent = _pistolFirePeriodPU;
+        _pistolDamageCurrent = _pistolDamagePU;
+        _pistolProjectileSpeedCurrent = _pistolProjectileSpeedPU;
+        _railgunFirePeriodCurrent = _railgunFirePeriodPU;
+        _railgunDamageCurrent = _railgunDamagePU;
+        _railgunProjectileSpeedCurrent = _railgunProjectileSpeedPU;
+        _recoilForceCurrent = _recoilForcePU;
+    }
+    private void SetPowerUpOff()
+    {
+        _pistolFirePeriodCurrent = _pistolFirePeriod;
+        _pistolDamageCurrent = _pistolDamage;
+        _pistolProjectileSpeedCurrent = _pistolProjectileSpeed;
+        _railgunFirePeriodCurrent = _railgunFirePeriod;
+        _railgunDamageCurrent = _railgunDamage;
+        _railgunProjectileSpeedCurrent = _railgunProjectileSpeed;
+        _recoilForceCurrent = _recoilForce;
     }
 }

@@ -7,6 +7,10 @@ public class BodyController : MonoBehaviour
     [SerializeField] public GameObject Head;
     [SerializeField] public GameObject Body;
 
+    [Header("Renderers")]
+    [SerializeField] public Renderer HeadRenderer;
+    [SerializeField] public Renderer BodyRenderer;
+
     [Header("Looking right")]
     [SerializeField] public GameObject LookingRight;
     [SerializeField] public GameObject LeftHandActiveBackR;

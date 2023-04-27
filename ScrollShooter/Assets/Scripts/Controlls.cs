@@ -12,6 +12,18 @@ public class Controlls : MonoBehaviour
     [SerializeField] private bool _goingFront;
     [SerializeField] private bool _isRunning;
 
+    [Header("Powerup stats")]
+    [SerializeField] private float _accelerationPU;
+    [SerializeField] private float _maxVelocityPU;
+    [SerializeField] private float _maxWalkVelocityPU;
+    [SerializeField] private float _decelerationPU;
+    [SerializeField] private float _jumpHeightPU;
+
+    private float _accelerationCurrent;
+    private float _maxVelocityCurrent;
+    private float _maxWalkVelocityCurrent;
+    private float _decelerationCurrent;
+    private float _jumpHeightCurrent;
 
     [Header("IsGrounded Stuff")]
     [SerializeField] private bool _isGrounded;
@@ -23,6 +35,7 @@ public class Controlls : MonoBehaviour
     [SerializeField] private Rigidbody2D _rigidbody2D;
     [SerializeField] private Animator _animator;
     [SerializeField] private BodyController _bodyController;
+    [SerializeField] private Player _player;
 
     private void Awake()
     {
@@ -32,6 +45,7 @@ public class Controlls : MonoBehaviour
     private void Update()
     {
         CheckGround();
+        CheckPowerUp();
     }
 
     private void FixedUpdate()
@@ -42,11 +56,39 @@ public class Controlls : MonoBehaviour
         Animate();
     }
 
+    private void SetPowerupOn()
+    {
+        _accelerationCurrent = _accelerationPU;
+        _maxVelocityCurrent = _maxVelocityPU;
+        _maxWalkVelocityCurrent = _maxWalkVelocityPU;
+        _decelerationCurrent = _decelerationPU;
+        _jumpHeightCurrent = _jumpHeightPU;
+    }
+    private void SetPowerupOff()
+    {
+        _accelerationCurrent = _acceleration;
+        _maxVelocityCurrent = _maxVelocity;
+        _maxWalkVelocityCurrent = _maxWalkVelocity;
+        _decelerationCurrent = _deceleration;
+        _jumpHeightCurrent = _jumpHeight;
+    }
+    private void CheckPowerUp()
+    {
+        if (_player._powerUp)
+        {
+            SetPowerupOn();
+        }
+        else 
+        {
+            SetPowerupOff();
+        }
+    }
+
     private void Jump()
     {
         if (PlayerInput.Jump && _isGrounded)
         {
-            float jumpForce = Mathf.Sqrt(_jumpHeight * -2 * (Physics2D.gravity.y * _rigidbody2D.gravityScale));
+            float jumpForce = Mathf.Sqrt(_jumpHeightCurrent * -2 * (Physics2D.gravity.y * _rigidbody2D.gravityScale));
             _rigidbody2D.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
         }
     }
@@ -56,25 +98,25 @@ public class Controlls : MonoBehaviour
         // Accelerate
         if (_goingFront && !Input.GetKey(KeyCode.LeftShift))
         {
-            if (_rigidbody2D.velocity.x < _maxVelocity && PlayerInput.Movement > 0)
+            if (_rigidbody2D.velocity.x < _maxVelocityCurrent && PlayerInput.Movement > 0)
             {
-                _rigidbody2D.AddForce(new Vector2(PlayerInput.Movement * _acceleration, 0), ForceMode2D.Force);
+                _rigidbody2D.AddForce(new Vector2(PlayerInput.Movement * _accelerationCurrent, 0), ForceMode2D.Force);
             }
-            else if (_rigidbody2D.velocity.x > -_maxVelocity && PlayerInput.Movement < 0)
+            else if (_rigidbody2D.velocity.x > -_maxVelocityCurrent && PlayerInput.Movement < 0)
             {
-                _rigidbody2D.AddForce(new Vector2(PlayerInput.Movement * _acceleration, 0), ForceMode2D.Force);
+                _rigidbody2D.AddForce(new Vector2(PlayerInput.Movement * _accelerationCurrent, 0), ForceMode2D.Force);
             }
             _isRunning = true;
         }
         else
         {
-            if (_rigidbody2D.velocity.x < _maxWalkVelocity && PlayerInput.Movement > 0)
+            if (_rigidbody2D.velocity.x < _maxWalkVelocityCurrent && PlayerInput.Movement > 0)
             {
-                _rigidbody2D.AddForce(new Vector2(PlayerInput.Movement * _acceleration, 0), ForceMode2D.Force);
+                _rigidbody2D.AddForce(new Vector2(PlayerInput.Movement * _accelerationCurrent, 0), ForceMode2D.Force);
             }
-            else if (_rigidbody2D.velocity.x > -_maxWalkVelocity && PlayerInput.Movement < 0)
+            else if (_rigidbody2D.velocity.x > -_maxWalkVelocityCurrent && PlayerInput.Movement < 0)
             {
-                _rigidbody2D.AddForce(new Vector2(PlayerInput.Movement * _acceleration, 0), ForceMode2D.Force);
+                _rigidbody2D.AddForce(new Vector2(PlayerInput.Movement * _accelerationCurrent, 0), ForceMode2D.Force);
             }
             _isRunning = false;
         }
@@ -84,24 +126,24 @@ public class Controlls : MonoBehaviour
         {
             if (_goingFront && !Input.GetKey(KeyCode.LeftShift))
             {
-                if (_rigidbody2D.velocity.x > _maxVelocity)
+                if (_rigidbody2D.velocity.x > _maxVelocityCurrent)
                 {
-                    _rigidbody2D.velocity = new Vector2(_maxVelocity, _rigidbody2D.velocity.y);
+                    _rigidbody2D.velocity = new Vector2(_maxVelocityCurrent, _rigidbody2D.velocity.y);
                 }
-                else if (_rigidbody2D.velocity.x < -_maxVelocity)
+                else if (_rigidbody2D.velocity.x < -_maxVelocityCurrent)
                 {
-                    _rigidbody2D.velocity = new Vector2(-_maxVelocity, _rigidbody2D.velocity.y);
+                    _rigidbody2D.velocity = new Vector2(-_maxVelocityCurrent, _rigidbody2D.velocity.y);
                 }
             }
             else
             {
-                if (_rigidbody2D.velocity.x > _maxWalkVelocity)
+                if (_rigidbody2D.velocity.x > _maxWalkVelocityCurrent)
                 {
-                    _rigidbody2D.velocity = new Vector2(_maxWalkVelocity, _rigidbody2D.velocity.y);
+                    _rigidbody2D.velocity = new Vector2(_maxWalkVelocityCurrent, _rigidbody2D.velocity.y);
                 }
-                else if (_rigidbody2D.velocity.x < -_maxWalkVelocity)
+                else if (_rigidbody2D.velocity.x < -_maxWalkVelocityCurrent)
                 {
-                    _rigidbody2D.velocity = new Vector2(-_maxWalkVelocity, _rigidbody2D.velocity.y);
+                    _rigidbody2D.velocity = new Vector2(-_maxWalkVelocityCurrent, _rigidbody2D.velocity.y);
                 }
             }
         }
@@ -123,7 +165,7 @@ public class Controlls : MonoBehaviour
     {
         if (PlayerInput.Movement == 0 && _isGrounded)
         {
-            _rigidbody2D.AddForce(new Vector2(-_rigidbody2D.velocity.x * _deceleration, 0));
+            _rigidbody2D.AddForce(new Vector2(-_rigidbody2D.velocity.x * _decelerationCurrent, 0));
         }
     }
 

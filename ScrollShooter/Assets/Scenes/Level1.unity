@@ -175,7 +175,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 8c2551f5370471340ba7c658b5c257ac, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -260,7 +260,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 8c2551f5370471340ba7c658b5c257ac, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -281,7 +281,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 63823c78293dfc744b00b75c9e2e98cc, type: 3}
+  m_Sprite: {fileID: 952321869, guid: be0f0579b2e18d24b892fd9754a2a37e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -289,7 +289,7 @@ SpriteRenderer:
   m_Size: {x: 0.15625, y: 1.5625}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!60 &163993153
@@ -377,7 +377,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 8c2551f5370471340ba7c658b5c257ac, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -494,7 +494,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 8c2551f5370471340ba7c658b5c257ac, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -698,7 +698,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 988797368}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &489489298
 SpriteRenderer:
@@ -720,7 +720,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 8c2551f5370471340ba7c658b5c257ac, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -852,7 +852,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 2
+  orthographic size: 6
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -1080,7 +1080,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 8c2551f5370471340ba7c658b5c257ac, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1248,7 +1248,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 8c2551f5370471340ba7c658b5c257ac, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3276,7 +3276,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 8c2551f5370471340ba7c658b5c257ac, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3336,8 +3336,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1105518224}
   - {fileID: 489489297}
+  - {fileID: 1105518224}
   m_Father: {fileID: 1305053612}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3420,7 +3420,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 988797368}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1105518225
 SpriteRenderer:
@@ -3442,7 +3442,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 8c2551f5370471340ba7c658b5c257ac, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3581,6 +3581,8 @@ MonoBehaviour:
   HeadAndBody: {fileID: 988797367}
   Head: {fileID: 489489296}
   Body: {fileID: 1105518223}
+  HeadRenderer: {fileID: 489489298}
+  BodyRenderer: {fileID: 1105518225}
   LookingRight: {fileID: 859949514}
   LeftHandActiveBackR: {fileID: 740181738}
   LeftHandInactiveBackR: {fileID: 235557857}
@@ -3659,6 +3661,9 @@ MonoBehaviour:
   _pistolFirePeriod: 0.2
   _pistolDamage: 1
   _pistolProjectileSpeed: 50
+  _pistolFirePeriodPU: 0.15
+  _pistolDamagePU: 2
+  _pistolProjectileSpeedPU: 75
   _railgunShootingPointR: {fileID: 1573341991}
   _railgunShootingPointL: {fileID: 1307214791}
   _railgunProjectilePrefab: {fileID: 257472474344466498, guid: 327b8cefd9849cf44bbe305bc46a12fa, type: 3}
@@ -3666,9 +3671,14 @@ MonoBehaviour:
   _railgunDamage: 10
   _railgunProjectileSpeed: 100
   _recoilForce: 10
+  _railgunFirePeriodPU: 0.75
+  _railgunDamagePU: 20
+  _railgunProjectileSpeedPU: 125
+  _recoilForcePU: 15
   _rigidbody2D: {fileID: 1305053616}
   _bodyController: {fileID: 1305053613}
   _aimGun: {fileID: 1305053614}
+  _player: {fileID: 1305053622}
 --- !u!114 &1305053618
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3688,6 +3698,11 @@ MonoBehaviour:
   _jumpHeight: 4.3
   _goingFront: 0
   _isRunning: 0
+  _accelerationPU: 45
+  _maxVelocityPU: 15
+  _maxWalkVelocityPU: 4
+  _decelerationPU: 25
+  _jumpHeightPU: 6.5
   _isGrounded: 0
   _whatIsGround:
     serializedVersion: 2
@@ -3697,6 +3712,7 @@ MonoBehaviour:
   _rigidbody2D: {fileID: 1305053616}
   _animator: {fileID: 1305053620}
   _bodyController: {fileID: 1305053613}
+  _player: {fileID: 1305053622}
 --- !u!114 &1305053619
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3762,6 +3778,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxHealthPoints: 100
   _currentHealthPoints: 0
+  _powerUp: 0
+  _bodyController: {fileID: 1305053613}
+  _energyShield: {fileID: 163993152}
+  _materialBlue: {fileID: 2100000, guid: 8c2551f5370471340ba7c658b5c257ac, type: 2}
+  _materialRed: {fileID: 2100000, guid: a445ad3edc166a348997527b230ac797, type: 2}
 --- !u!61 &1305053623
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3970,7 +3991,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 8c2551f5370471340ba7c658b5c257ac, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4117,7 +4138,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 8c2551f5370471340ba7c658b5c257ac, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
