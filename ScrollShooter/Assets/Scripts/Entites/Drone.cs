@@ -8,7 +8,10 @@ public class Drone : Enemy
     [SerializeField] private Transform _minigun;
     [SerializeField] private Transform _shootingPoint;
     [SerializeField] private Transform _target;
-    [SerializeField] private LineRenderer _lineRenderer;
+    [SerializeField] private LineRenderer _laserPointer;
+    [SerializeField] private LineRenderer _trace;
+    [SerializeField] private GameObject _tracePrefab;
+    [SerializeField] private Animator _minigunAnimator;
 
     [Header("Shooting")]
     
@@ -16,14 +19,21 @@ public class Drone : Enemy
     [SerializeField] private float _projectileSpeed;
     [SerializeField] private float _damage;
     [SerializeField] private float _distance;
+    [SerializeField] private float _missRad;
+    [SerializeField] private float _shootingAngle;
+    [SerializeField] private Vector2 _shootingDirection;
     [SerializeField] private LayerMask _layerMask;
+    [SerializeField] private float _minigunRotationSpeed = 20f;
     private float _nextFire;
+    private RaycastHit2D _laserTrackHit;
+    private RaycastHit2D _hit;
 
     [Header("Movement")]
     [SerializeField] private float _moveSpeed;
     [SerializeField] private float _spotDistance;
     [SerializeField] private Vector2 _patrolDistance;
     [SerializeField] private float _maxVelocity;
+    [SerializeField] private bool _canMove;
     private Vector2[] _patrolPoints;
     private Vector3 _direction;
     private bool _goForth;
@@ -37,14 +47,9 @@ public class Drone : Enemy
     [SerializeField] private float _traceLength;
     private float _traceTimer;
 
-
-
-
-
-
-
     private void Start()
     {
+        _minigunAnimator.SetFloat(GlobalStrings.MinigunSpeed, 0);
         _difference = _target.transform.position + Vector3.up - transform.position;
         _goForth = true;
         _spotted = false;
@@ -55,27 +60,28 @@ public class Drone : Enemy
 
     private void Update()
     {
-        RotateMinigun();
-        Flip();
-        Shoot();
-        Trace();
-        
+        _difference = _target.transform.position + Vector3.up - transform.position;
+
+        if (!_spotted) CheckForPlayer();
+        else
+        {
+            RotateMinigun();
+            TrackTarget();
+            Shoot();
+        }
+        Flip(); 
     }
 
     private void FixedUpdate()
     {
+        if (!_canMove) return;
         ClampVelocity();
-        if (!_spotted)
-        {
-            Patrol();
-            CheckForPlayer();
-        }
+        if (!_spotted) Patrol();
         else MoveToDestination();
     }
 
     private void RotateMinigun()
     {
-        _difference = _target.transform.position + Vector3.up - transform.position;
         var RotationZRad = Mathf.Atan2(_difference.normalized.y, _difference.normalized.x);
         _rotationZDeg = RotationZRad * Mathf.Rad2Deg;
 
@@ -84,60 +90,76 @@ public class Drone : Enemy
 
     private void Flip()
     {
-        if (_target.transform.position.x - transform.position.x > 0)
+        if (!_spotted)
         {
-            _body.transform.rotation = Quaternion.Euler(0, 0, 0);
+            if (_direction.x > 0)
+            {
+                _body.transform.rotation = Quaternion.Euler(0, 0, 0);
+                _minigun.transform.rotation = Quaternion.Euler(0, 0, 0);
+            }
+            else
+            {
+                _body.transform.rotation = Quaternion.Euler(0, 180, 0);
+                _minigun.transform.rotation = Quaternion.Euler(0, 180, 0);
+            } 
         }
         else
         {
-            _body.transform.rotation = Quaternion.Euler(0, 180, 0);
+            if (_target.transform.position.x - transform.position.x > 0) _body.transform.rotation = Quaternion.Euler(0, 0, 0);
+            else _body.transform.rotation = Quaternion.Euler(0, 180, 0);
         }
     }
 
     private void Shoot()
     {
+        _minigunAnimator.SetFloat(GlobalStrings.MinigunSpeed, _minigunRotationSpeed);
 
         if (_difference.magnitude < _distance && Time.time >= _nextFire)
         {
-            var hit = Physics2D.Raycast(_shootingPoint.position, _difference, _distance, _layerMask);
-            if (hit)
+            _shootingAngle = _rotationZDeg + Random.Range(-_missRad, _missRad);
+            _shootingDirection = new Vector2(Mathf.Cos(_shootingAngle * Mathf.Deg2Rad), Mathf.Sin(_shootingAngle * Mathf.Deg2Rad));
+
+            _hit = Physics2D.Raycast(_shootingPoint.position, _shootingDirection, Mathf.Infinity, _layerMask);
+
+            if (_hit)
             {
-                _lineRenderer.SetPosition(1, new Vector3(Mathf.Abs((hit.point - (Vector2)_shootingPoint.transform.position).magnitude), 0, 0));
-
-                _traceTimer = _traceLength;
-
-                if (hit.collider.gameObject.layer == 7)
+                Trace(_hit.point - (Vector2)_shootingPoint.position);
+                if (_hit.collider.gameObject.layer == 7)
                 {
-                    hit.collider.gameObject.GetComponent<BaseEntity>().GetDamage(_damage);
-                    Debug.Log("Hit");
+                    _hit.collider.gameObject.GetComponent<BaseEntity>().GetDamage(_damage);
                 }
-                else if (hit.collider.gameObject.layer == 10)
+                else if (_hit.collider.gameObject.layer == 10)
                 {
-                    Debug.Log("Deflect");
+                    // Stuff.
                 }
-
                 _nextFire = Time.time + _firePeriod;
+            }
+            else
+            {
+                Debug.Log("miss");
+                Trace(_shootingDirection * _distance);
             }
         }
     }
 
-    private void Trace()
+    private void TrackTarget()
     {
-        _traceTimer -= Time.deltaTime;
-        if (_traceTimer > 0)
-        {
-            _lineRenderer.enabled = true;
-        }
-        else
-        {
-            _lineRenderer.enabled = false;
-        }
+        _laserPointer.enabled = true;
+        _laserTrackHit = Physics2D.Raycast(_shootingPoint.position, _difference, Mathf.Infinity, _layerMask);
+        _laserPointer.SetPosition(1, new Vector3(Mathf.Abs((_laserTrackHit.point - (Vector2)_shootingPoint.transform.position).magnitude), 0, 0));
     }
 
     private void MoveToDestination()
     {
         _direction = (_target.position + Vector3.up * 3 - transform.position).normalized;
-        _rigidbody2D.AddForce(_direction * _moveSpeed * Time.deltaTime, ForceMode2D.Force);
+        _rigidbody2D.AddForce(_direction * _moveSpeed, ForceMode2D.Force);
+    }
+
+    private void Trace(Vector2 endpos)
+    {
+        var trace = Instantiate(_tracePrefab, _shootingPoint.position, Quaternion.identity);
+        var lineRenderer = trace.GetComponent<LineRenderer>();
+        lineRenderer.SetPosition(1, endpos);
     }
 
     private void Patrol()
@@ -146,7 +168,7 @@ public class Drone : Enemy
         if (_goForth) _direction = (_patrolPoints[0] - (Vector2)transform.position).normalized;
         else _direction = (_patrolPoints[0] - (Vector2)transform.position).normalized;
 
-        _rigidbody2D.AddForce(_direction * _moveSpeed * Time.deltaTime, ForceMode2D.Force);
+        _rigidbody2D.AddForce(_direction * _moveSpeed, ForceMode2D.Force);
 
         if ((_patrolPoints[0] - (Vector2)transform.position).magnitude < 0.1f) _goForth = false;
         else if ((_patrolPoints[1] - (Vector2)transform.position).magnitude < 0.1f) _goForth = true;
@@ -161,4 +183,5 @@ public class Drone : Enemy
     {
         _rigidbody2D.velocity = Vector2.ClampMagnitude(_rigidbody2D.velocity, _maxVelocity);
     }
+
 }

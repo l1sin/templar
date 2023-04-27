@@ -11,5 +11,7 @@ public class GlobalStrings
     public const string IsGrounded = "IsGrounded";
     public const string IsRunning = "IsRunning";
     public const string YVelocity = "YVelocity";
+
+    public const string MinigunSpeed = "MinigunSpeed";
     #endregion
 }

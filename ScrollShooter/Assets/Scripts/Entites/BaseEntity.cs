@@ -21,6 +21,6 @@ public class BaseEntity : MonoBehaviour
 
     public virtual void Die()
     {
-        Debug.Log(gameObject.name + " is dead");
+
     }
 }
