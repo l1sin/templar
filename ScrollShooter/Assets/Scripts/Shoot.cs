@@ -122,7 +122,7 @@ public class Shoot : MonoBehaviour
 
     private void CheckIfPowerUp()
     {
-        if (_player._powerUp)
+        if (_player.Powerup)
         {
             SetPowerUpOn();
         }

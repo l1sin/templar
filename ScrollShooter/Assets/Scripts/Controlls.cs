@@ -83,7 +83,7 @@ public class Controlls : MonoBehaviour
     }
     private void CheckPowerUp()
     {
-        if (_player._powerUp)
+        if (_player.Powerup)
         {
             SetPowerupOn();
         }

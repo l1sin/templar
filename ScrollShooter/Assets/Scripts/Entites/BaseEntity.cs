@@ -18,8 +18,16 @@ public class BaseEntity : MonoBehaviour
             Die();
         }
     }
+    public void GetHeal(float damage)
+    {
+        _currentHealthPoints += damage;
+        if (_currentHealthPoints >= _maxHealthPoints)
+        {
+            _currentHealthPoints = _maxHealthPoints;
+        }
+    }
 
-    public virtual void Die()
+    protected virtual void Die()
     {
 
     }

@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Enemy : BaseEntity
 {
-    public override void Die()
+    protected override void Die()
     {
         Destroy(gameObject);
     }

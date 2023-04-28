@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: PlayerRed
+  m_Name: Powerup
   m_Shader: {fileID: -6465566751694194690, guid: 0b57cac27d2d710478cdf979a39999d8, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
@@ -43,5 +43,5 @@ Material:
     m_Ints: []
     m_Floats: []
     m_Colors:
-    - _Color: {r: 42.722507, g: 0.22367805, b: 0, a: 0}
+    - _Color: {r: 220.26176, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []

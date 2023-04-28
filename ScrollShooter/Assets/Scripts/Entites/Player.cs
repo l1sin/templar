@@ -2,23 +2,38 @@ using UnityEngine;
 
 public class Player : BaseEntity
 {
-    [SerializeField] public bool _powerUp;
+    [SerializeField] public bool Powerup;
     [SerializeField] private BodyController _bodyController;
     [SerializeField] private Renderer _energyShield;
     [SerializeField] private Material _materialBlue;
     [SerializeField] private Material _materialRed;
+    [SerializeField] private float _powerupTimer;
     private Material _currentMaterial;
 
     private void Update()
     {
-        if (_powerUp)
+        if (Powerup)
         {
-            ChangeColorRed();
+            PowerupCountdown();
         }
-        else
+    }
+
+    private void PowerupCountdown()
+    {
+        _powerupTimer -= Time.deltaTime;
+        if (_powerupTimer <= 0)
         {
+            Powerup = false;
             ChangeColorBlue();
+            Color();
         }
+    }
+
+    public void ActivatePowerup(float powerupTime)
+    {
+        _powerupTimer = powerupTime;
+        Powerup = true;
+        ChangeColorRed();
         Color();
     }
 
