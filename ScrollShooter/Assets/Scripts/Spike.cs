@@ -4,41 +4,70 @@ public class Spike : Enemy
 {
     [SerializeField] private Transform _target;
     [SerializeField] private Rigidbody2D _rigidbody2D;
-    [SerializeField] private float _speed = 6f;
-    [SerializeField] private float _noMoveDistance = 0.5f;
+    [SerializeField] private float _acceleration = 6f;
+    [SerializeField] private float _maxVelocity = 6f;
     [SerializeField] private float _contactDamage = 1f;
     [SerializeField] private float _attackCooldown = 1f;
-    [SerializeField] private float _attackCooldownTimer;
+    private float _attackCooldownTimer;
+
+    [SerializeField] private float _spotDistance;
+    [SerializeField] private Vector2 _patrolDistance;
+    private Vector2[] _patrolPoints;
+    private Vector2 _playerDistance;
+    private bool _goForth;
+    private bool _spotted;
+
+    private void Start()
+    {
+        _goForth = true;
+        _spotted = false;
+        _patrolPoints = new Vector2[2];
+        _patrolPoints[0] = (Vector2)transform.position - _patrolDistance;
+        _patrolPoints[1] = (Vector2)transform.position + _patrolDistance;
+        _playerDistance = _target.position - transform.position;
+    }
 
     void Update()
     {
-        MoveToTarget();
         _attackCooldownTimer -= Time.deltaTime;
+        _playerDistance = _target.position - transform.position;
+    }
+
+    private void FixedUpdate()
+    {
+        ClampVelocity();
+        if (!_spotted)
+        {
+            CheckForPlayer();
+            Patrol();
+        }
+        else
+        {
+            MoveToTarget();
+        }
+       
     }
 
     private void MoveToTarget()
     {
-        if (Mathf.Abs(_target.position.x - transform.position.x) >= _noMoveDistance)
+        if (_target.position.x - transform.position.x > 0)
         {
-            if (_target.position.x - transform.position.x > 0)
-            {
-                MoveRight();
-            }
-            else
-            {
-                MoveLeft();
-            }
+            MoveRight();
+        }
+        else
+        {
+            MoveLeft();
         }
     }
 
     private void MoveRight()
     {
-        _rigidbody2D.velocity = new Vector2(_speed, _rigidbody2D.velocity.y);
+        _rigidbody2D.AddForce(Vector2.right * _acceleration, ForceMode2D.Force);
     }
 
     private void MoveLeft()
     {
-        _rigidbody2D.velocity = new Vector2(-_speed, _rigidbody2D.velocity.y);
+        _rigidbody2D.AddForce(Vector2.left * _acceleration, ForceMode2D.Force);
     }
 
     private void OnCollisionStay2D(Collision2D collision)
@@ -52,5 +81,24 @@ public class Spike : Enemy
         {
 
         }
+    }
+
+    private void Patrol()
+    {
+        if (_goForth) MoveRight();
+        else MoveLeft();
+
+        if (Mathf.Abs((_patrolPoints[0] - (Vector2)transform.position).x) < 0.1f) _goForth = true;
+        else if (Mathf.Abs((_patrolPoints[1] - (Vector2)transform.position).x) < 0.1f) _goForth = false;
+    }
+
+    private void CheckForPlayer()
+    {
+        if (_spotDistance > _playerDistance.magnitude) _spotted = true;
+    }
+
+    private void ClampVelocity()
+    {
+        _rigidbody2D.velocity = Vector2.ClampMagnitude(_rigidbody2D.velocity, _maxVelocity);
     }
 }

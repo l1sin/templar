@@ -187,13 +187,13 @@ public class Drone : Enemy
     private void Patrol()
     {
 
-        if (_goForth) _direction = (_patrolPoints[0] - (Vector2)transform.position).normalized;
+        if (_goForth) _direction = (_patrolPoints[1] - (Vector2)transform.position).normalized;
         else _direction = (_patrolPoints[0] - (Vector2)transform.position).normalized;
 
         _rigidbody2D.AddForce(_direction * _moveSpeed, ForceMode2D.Force);
 
-        if ((_patrolPoints[0] - (Vector2)transform.position).magnitude < 0.1f) _goForth = false;
-        else if ((_patrolPoints[1] - (Vector2)transform.position).magnitude < 0.1f) _goForth = true;
+        if ((_patrolPoints[0] - (Vector2)transform.position).magnitude < 0.1f) _goForth = true;
+        else if ((_patrolPoints[1] - (Vector2)transform.position).magnitude < 0.1f) _goForth = false;
     }
 
     private void CheckForPlayer()
