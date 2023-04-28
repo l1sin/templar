@@ -3661,16 +3661,18 @@ MonoBehaviour:
   _pistolFirePeriod: 0.2
   _pistolDamage: 1
   _pistolProjectileSpeed: 50
+  _pistolProjectilePrefabPU: {fileID: 257472474344466498, guid: fe0b70aeb135f3245a0c54c66a6716a2, type: 3}
   _pistolFirePeriodPU: 0.15
   _pistolDamagePU: 2
   _pistolProjectileSpeedPU: 75
   _railgunShootingPointR: {fileID: 1573341991}
   _railgunShootingPointL: {fileID: 1307214791}
-  _railgunProjectilePrefab: {fileID: 257472474344466498, guid: 327b8cefd9849cf44bbe305bc46a12fa, type: 3}
+  _railgunProjectilePrefab: {fileID: 257472474344466498, guid: 6696d75d83f55be42b7616c4832606bf, type: 3}
   _railgunFirePeriod: 1
   _railgunDamage: 10
   _railgunProjectileSpeed: 100
   _recoilForce: 10
+  _railgunProjectilePrefabPU: {fileID: 257472474344466498, guid: 327b8cefd9849cf44bbe305bc46a12fa, type: 3}
   _railgunFirePeriodPU: 0.75
   _railgunDamagePU: 20
   _railgunProjectileSpeedPU: 125
@@ -3713,6 +3715,8 @@ MonoBehaviour:
   _animator: {fileID: 1305053620}
   _bodyController: {fileID: 1305053613}
   _player: {fileID: 1305053622}
+  _animationSpeed: 1
+  _animationSpeedPU: 1.5
 --- !u!114 &1305053619
 MonoBehaviour:
   m_ObjectHideFlags: 0

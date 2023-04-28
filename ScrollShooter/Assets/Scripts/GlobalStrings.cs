@@ -13,5 +13,7 @@ public class GlobalStrings
     public const string YVelocity = "YVelocity";
 
     public const string MinigunSpeed = "MinigunSpeed";
+    public const string PlayerAnimationSpeed = "PlayerAnimationSpeed";
+    public const string PlayerAnimationWalkSpeed = "PlayerAnimationWalkSpeed";
     #endregion
 }

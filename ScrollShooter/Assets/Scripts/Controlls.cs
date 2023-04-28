@@ -37,6 +37,11 @@ public class Controlls : MonoBehaviour
     [SerializeField] private BodyController _bodyController;
     [SerializeField] private Player _player;
 
+    [Header("Animation preferences")]
+    [SerializeField] private float _animationSpeed = 1f;
+    [SerializeField] private float _animationSpeedPU = 1.5f;
+    private float _animationSpeedCurrent;
+
     private void Awake()
     {
         _isGrounded = false;
@@ -63,6 +68,8 @@ public class Controlls : MonoBehaviour
         _maxWalkVelocityCurrent = _maxWalkVelocityPU;
         _decelerationCurrent = _decelerationPU;
         _jumpHeightCurrent = _jumpHeightPU;
+
+        _animationSpeedCurrent = _animationSpeedPU;
     }
     private void SetPowerupOff()
     {
@@ -71,6 +78,8 @@ public class Controlls : MonoBehaviour
         _maxWalkVelocityCurrent = _maxWalkVelocity;
         _decelerationCurrent = _deceleration;
         _jumpHeightCurrent = _jumpHeight;
+
+        _animationSpeedCurrent = _animationSpeed;
     }
     private void CheckPowerUp()
     {
@@ -194,6 +203,9 @@ public class Controlls : MonoBehaviour
         _animator.SetBool(GlobalStrings.IsGrounded, _isGrounded);
         _animator.SetBool(GlobalStrings.IsRunning, _isRunning);
         _animator.SetFloat(GlobalStrings.YVelocity, _rigidbody2D.velocity.y);
+
+        _animator.SetFloat(GlobalStrings.PlayerAnimationSpeed, _animationSpeedCurrent);
+        _animator.SetFloat(GlobalStrings.PlayerAnimationWalkSpeed, _animationSpeedCurrent * 0.75f);
     }
 
     private void OnDrawGizmosSelected()

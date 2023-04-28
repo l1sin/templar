@@ -11,14 +11,15 @@ public class Shoot : MonoBehaviour
     [SerializeField] private float _pistolProjectileSpeed;
 
     [Header("Pistol powerup")]
+    [SerializeField] private GameObject _pistolProjectilePrefabPU;
     [SerializeField] private float _pistolFirePeriodPU;
     [SerializeField] private float _pistolDamagePU;
     [SerializeField] private float _pistolProjectileSpeedPU;
 
+    private GameObject _pistolProjectilePrefabCurrent;
     private float _pistolFirePeriodCurrent;
     private float _pistolDamageCurrent;
     private float _pistolProjectileSpeedCurrent;
-
 
     [Header("Railgun preferences")]
     [SerializeField] private Transform _railgunShootingPointR;
@@ -30,11 +31,13 @@ public class Shoot : MonoBehaviour
     [SerializeField] private float _recoilForce;
 
     [Header("Railgun powerup")]
+    [SerializeField] private GameObject _railgunProjectilePrefabPU;
     [SerializeField] private float _railgunFirePeriodPU;
     [SerializeField] private float _railgunDamagePU;
     [SerializeField] private float _railgunProjectileSpeedPU;
     [SerializeField] private float _recoilForcePU;
 
+    private GameObject _railgunProjectilePrefabCurrent;
     private float _railgunFirePeriodCurrent;
     private float _railgunDamageCurrent;
     private float _railgunProjectileSpeedCurrent;
@@ -71,7 +74,7 @@ public class Shoot : MonoBehaviour
     {
         if (Input.GetMouseButton(0) && !Input.GetMouseButton(1) && !Input.GetMouseButton(2) && Time.time >= _nextFirePistol)
         {
-            GameObject pistolProjectile = Instantiate(_pistolProjectilePrefab, _pistolShootingPoint.position, Quaternion.Euler(new Vector3(0, 0, AimGun.RotationZ)));
+            GameObject pistolProjectile = Instantiate(_pistolProjectilePrefabCurrent, _pistolShootingPoint.position, Quaternion.Euler(new Vector3(0, 0, AimGun.RotationZ)));
             PlayerProjectile projectileParameters = pistolProjectile.GetComponent<PlayerProjectile>();
             projectileParameters.Damage = _pistolDamageCurrent;
             projectileParameters.Speed = _pistolProjectileSpeedCurrent;
@@ -84,7 +87,7 @@ public class Shoot : MonoBehaviour
     {
         if (Input.GetMouseButton(0) && Input.GetMouseButton(1) && !Input.GetMouseButton(2) && Time.time >= _nextFireRailgun)
         {
-            GameObject railgunProjectile = Instantiate(_railgunProjectilePrefab, _railgunShootingPoint.position, Quaternion.Euler(new Vector3(0, 0, AimGun.RotationZ)));
+            GameObject railgunProjectile = Instantiate(_railgunProjectilePrefabCurrent, _railgunShootingPoint.position, Quaternion.Euler(new Vector3(0, 0, AimGun.RotationZ)));
             PlayerProjectile projectileParameters = railgunProjectile.GetComponent<PlayerProjectile>();
             projectileParameters.Damage = _railgunDamageCurrent;
             projectileParameters.Speed = _railgunProjectileSpeedCurrent;
@@ -131,9 +134,11 @@ public class Shoot : MonoBehaviour
 
     private void SetPowerUpOn()
     {
+        _pistolProjectilePrefabCurrent = _pistolProjectilePrefabPU;
         _pistolFirePeriodCurrent = _pistolFirePeriodPU;
         _pistolDamageCurrent = _pistolDamagePU;
         _pistolProjectileSpeedCurrent = _pistolProjectileSpeedPU;
+        _railgunProjectilePrefabCurrent = _railgunProjectilePrefabPU;
         _railgunFirePeriodCurrent = _railgunFirePeriodPU;
         _railgunDamageCurrent = _railgunDamagePU;
         _railgunProjectileSpeedCurrent = _railgunProjectileSpeedPU;
@@ -141,9 +146,11 @@ public class Shoot : MonoBehaviour
     }
     private void SetPowerUpOff()
     {
+        _pistolProjectilePrefabCurrent = _pistolProjectilePrefab;
         _pistolFirePeriodCurrent = _pistolFirePeriod;
         _pistolDamageCurrent = _pistolDamage;
         _pistolProjectileSpeedCurrent = _pistolProjectileSpeed;
+        _railgunProjectilePrefabCurrent =_railgunProjectilePrefab;
         _railgunFirePeriodCurrent = _railgunFirePeriod;
         _railgunDamageCurrent = _railgunDamage;
         _railgunProjectileSpeedCurrent = _railgunProjectileSpeed;
