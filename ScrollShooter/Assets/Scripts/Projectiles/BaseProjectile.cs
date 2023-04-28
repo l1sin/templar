@@ -5,6 +5,7 @@ public class BaseProjectile : MonoBehaviour
     [Header("Main preferences")]
     [SerializeField] public float Speed;
     [SerializeField] public float Damage;
+    [SerializeField] public float StoppingAction;
     [SerializeField] protected float _lifeTime;
 
     [Header("Other preferences")]
@@ -39,6 +40,13 @@ public class BaseProjectile : MonoBehaviour
         if (collision != null)
         {
             collision.GetComponent<BaseEntity>().GetDamage(Damage);
+            Vector2 move;
+            move.x = Mathf.Cos(transform.localRotation.eulerAngles.z * Mathf.Deg2Rad);
+            move.y = Mathf.Sin(transform.localRotation.eulerAngles.z * Mathf.Deg2Rad);
+            Debug.Log(transform.localRotation.eulerAngles.z);
+            Debug.Log(move);
+            collision.GetComponent<Rigidbody2D>().AddForce(move * StoppingAction, ForceMode2D.Impulse);
+            
             Destroy(gameObject);
         }
     }

@@ -247,7 +247,7 @@ SpriteRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 163993150}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -299,7 +299,7 @@ PolygonCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 163993150}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -3990,10 +3990,12 @@ MonoBehaviour:
   _pistolFirePeriod: 0.2
   _pistolDamage: 1
   _pistolProjectileSpeed: 50
+  _pistiolStoppingAction: 1
   _pistolProjectilePrefabPU: {fileID: 257472474344466498, guid: fe0b70aeb135f3245a0c54c66a6716a2, type: 3}
   _pistolFirePeriodPU: 0.15
   _pistolDamagePU: 2
   _pistolProjectileSpeedPU: 75
+  _pistiolStoppingActionPU: 2
   _railgunShootingPointR: {fileID: 1573341991}
   _railgunShootingPointL: {fileID: 1307214791}
   _railgunProjectilePrefab: {fileID: 257472474344466498, guid: 6696d75d83f55be42b7616c4832606bf, type: 3}
@@ -4001,11 +4003,13 @@ MonoBehaviour:
   _railgunDamage: 10
   _railgunProjectileSpeed: 100
   _recoilForce: 10
+  _railgunStoppingAction: 10
   _railgunProjectilePrefabPU: {fileID: 257472474344466498, guid: 327b8cefd9849cf44bbe305bc46a12fa, type: 3}
   _railgunFirePeriodPU: 0.75
   _railgunDamagePU: 20
   _railgunProjectileSpeedPU: 125
   _recoilForcePU: 15
+  _railgunStoppingActionPU: 15
   _rigidbody2D: {fileID: 1305053616}
   _bodyController: {fileID: 1305053613}
   _aimGun: {fileID: 1305053614}
@@ -4111,6 +4115,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxHealthPoints: 100
   _currentHealthPoints: 0
+  _damageBlinkMaterial: {fileID: 2100000, guid: b7c67bad527385c408d0785160b2dde6, type: 2}
   Powerup: 0
   _bodyController: {fileID: 1305053613}
   _energyShield: {fileID: 163993152}

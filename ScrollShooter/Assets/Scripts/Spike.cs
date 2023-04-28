@@ -27,8 +27,9 @@ public class Spike : Enemy
         _playerDistance = _target.position - transform.position;
     }
 
-    void Update()
+    protected override void Update()
     {
+        base.Update();
         _attackCooldownTimer -= Time.deltaTime;
         _playerDistance = _target.position - transform.position;
     }
@@ -62,12 +63,12 @@ public class Spike : Enemy
 
     private void MoveRight()
     {
-        _rigidbody2D.AddForce(Vector2.right * _acceleration, ForceMode2D.Force);
+        _rigidbody2D.AddForce(Vector2.right * _acceleration * _rigidbody2D.mass, ForceMode2D.Force);
     }
 
     private void MoveLeft()
     {
-        _rigidbody2D.AddForce(Vector2.left * _acceleration, ForceMode2D.Force);
+        _rigidbody2D.AddForce(Vector2.left * _acceleration * _rigidbody2D.mass, ForceMode2D.Force);
     }
 
     private void OnCollisionStay2D(Collision2D collision)

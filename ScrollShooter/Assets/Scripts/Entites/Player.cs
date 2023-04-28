@@ -8,10 +8,17 @@ public class Player : BaseEntity
     [SerializeField] private Material _materialBlue;
     [SerializeField] private Material _materialRed;
     [SerializeField] private float _powerupTimer;
-    private Material _currentMaterial;
 
-    private void Update()
+    protected override void Awake()
     {
+        base.Awake();
+        ChangeColorBlue();
+        ApplyMaterial();
+    }
+
+    protected override void Update()
+    {
+        base.Update();
         if (Powerup)
         {
             PowerupCountdown();
@@ -25,7 +32,7 @@ public class Player : BaseEntity
         {
             Powerup = false;
             ChangeColorBlue();
-            Color();
+            ApplyMaterial();
         }
     }
 
@@ -34,19 +41,21 @@ public class Player : BaseEntity
         _powerupTimer = powerupTime;
         Powerup = true;
         ChangeColorRed();
-        Color();
+        ApplyMaterial();
     }
 
     private void ChangeColorBlue()
     {
         _currentMaterial = _materialBlue;
+        _tempMaterial = _materialBlue;
     }
     private void ChangeColorRed()
     {
         _currentMaterial = _materialRed;
+        _tempMaterial = _materialBlue;
     }
 
-    private void Color()
+    protected override void ApplyMaterial()
     {
         _bodyController.HeadRenderer.material = _currentMaterial;
         _bodyController.BodyRenderer.material = _currentMaterial;
@@ -61,6 +70,6 @@ public class Player : BaseEntity
         _bodyController.RightHandActiveBackLRenderer.material = _currentMaterial;
         _bodyController.RightHandInactiveBackLRenderer.material = _currentMaterial;
 
-        _energyShield.material = _currentMaterial;
+        if (_currentMaterial != _damageBlinkMaterial) _energyShield.material = _currentMaterial;
     }
 }

@@ -60,8 +60,9 @@ public class Drone : Enemy
         _patrolPoints[1] = (Vector2)transform.position + _patrolDistance;
     }
 
-    private void Update()
+    protected override void Update()
     {
+        base.Update();
         _difference = _target.transform.position + Vector3.up - transform.position;
 
         if (!_spotted) CheckForPlayer();
@@ -157,7 +158,6 @@ public class Drone : Enemy
             }
             else
             {
-                Debug.Log("miss");
                 Trace(_shootingDirection * _distance);
             }
         }

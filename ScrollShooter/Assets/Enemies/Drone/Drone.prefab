@@ -424,6 +424,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxHealthPoints: 100
   _currentHealthPoints: 0
+  _damageBlinkMaterial: {fileID: 2100000, guid: b7c67bad527385c408d0785160b2dde6, type: 2}
+  _drop: {fileID: 2726315863031936536, guid: 5c38a79d47b5d004ab3c77c1adaf3416, type: 3}
+  _renderers:
+  - {fileID: 2976927900934665857}
+  - {fileID: 2976927901217728396}
   _rigidbody2D: {fileID: 2976927901525278954}
   _body: {fileID: 2976927901217728399}
   _minigun: {fileID: 2976927900934665863}

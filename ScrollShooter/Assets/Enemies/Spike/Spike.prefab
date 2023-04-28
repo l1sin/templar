@@ -102,13 +102,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxHealthPoints: 10
   _currentHealthPoints: 0
+  _damageBlinkMaterial: {fileID: 2100000, guid: b7c67bad527385c408d0785160b2dde6, type: 2}
+  _drop: {fileID: 133492715723157407, guid: 39ffc3fbd809e7045a34105343518df3, type: 3}
+  _renderers:
+  - {fileID: 8196130516812020311}
   _target: {fileID: 0}
   _rigidbody2D: {fileID: 8196130516812020309}
-  _speed: 6
-  _noMoveDistance: 0.5
+  _acceleration: 10
+  _maxVelocity: 14
   _contactDamage: 1
   _attackCooldown: 1
-  _attackCooldownTimer: 0
+  _spotDistance: 3
+  _patrolDistance: {x: 3, y: 0}
 --- !u!50 &8196130516812020309
 Rigidbody2D:
   serializedVersion: 4
@@ -121,7 +126,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 0.1
+  m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
