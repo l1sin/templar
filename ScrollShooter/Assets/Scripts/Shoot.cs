@@ -10,19 +10,22 @@ public class Shoot : MonoBehaviour
     [SerializeField] private float _pistolDamage;
     [SerializeField] private float _pistolProjectileSpeed;
     [SerializeField] private float _pistiolStoppingAction;
+    [SerializeField] private GameObject _pistolEffect;
 
     [Header("Pistol powerup")]
     [SerializeField] private GameObject _pistolProjectilePrefabPU;
     [SerializeField] private float _pistolFirePeriodPU;
     [SerializeField] private float _pistolDamagePU;
     [SerializeField] private float _pistolProjectileSpeedPU;
-    [SerializeField] private float _pistiolStoppingActionPU;
+    [SerializeField] private float _pistolStoppingActionPU;
+    [SerializeField] private GameObject _pistolEffectPU;
 
     private GameObject _pistolProjectilePrefabCurrent;
     private float _pistolFirePeriodCurrent;
     private float _pistolDamageCurrent;
     private float _pistolProjectileSpeedCurrent;
-    private float _pistiolStoppingActionCurrent;
+    private float _pistolStoppingActionCurrent;
+    private GameObject _pistolEffectCurrent;
 
     [Header("Railgun preferences")]
     [SerializeField] private Transform _railgunShootingPointR;
@@ -33,6 +36,7 @@ public class Shoot : MonoBehaviour
     [SerializeField] private float _railgunProjectileSpeed;
     [SerializeField] private float _recoilForce;
     [SerializeField] private float _railgunStoppingAction;
+    [SerializeField] private GameObject _RailgunEffect;
 
     [Header("Railgun powerup")]
     [SerializeField] private GameObject _railgunProjectilePrefabPU;
@@ -41,6 +45,7 @@ public class Shoot : MonoBehaviour
     [SerializeField] private float _railgunProjectileSpeedPU;
     [SerializeField] private float _recoilForcePU;
     [SerializeField] private float _railgunStoppingActionPU;
+    [SerializeField] private GameObject _RailgunEffectPU;
 
     private GameObject _railgunProjectilePrefabCurrent;
     private float _railgunFirePeriodCurrent;
@@ -48,6 +53,7 @@ public class Shoot : MonoBehaviour
     private float _railgunProjectileSpeedCurrent;
     private float _recoilForceCurrent;
     private float _railgunStoppingActionCurrent;
+    private GameObject _RailgunEffectCurrent;
 
     [Header("Component references")]
     [SerializeField] private Rigidbody2D _rigidbody2D;
@@ -80,11 +86,14 @@ public class Shoot : MonoBehaviour
     {
         if (Input.GetMouseButton(0) && !Input.GetMouseButton(1) && !Input.GetMouseButton(2) && Time.time >= _nextFirePistol)
         {
+            GameObject effect = Instantiate(_pistolEffectCurrent, _pistolShootingPoint.position, Quaternion.Euler(new Vector3(0, 0, AimGun.RotationZ)));
+            effect.transform.SetParent(_pistolShootingPoint);
+
             GameObject pistolProjectile = Instantiate(_pistolProjectilePrefabCurrent, _pistolShootingPoint.position, Quaternion.Euler(new Vector3(0, 0, AimGun.RotationZ)));
             PlayerProjectile projectileParameters = pistolProjectile.GetComponent<PlayerProjectile>();
             projectileParameters.Damage = _pistolDamageCurrent;
             projectileParameters.Speed = _pistolProjectileSpeedCurrent;
-            projectileParameters.StoppingAction = _pistiolStoppingActionCurrent;
+            projectileParameters.StoppingAction = _pistolStoppingActionCurrent;
 
             _nextFirePistol = Time.time + _pistolFirePeriodCurrent;
         }
@@ -94,6 +103,9 @@ public class Shoot : MonoBehaviour
     {
         if (Input.GetMouseButton(0) && Input.GetMouseButton(1) && !Input.GetMouseButton(2) && Time.time >= _nextFireRailgun)
         {
+            GameObject effect = Instantiate(_RailgunEffectCurrent, _railgunShootingPoint.position, Quaternion.Euler(new Vector3(0, 0, AimGun.RotationZ)));
+            effect.transform.SetParent(_railgunShootingPoint);
+
             GameObject railgunProjectile = Instantiate(_railgunProjectilePrefabCurrent, _railgunShootingPoint.position, Quaternion.Euler(new Vector3(0, 0, AimGun.RotationZ)));
             PlayerProjectile projectileParameters = railgunProjectile.GetComponent<PlayerProjectile>();
             projectileParameters.Damage = _railgunDamageCurrent;
@@ -142,32 +154,40 @@ public class Shoot : MonoBehaviour
 
     private void SetPowerUpOn()
     {
+        // Pistol PU
         _pistolProjectilePrefabCurrent = _pistolProjectilePrefabPU;
         _pistolFirePeriodCurrent = _pistolFirePeriodPU;
         _pistolDamageCurrent = _pistolDamagePU;
         _pistolProjectileSpeedCurrent = _pistolProjectileSpeedPU;
-        _pistiolStoppingActionCurrent = _pistiolStoppingActionPU;
+        _pistolStoppingActionCurrent = _pistolStoppingActionPU;
+        _pistolEffectCurrent = _pistolEffectPU;
 
+        // Railgun PU
         _railgunProjectilePrefabCurrent = _railgunProjectilePrefabPU;
         _railgunFirePeriodCurrent = _railgunFirePeriodPU;
         _railgunDamageCurrent = _railgunDamagePU;
         _railgunProjectileSpeedCurrent = _railgunProjectileSpeedPU;
         _recoilForceCurrent = _recoilForcePU;
         _railgunStoppingActionCurrent = _railgunStoppingActionPU;
+        _RailgunEffectCurrent = _RailgunEffectPU;
     }
     private void SetPowerUpOff()
     {
+        // Pistol Common
         _pistolProjectilePrefabCurrent = _pistolProjectilePrefab;
         _pistolFirePeriodCurrent = _pistolFirePeriod;
         _pistolDamageCurrent = _pistolDamage;
         _pistolProjectileSpeedCurrent = _pistolProjectileSpeed;
-        _pistiolStoppingActionCurrent = _pistiolStoppingAction;
-
+        _pistolStoppingActionCurrent = _pistiolStoppingAction;
+        _pistolEffectCurrent = _pistolEffect;
+        
+        // Railgun Common
         _railgunProjectilePrefabCurrent =_railgunProjectilePrefab;
         _railgunFirePeriodCurrent = _railgunFirePeriod;
         _railgunDamageCurrent = _railgunDamage;
         _railgunProjectileSpeedCurrent = _railgunProjectileSpeed;
         _recoilForceCurrent = _recoilForce;
         _railgunStoppingActionCurrent = _railgunStoppingAction;
+        _RailgunEffectCurrent = _RailgunEffect;
     }
 }
