@@ -5,12 +5,14 @@ public class Enemy : BaseEntity
     [SerializeField] private GameObject _drop;
     [SerializeField] private GameObject _vFX;
     [SerializeField] private Renderer[] _renderers;
+    protected Transform _target;
 
     protected override void Awake()
     {
         base.Awake();
         _currentMaterial = _renderers[0].material;
         ApplyMaterial();
+        _target = Player.Instance.transform;
     }
     protected override void Die()
     {

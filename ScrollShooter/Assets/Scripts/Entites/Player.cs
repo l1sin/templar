@@ -9,9 +9,12 @@ public class Player : BaseEntity
     [SerializeField] private Material _materialRed;
     [SerializeField] private float _powerupTimer;
 
+    public static Player Instance { get; private set; }
+
     protected override void Awake()
     {
         base.Awake();
+        SetSingleton();
         ChangeColorBlue();
         ApplyMaterial();
     }
@@ -71,5 +74,18 @@ public class Player : BaseEntity
         _bodyController.RightHandInactiveBackLRenderer.material = _currentMaterial;
 
         if (_currentMaterial != _damageBlinkMaterial) _energyShield.material = _currentMaterial;
+    }
+
+    private void SetSingleton()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(this);
+        }
+        else
+        {
+            Instance = this;
+        }
+
     }
 }

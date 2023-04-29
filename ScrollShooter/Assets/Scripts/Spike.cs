@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class Spike : Enemy
 {
-    [SerializeField] private Transform _target;
     [SerializeField] private Rigidbody2D _rigidbody2D;
     [SerializeField] private float _acceleration = 6f;
     [SerializeField] private float _maxVelocity = 6f;

@@ -9,6 +9,17 @@ public class UI : MonoBehaviour
 
     private void Start()
     {
+        SetSingleton();
+    }
+
+    public void AddMoney(float money)
+    {
+        _money += money;
+        _moneyText.text = _money.ToString();
+    }
+
+    public void SetSingleton()
+    {
         if (Instance != null && Instance != this)
         {
             Destroy(this);
@@ -17,11 +28,5 @@ public class UI : MonoBehaviour
         {
             Instance = this;
         }
-    }
-
-    public void AddMoney(float money)
-    {
-        _money += money;
-        _moneyText.text = _money.ToString();
     }
 }

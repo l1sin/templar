@@ -7,7 +7,6 @@ public class Drone : Enemy
     [SerializeField] private Transform _body;
     [SerializeField] private Transform _minigun;
     [SerializeField] private Transform _shootingPoint;
-    [SerializeField] private Transform _target;
     [SerializeField] private LineRenderer _laserPointer;
     [SerializeField] private GameObject _tracePrefab;
     [SerializeField] private Animator _minigunAnimator;
