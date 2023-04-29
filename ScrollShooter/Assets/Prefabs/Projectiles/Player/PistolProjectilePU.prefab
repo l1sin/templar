@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6745473931952581852}
   - component: {fileID: -6455258503675424304}
   - component: {fileID: -745403463306910261}
+  - component: {fileID: -2837934911172263238}
   m_Layer: 0
   m_Name: PistolProjectilePU
   m_TagString: Untagged
@@ -107,9 +108,7 @@ MonoBehaviour:
   _hitEffect: {fileID: 712532791817447757, guid: bcb4b158267c188459991cff040b76b1, type: 3}
   _effects:
   - {fileID: 6291886707939915083}
-  _overlapBoxOffset: {x: 0, y: 0, z: 0}
-  _overlapBoxSize: {x: 0.56, y: 0.03, z: 0}
-  _layers:
+  _layerMask:
     serializedVersion: 2
     m_Bits: 576
 --- !u!114 &-6455258503675424304
@@ -217,6 +216,27 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.5625, y: 0.03125}
   m_EdgeRadius: 0
+--- !u!50 &-2837934911172263238
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 257472474344466498}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 1
+  m_SleepingMode: 1
+  m_CollisionDetection: 1
+  m_Constraints: 0
 --- !u!1001 &4677608152964046032
 PrefabInstance:
   m_ObjectHideFlags: 0

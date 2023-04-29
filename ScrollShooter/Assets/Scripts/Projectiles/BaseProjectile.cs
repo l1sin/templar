@@ -9,17 +9,20 @@ public class BaseProjectile : MonoBehaviour
     [SerializeField] protected float _lifeTime;
     [SerializeField] private GameObject _hitEffect;
     [SerializeField] private Effect[] _effects;
+    [SerializeField] private LayerMask _layerMask;
+    [SerializeField] private Rigidbody2D _rigidbody2D;
+    private Vector2 _direction;
 
-    [Header("Other preferences")]
-    [SerializeField] private Vector3 _overlapBoxOffset;
-    [SerializeField] private Vector3 _overlapBoxSize;
-    [SerializeField] private LayerMask _layers;
+    private void Awake()
+    {
+        _direction = CalculateDirectionVector();
+    }
 
     private void Update()
     {
+        MakeSweepTest2D();
         Move();
         DestroyOnTimer();
-        CheckCollision();
     }
 
     private void Move()
@@ -36,36 +39,47 @@ public class BaseProjectile : MonoBehaviour
         }
     }
 
-    private void CheckCollision()
+    private void MakeSweepTest2D()
     {
-        Collider2D collision = Physics2D.OverlapBox(transform.position + _overlapBoxOffset, _overlapBoxSize, 0, _layers);
-        if (collision != null)
+        var hit = Physics2D.Raycast(transform.position, _direction, Speed * Time.deltaTime, _layerMask);
+        Debug.DrawRay(transform.position, _direction * Speed * Time.deltaTime, new Color(Random.Range(0f,1f), Random.Range(0f, 1f), Random.Range(0f, 1f), 1), 999);
+        if (hit)
+        {
+            transform.position = hit.point;
+            MakeCollision(hit.collider);
+        }
+    }
+
+    private Vector2 CalculateDirectionVector()
+    {
+        Vector2 direction;
+        direction.x = Mathf.Cos(transform.localRotation.eulerAngles.z * Mathf.Deg2Rad);
+        direction.y = Mathf.Sin(transform.localRotation.eulerAngles.z * Mathf.Deg2Rad);
+        return direction;
+    }
+
+    private void MakeCollision(Collider2D collision)
+    {
+        if ((_layerMask.value & (1 << collision.transform.gameObject.layer)) > 0)
         {
             Instantiate(_hitEffect, transform.position, transform.rotation);
-            if (collision.gameObject.layer != 6)
-            {
-                collision.GetComponent<BaseEntity>().GetDamage(Damage);
-                Vector2 move;
-                move.x = Mathf.Cos(transform.localRotation.eulerAngles.z * Mathf.Deg2Rad);
-                move.y = Mathf.Sin(transform.localRotation.eulerAngles.z * Mathf.Deg2Rad);
-                Debug.Log(transform.localRotation.eulerAngles.z);
-                Debug.Log(move);
-                collision.GetComponent<Rigidbody2D>().AddForce(move * StoppingAction, ForceMode2D.Impulse);
-            }
-            else 
-            {
 
+            if (TryGetComponent(out BaseEntity baseEntity))
+            {
+                baseEntity.GetDamage(Damage);
             }
+
+            if (TryGetComponent(out Rigidbody2D rigidbody2D))
+            {
+                rigidbody2D.AddForce(_direction * StoppingAction, ForceMode2D.Impulse);
+            }
+
             foreach (Effect effect in _effects)
             {
                 effect.SeparateParent();
             }
+
             Destroy(gameObject);
         }
-    }
-
-    private void OnDrawGizmosSelected()
-    {
-        Gizmos.DrawWireCube(transform.position + _overlapBoxOffset, _overlapBoxSize);
     }
 }
