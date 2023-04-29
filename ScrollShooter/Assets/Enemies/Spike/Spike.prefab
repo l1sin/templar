@@ -104,6 +104,7 @@ MonoBehaviour:
   _currentHealthPoints: 0
   _damageBlinkMaterial: {fileID: 2100000, guid: b7c67bad527385c408d0785160b2dde6, type: 2}
   _drop: {fileID: 133492715723157407, guid: 39ffc3fbd809e7045a34105343518df3, type: 3}
+  _vFX: {fileID: 9209774075378230884, guid: 8eece7513d5c0e545935a155e6b09865, type: 3}
   _renderers:
   - {fileID: 8196130516812020311}
   _target: {fileID: 0}

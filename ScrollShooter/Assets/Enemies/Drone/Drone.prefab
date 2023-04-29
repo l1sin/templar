@@ -422,10 +422,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b8cdadd07026b342b83d5f2c678e6bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxHealthPoints: 100
+  _maxHealthPoints: 30
   _currentHealthPoints: 0
   _damageBlinkMaterial: {fileID: 2100000, guid: b7c67bad527385c408d0785160b2dde6, type: 2}
   _drop: {fileID: 2726315863031936536, guid: 5c38a79d47b5d004ab3c77c1adaf3416, type: 3}
+  _vFX: {fileID: 9209774075378230884, guid: 8eece7513d5c0e545935a155e6b09865, type: 3}
   _renderers:
   - {fileID: 2976927900934665857}
   - {fileID: 2976927901217728396}
