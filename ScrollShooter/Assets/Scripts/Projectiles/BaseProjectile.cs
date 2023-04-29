@@ -7,6 +7,8 @@ public class BaseProjectile : MonoBehaviour
     [SerializeField] public float Damage;
     [SerializeField] public float StoppingAction;
     [SerializeField] protected float _lifeTime;
+    [SerializeField] private GameObject _hitEffect;
+    [SerializeField] private Effect[] _effects;
 
     [Header("Other preferences")]
     [SerializeField] private Vector3 _overlapBoxOffset;
@@ -39,14 +41,25 @@ public class BaseProjectile : MonoBehaviour
         Collider2D collision = Physics2D.OverlapBox(transform.position + _overlapBoxOffset, _overlapBoxSize, 0, _layers);
         if (collision != null)
         {
-            collision.GetComponent<BaseEntity>().GetDamage(Damage);
-            Vector2 move;
-            move.x = Mathf.Cos(transform.localRotation.eulerAngles.z * Mathf.Deg2Rad);
-            move.y = Mathf.Sin(transform.localRotation.eulerAngles.z * Mathf.Deg2Rad);
-            Debug.Log(transform.localRotation.eulerAngles.z);
-            Debug.Log(move);
-            collision.GetComponent<Rigidbody2D>().AddForce(move * StoppingAction, ForceMode2D.Impulse);
-            
+            Instantiate(_hitEffect, transform.position, transform.rotation);
+            if (collision.gameObject.layer != 6)
+            {
+                collision.GetComponent<BaseEntity>().GetDamage(Damage);
+                Vector2 move;
+                move.x = Mathf.Cos(transform.localRotation.eulerAngles.z * Mathf.Deg2Rad);
+                move.y = Mathf.Sin(transform.localRotation.eulerAngles.z * Mathf.Deg2Rad);
+                Debug.Log(transform.localRotation.eulerAngles.z);
+                Debug.Log(move);
+                collision.GetComponent<Rigidbody2D>().AddForce(move * StoppingAction, ForceMode2D.Impulse);
+            }
+            else 
+            {
+
+            }
+            foreach (Effect effect in _effects)
+            {
+                effect.SeparateParent();
+            }
             Destroy(gameObject);
         }
     }
