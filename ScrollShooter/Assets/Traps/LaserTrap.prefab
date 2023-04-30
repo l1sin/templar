@@ -272,10 +272,10 @@ MonoBehaviour:
   - {fileID: 99767823156556826}
   _layerGroundMask:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 1088
   _layerHitMask:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 1152
   _shootingPoint: {fileID: 99767821449882118}
   _lineRenderer: {fileID: 99767821684619475}
   _beamSize: {x: 0.19, y: 0.19}

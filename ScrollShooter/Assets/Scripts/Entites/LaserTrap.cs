@@ -64,7 +64,14 @@ public class LaserTrap : Enemy
         var hit = Physics2D.BoxCast(_shootingPoint.position, _beamSize, 0, (Vector2)transform.TransformDirection(Vector2.right), Mathf.Infinity, _layerHitMask);
         if (hit && _nextDamageTimer <= 0)
         {
-            hit.collider.GetComponent<Player>().GetDamage(_damage);
+            if (hit.collider.gameObject.layer == 7)
+            {
+                hit.collider.GetComponent<BaseEntity>().GetDamage(_damage);
+            }
+            else if (hit.collider.gameObject.layer == 10)
+            {
+
+            }
             _nextDamageTimer = _damagePeriod;
         }
     }
