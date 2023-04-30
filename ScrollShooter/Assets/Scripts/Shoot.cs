@@ -1,3 +1,4 @@
+using System.Threading;
 using UnityEngine;
 
 public class Shoot : MonoBehaviour
@@ -62,29 +63,30 @@ public class Shoot : MonoBehaviour
     [SerializeField] private Player _player;
 
     [Header("Hidden")]
-    [HideInInspector] private float _nextFirePistol;
-    [HideInInspector] private float _nextFireRailgun;
+    [HideInInspector] private float _nextFirePistolTimer;
+    [HideInInspector] private float _nextFireRailgunTimer;
     [HideInInspector] private Transform _pistolShootingPoint;
     [HideInInspector] private Transform _railgunShootingPoint;
 
 
     private void Start()
     {
-        _nextFirePistol = 0;
-        _nextFireRailgun = 0;
+        _nextFirePistolTimer = 0;
+        _nextFireRailgunTimer = 0;
     }
 
     private void Update()
     {
         CheckIfPowerUp();
         ChangeShootingPoint();
+        ResetFireTimer();
         FirePistol();
         FireRailgun();
     }
 
     private void FirePistol()
     {
-        if (Input.GetMouseButton(0) && !Input.GetMouseButton(1) && !Input.GetMouseButton(2) && Time.time >= _nextFirePistol)
+        if (Input.GetMouseButton(0) && !Input.GetMouseButton(1) && !Input.GetMouseButton(2) && _nextFirePistolTimer <= 0)
         {
             GameObject effect = Instantiate(_pistolEffectCurrent, _pistolShootingPoint.position, Quaternion.Euler(new Vector3(0, 0, AimGun.RotationZ)));
             effect.transform.SetParent(_pistolShootingPoint);
@@ -95,13 +97,13 @@ public class Shoot : MonoBehaviour
             projectileParameters.Speed = _pistolProjectileSpeedCurrent;
             projectileParameters.StoppingAction = _pistolStoppingActionCurrent;
 
-            _nextFirePistol = Time.time + _pistolFirePeriodCurrent;
+            _nextFirePistolTimer = _pistolFirePeriodCurrent;
         }
     }
 
     private void FireRailgun()
     {
-        if (Input.GetMouseButton(0) && Input.GetMouseButton(1) && !Input.GetMouseButton(2) && Time.time >= _nextFireRailgun)
+        if (Input.GetMouseButton(0) && Input.GetMouseButton(1) && !Input.GetMouseButton(2) && _nextFireRailgunTimer <= 0)
         {
             GameObject effect = Instantiate(_RailgunEffectCurrent, _railgunShootingPoint.position, Quaternion.Euler(new Vector3(0, 0, AimGun.RotationZ)));
             effect.transform.SetParent(_railgunShootingPoint);
@@ -114,7 +116,7 @@ public class Shoot : MonoBehaviour
 
             _rigidbody2D.AddForce(CalculateRecoilDirection() * _recoilForceCurrent, ForceMode2D.Impulse);
 
-            _nextFireRailgun = Time.time + _railgunFirePeriodCurrent;
+            _nextFireRailgunTimer = _railgunFirePeriodCurrent;
         }
     }
 
@@ -150,6 +152,12 @@ public class Shoot : MonoBehaviour
         {
             SetPowerUpOff();
         }
+    }
+
+    private void ResetFireTimer()
+    {
+        _nextFirePistolTimer -= Time.deltaTime;
+        _nextFireRailgunTimer -= Time.deltaTime;
     }
 
     private void SetPowerUpOn()

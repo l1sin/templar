@@ -15,5 +15,9 @@ public class GlobalStrings
     public const string MinigunSpeed = "MinigunSpeed";
     public const string PlayerAnimationSpeed = "PlayerAnimationSpeed";
     public const string PlayerAnimationWalkSpeed = "PlayerAnimationWalkSpeed";
+
+    public const string Burst = "Burst";
+    public const string Recharge = "RechargeSpeed";
+    public const string Discharge = "DischargeSpeed";
     #endregion
 }

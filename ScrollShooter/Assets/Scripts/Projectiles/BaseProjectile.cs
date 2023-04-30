@@ -42,7 +42,6 @@ public class BaseProjectile : MonoBehaviour
     private void MakeSweepTest2D()
     {
         var hit = Physics2D.Raycast(transform.position, _direction, Speed * Time.deltaTime, _layerMask);
-        Debug.DrawRay(transform.position, _direction * Speed * Time.deltaTime, new Color(Random.Range(0f,1f), Random.Range(0f, 1f), Random.Range(0f, 1f), 1), 999);
         if (hit)
         {
             transform.position = hit.point;
@@ -64,12 +63,12 @@ public class BaseProjectile : MonoBehaviour
         {
             Instantiate(_hitEffect, transform.position, transform.rotation);
 
-            if (TryGetComponent(out BaseEntity baseEntity))
+            if (collision.TryGetComponent<BaseEntity>(out BaseEntity baseEntity))
             {
                 baseEntity.GetDamage(Damage);
             }
 
-            if (TryGetComponent(out Rigidbody2D rigidbody2D))
+            if (collision.TryGetComponent<Rigidbody2D>(out Rigidbody2D rigidbody2D))
             {
                 rigidbody2D.AddForce(_direction * StoppingAction, ForceMode2D.Impulse);
             }

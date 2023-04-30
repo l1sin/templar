@@ -7,12 +7,12 @@ public class BaseCollectible : MonoBehaviour
     private Vector2[] _points;
     private bool _goUp;
 
-    private void Start()
+    private void Awake()
     {
         _goUp = true;
         _points = new Vector2[2];
         _points[0] = (Vector2)transform.position - Vector2.up * _altitude;
-        _points[1] = (Vector2)transform.position + Vector2.up * _altitude; 
+        _points[1] = (Vector2)transform.position + Vector2.up * _altitude;
     }
 
     private void Update()

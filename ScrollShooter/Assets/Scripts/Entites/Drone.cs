@@ -1,3 +1,4 @@
+using System.Threading;
 using UnityEngine;
 
 public class Drone : Enemy
@@ -25,7 +26,7 @@ public class Drone : Enemy
     [SerializeField] private float _burstReloadLength = 2;
     private float _burstReloadTimer;
 
-    private float _nextFire;
+    private float _nextFireTimer;
     private RaycastHit2D _laserTrackHit;
     private RaycastHit2D _hit;
 
@@ -57,6 +58,7 @@ public class Drone : Enemy
         _patrolPoints = new Vector2[2];
         _patrolPoints[0] = (Vector2)transform.position - _patrolDistance;
         _patrolPoints[1] = (Vector2)transform.position + _patrolDistance;
+        _nextFireTimer = 0;
     }
 
     protected override void Update()
@@ -67,6 +69,7 @@ public class Drone : Enemy
         if (!_spotted) CheckForPlayer();
         else
         {
+            ResetTimer();
             RotateMinigun();
             TrackTarget();
             if (_shotAmount < _burstAmount)
@@ -82,8 +85,7 @@ public class Drone : Enemy
                     _shotAmount = 0;
                     _burstReloadTimer = _burstReloadLength;
                 }
-            }
-            
+            }       
         }
         Flip(); 
     }
@@ -130,7 +132,7 @@ public class Drone : Enemy
     {
         _minigunAnimator.SetFloat(GlobalStrings.MinigunSpeed, _minigunAnimationSpeed);
 
-        if (_difference.magnitude < _distance && Time.time >= _nextFire)
+        if (_difference.magnitude < _distance && _nextFireTimer <= 0)
         {
             _shootingAngle = _rotationZDeg + Random.Range(-_missRad, _missRad);
             _shootingDirection = new Vector2(Mathf.Cos(_shootingAngle * Mathf.Deg2Rad), Mathf.Sin(_shootingAngle * Mathf.Deg2Rad));
@@ -153,13 +155,18 @@ public class Drone : Enemy
                     var newRay = Physics2D.Raycast(trace.GetPosition(1), Vector2.Reflect(_shootingDirection, normal).normalized * _distance, Mathf.Infinity, _layerMask);
                     trace.SetPosition(2, newRay.point);
                 }
-                _nextFire = Time.time + _firePeriod;
+                _nextFireTimer = _firePeriod;
             }
             else
             {
                 Trace(_shootingDirection * _distance);
             }
         }
+    }
+
+    private void ResetTimer()
+    {
+        _nextFireTimer -= Time.deltaTime;
     }
 
     private void TrackTarget()
