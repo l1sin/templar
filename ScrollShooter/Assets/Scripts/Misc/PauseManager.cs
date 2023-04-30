@@ -9,6 +9,8 @@ public class PauseManager : MonoBehaviour
     private void Awake()
     {
         SetSingleton();
+        IsPaused = false;
+        Time.timeScale = 1;
     }
 
     public void TogglePause()
