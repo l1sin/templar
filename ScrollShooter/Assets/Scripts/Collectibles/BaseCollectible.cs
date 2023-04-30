@@ -17,6 +17,7 @@ public class BaseCollectible : MonoBehaviour
 
     private void Update()
     {
+        if (PauseManager.IsPaused) return;
         MoveUpAndDown();
     }
 

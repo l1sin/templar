@@ -12,13 +12,14 @@ public class EnergyShield : MonoBehaviour
 
     private void Update()
     {
+        if (PauseManager.IsPaused) return;
         RotateAndPos();
         Render();
     }
 
     private void Render()
     {
-        if (!Input.GetMouseButton(0) && Input.GetMouseButton(1) && Input.GetMouseButton(2))
+        if (!PlayerInput.Mouse0 && PlayerInput.Mouse1 && PlayerInput.Mouse2)
         {
             IsActive = true;
             _collider.enabled = true;

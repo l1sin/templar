@@ -18,6 +18,7 @@ public class Parallax : MonoBehaviour
 
     private void Update()
     {
+        if (PauseManager.IsPaused) return;
         _deltaXMovement = Vector3.zero;
         _deltaXMovement = _parallaxAnchor.position - _lastAnchorPos;
 

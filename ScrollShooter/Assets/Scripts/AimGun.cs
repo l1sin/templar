@@ -22,6 +22,7 @@ public class AimGun : MonoBehaviour
 
     private void Update()
     {
+        if (PauseManager.IsPaused) return;
         RotateGun();
         RotateHead();
         if (_moveCameraToCursor)

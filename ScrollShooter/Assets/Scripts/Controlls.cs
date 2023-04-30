@@ -49,6 +49,7 @@ public class Controlls : MonoBehaviour
 
     private void Update()
     {
+        if (PauseManager.IsPaused) return;
         CheckGround();
         CheckPowerUp();
     }
@@ -105,7 +106,7 @@ public class Controlls : MonoBehaviour
     private void Move()
     {
         // Accelerate
-        if (_goingFront && !Input.GetKey(KeyCode.LeftShift))
+        if (_goingFront && !PlayerInput.LShift)
         {
             if (_rigidbody2D.velocity.x < _maxVelocityCurrent && PlayerInput.Movement > 0)
             {
@@ -133,7 +134,7 @@ public class Controlls : MonoBehaviour
         // Limit acceleration
         if (_isGrounded)
         {
-            if (_goingFront && !Input.GetKey(KeyCode.LeftShift))
+            if (_goingFront && !PlayerInput.LShift)
             {
                 if (_rigidbody2D.velocity.x > _maxVelocityCurrent)
                 {

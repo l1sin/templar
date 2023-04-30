@@ -77,6 +77,7 @@ public class Shoot : MonoBehaviour
 
     private void Update()
     {
+        if (PauseManager.IsPaused) return;
         CheckIfPowerUp();
         ChangeShootingPoint();
         ResetFireTimer();
@@ -86,7 +87,7 @@ public class Shoot : MonoBehaviour
 
     private void FirePistol()
     {
-        if (Input.GetMouseButton(0) && !Input.GetMouseButton(1) && !Input.GetMouseButton(2) && _nextFirePistolTimer <= 0)
+        if (PlayerInput.Mouse0 && !PlayerInput.Mouse1 && !PlayerInput.Mouse2 && _nextFirePistolTimer <= 0)
         {
             GameObject effect = Instantiate(_pistolEffectCurrent, _pistolShootingPoint.position, Quaternion.Euler(new Vector3(0, 0, AimGun.RotationZ)));
             effect.transform.SetParent(_pistolShootingPoint);
@@ -103,7 +104,7 @@ public class Shoot : MonoBehaviour
 
     private void FireRailgun()
     {
-        if (Input.GetMouseButton(0) && Input.GetMouseButton(1) && !Input.GetMouseButton(2) && _nextFireRailgunTimer <= 0)
+        if (PlayerInput.Mouse0 && PlayerInput.Mouse1 && !PlayerInput.Mouse2 && _nextFireRailgunTimer <= 0)
         {
             GameObject effect = Instantiate(_RailgunEffectCurrent, _railgunShootingPoint.position, Quaternion.Euler(new Vector3(0, 0, AimGun.RotationZ)));
             effect.transform.SetParent(_railgunShootingPoint);

@@ -20,6 +20,7 @@ public class BaseProjectile : MonoBehaviour
 
     private void Update()
     {
+        if (PauseManager.IsPaused) return;
         MakeSweepTest2D();
         Move();
         DestroyOnTimer();

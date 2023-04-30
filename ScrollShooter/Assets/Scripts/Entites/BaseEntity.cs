@@ -1,4 +1,3 @@
-using System.Collections;
 using UnityEngine;
 
 public class BaseEntity : MonoBehaviour
@@ -19,6 +18,7 @@ public class BaseEntity : MonoBehaviour
 
     protected virtual void Update()
     {
+        if (PauseManager.IsPaused) return;
         if (_isDamaged)
         {
             ResetBlink();
@@ -63,13 +63,6 @@ public class BaseEntity : MonoBehaviour
         }
     }
 
-    protected virtual void ApplyMaterial()
-    {
-
-    }
-
-    protected virtual void Die()
-    {
-
-    }
+    protected virtual void ApplyMaterial() { }
+    protected virtual void Die() { }
 }
