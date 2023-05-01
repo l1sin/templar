@@ -9,6 +9,14 @@ public class Player : BaseEntity
     [SerializeField] private Material _materialRed;
     [SerializeField] private float _powerupTimer;
 
+    [SerializeField] public float MaxEnergy;
+    [SerializeField] public float EnergyCurrent;
+    [SerializeField] private float _energyRegeneration;
+    [SerializeField] private float _energyRegenerationPU;
+    [HideInInspector] public float _energyRegenerationCurrent;
+
+    [SerializeField] public bool CanUseEnergy;
+
     public static Player Instance { get; private set; }
 
     protected override void Awake()
@@ -17,6 +25,7 @@ public class Player : BaseEntity
         SetSingleton();
         ChangeColorBlue();
         ApplyMaterial();
+        EnergyCurrent = MaxEnergy;
     }
 
     protected override void Update()
@@ -25,7 +34,26 @@ public class Player : BaseEntity
         if (Powerup)
         {
             PowerupCountdown();
+            _energyRegenerationCurrent = _energyRegenerationPU;
         }
+        else
+        {
+            _energyRegenerationCurrent = _energyRegeneration;
+        }
+        EnergyRegeneration();
+        RestorePower();
+    }
+
+    public override void GetDamage(float damage)
+    {
+        base.GetDamage(damage);
+        HUD.Instance.ChangeHealth(_currentHealthPoints, _maxHealthPoints);
+    }
+
+    public override void GetHeal(float heal)
+    {
+        base.GetHeal(heal);
+        HUD.Instance.ChangeHealth(_currentHealthPoints, _maxHealthPoints);
     }
 
     private void PowerupCountdown()
@@ -86,6 +114,36 @@ public class Player : BaseEntity
         {
             Instance = this;
         }
+    }
 
+    private void EnergyRegeneration()
+    {
+        EnergyCurrent += _energyRegenerationCurrent * Time.deltaTime;
+        if (EnergyCurrent > MaxEnergy)
+        {
+            EnergyCurrent = MaxEnergy;
+        }
+        if (EnergyCurrent < 0)
+        {
+            EnergyCurrent = 0;
+        }
+        RenderEnergyLine();
+    }
+    public void RenderEnergyLine()
+    {
+        HUD.Instance.ChangeEnergy(EnergyCurrent, MaxEnergy);
+    }
+
+    public void RestorePower()
+    {
+        if (!CanUseEnergy)
+        {
+            HUD.Instance.ChangeEnergyBarColor(HUD.Instance.NoEnergyColor);
+            if (EnergyCurrent == MaxEnergy)
+            {
+                CanUseEnergy = true;
+                HUD.Instance.ChangeEnergyBarColor(HUD.Instance.CanUseEnergyColor);
+            }
+        }
     }
 }

@@ -1,3 +1,4 @@
+using Unity.Burst.CompilerServices;
 using UnityEngine;
 
 public class Spike : Enemy
@@ -79,7 +80,7 @@ public class Spike : Enemy
         }
         else if (collision.gameObject.layer == 10 && _attackCooldownTimer <= 0)
         {
-
+            Player.Instance.gameObject.GetComponent<EnergyShield>().AbsorbDamage(_contactDamage);
         }
     }
 

@@ -146,10 +146,11 @@ public class Drone : Enemy
                 var trace = Trace(_hit.point - (Vector2)_shootingPoint.position);
                 if (_hit.collider.gameObject.layer == 7)
                 {
-                    _hit.collider.gameObject.GetComponent<BaseEntity>().GetDamage(_damage);
+                    _hit.collider.GetComponent<BaseEntity>().GetDamage(_damage);
                 }
                 else if (_hit.collider.gameObject.layer == 10)
                 {
+                    Player.Instance.gameObject.GetComponent<EnergyShield>().AbsorbDamage(_damage);
                     Vector3 normal = _hit.normal;
                     trace.positionCount++;
                     var newRay = Physics2D.Raycast(trace.GetPosition(1), Vector2.Reflect(_shootingDirection, normal).normalized * _distance, Mathf.Infinity, _layerMask);

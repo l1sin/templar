@@ -70,7 +70,7 @@ public class LaserTrap : Enemy
             }
             else if (hit.collider.gameObject.layer == 10)
             {
-
+                Player.Instance.gameObject.GetComponent<EnergyShield>().AbsorbDamage(_damage);
             }
             _nextDamageTimer = _damagePeriod;
         }

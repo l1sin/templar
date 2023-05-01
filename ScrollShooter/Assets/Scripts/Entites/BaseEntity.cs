@@ -25,7 +25,7 @@ public class BaseEntity : MonoBehaviour
         }
     }
 
-    public void GetDamage(float damage)
+    public virtual void GetDamage(float damage)
     {
         _currentHealthPoints -= damage;
         DamageBlink();
@@ -34,9 +34,9 @@ public class BaseEntity : MonoBehaviour
             Die();
         }
     }
-    public void GetHeal(float damage)
+    public virtual void GetHeal(float heal)
     {
-        _currentHealthPoints += damage;
+        _currentHealthPoints += heal;
         if (_currentHealthPoints >= _maxHealthPoints)
         {
             _currentHealthPoints = _maxHealthPoints;

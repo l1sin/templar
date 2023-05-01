@@ -1,12 +1,9 @@
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class UI : MonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI _moneyText;
-    [SerializeField] private float _money;
     [SerializeField] private Transform _canvas;
 
     [Header("UI prefabs")]
@@ -14,20 +11,15 @@ public class UI : MonoBehaviour
     [SerializeField] public GameObject PauseMenu;
     [SerializeField] public GameObject PauseOptions;
     [SerializeField] public GameObject DarkBG;
+    [SerializeField] public GameObject HUD;
 
     public List<GameObject> MenuQueue;
 
     public static UI Instance { get; private set; }
 
-    private void Start()
+    private void Awake()
     {
         SetSingleton();
-    }
-
-    public void AddMoney(float money)
-    {
-        _money += money;
-        _moneyText.text = _money.ToString();
     }
 
     public void InstantiateMenu(GameObject menu)
@@ -78,11 +70,12 @@ public class UI : MonoBehaviour
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        if (MenuQueue.Count != 0)
+        for (int i = 0; i < _canvas.transform.childCount; i++)
         {
-            Destroy(MenuQueue[0]);
+            Destroy(_canvas.GetChild(i).gameObject);
         }
         MenuQueue.Clear();
+
         if (scene.buildIndex == 0)
         {
             GameObject newMenu = Instantiate(MainMenu);
@@ -90,10 +83,8 @@ public class UI : MonoBehaviour
         }
         else
         {
-            for (int i = 0; i < _canvas.transform.childCount; i++)
-            {
-                Destroy(_canvas.GetChild(i).gameObject);
-            }
+            GameObject hud = Instantiate(HUD);
+            hud.transform.SetParent(_canvas, false);
         }
     }
 }

@@ -11,6 +11,7 @@ public class Shoot : MonoBehaviour
     [SerializeField] private float _pistolDamage;
     [SerializeField] private float _pistolProjectileSpeed;
     [SerializeField] private float _pistiolStoppingAction;
+    [SerializeField] private float _pistolEnergyCost;
     [SerializeField] private GameObject _pistolEffect;
 
     [Header("Pistol powerup")]
@@ -19,6 +20,7 @@ public class Shoot : MonoBehaviour
     [SerializeField] private float _pistolDamagePU;
     [SerializeField] private float _pistolProjectileSpeedPU;
     [SerializeField] private float _pistolStoppingActionPU;
+    [SerializeField] private float _pistolEnergyCostPU;
     [SerializeField] private GameObject _pistolEffectPU;
 
     private GameObject _pistolProjectilePrefabCurrent;
@@ -26,6 +28,7 @@ public class Shoot : MonoBehaviour
     private float _pistolDamageCurrent;
     private float _pistolProjectileSpeedCurrent;
     private float _pistolStoppingActionCurrent;
+    private float _pistolEnergyCostCurrent;
     private GameObject _pistolEffectCurrent;
 
     [Header("Railgun preferences")]
@@ -37,6 +40,7 @@ public class Shoot : MonoBehaviour
     [SerializeField] private float _railgunProjectileSpeed;
     [SerializeField] private float _recoilForce;
     [SerializeField] private float _railgunStoppingAction;
+    [SerializeField] private float _railgunEnergyCost;
     [SerializeField] private GameObject _RailgunEffect;
 
     [Header("Railgun powerup")]
@@ -46,6 +50,7 @@ public class Shoot : MonoBehaviour
     [SerializeField] private float _railgunProjectileSpeedPU;
     [SerializeField] private float _recoilForcePU;
     [SerializeField] private float _railgunStoppingActionPU;
+    [SerializeField] private float _railgunEnergyCostPU;
     [SerializeField] private GameObject _RailgunEffectPU;
 
     private GameObject _railgunProjectilePrefabCurrent;
@@ -54,7 +59,8 @@ public class Shoot : MonoBehaviour
     private float _railgunProjectileSpeedCurrent;
     private float _recoilForceCurrent;
     private float _railgunStoppingActionCurrent;
-    private GameObject _RailgunEffectCurrent;
+    private float _railgunEnergyCostCurrent;
+    private GameObject _railgunEffectCurrent;
 
     [Header("Component references")]
     [SerializeField] private Rigidbody2D _rigidbody2D;
@@ -87,7 +93,7 @@ public class Shoot : MonoBehaviour
 
     private void FirePistol()
     {
-        if (PlayerInput.Mouse0 && !PlayerInput.Mouse1 && !PlayerInput.Mouse2 && _nextFirePistolTimer <= 0)
+        if (PlayerInput.Mouse0 && !PlayerInput.Mouse1 && !PlayerInput.Mouse2 && _nextFirePistolTimer <= 0 && Player.Instance.CanUseEnergy && Player.Instance.EnergyCurrent > 0)
         {
             GameObject effect = Instantiate(_pistolEffectCurrent, _pistolShootingPoint.position, Quaternion.Euler(new Vector3(0, 0, AimGun.RotationZ)));
             effect.transform.SetParent(_pistolShootingPoint);
@@ -99,14 +105,17 @@ public class Shoot : MonoBehaviour
             projectileParameters.StoppingAction = _pistolStoppingActionCurrent;
 
             _nextFirePistolTimer = _pistolFirePeriodCurrent;
+            Player.Instance.EnergyCurrent -= _pistolEnergyCostCurrent;
+            if (Player.Instance.EnergyCurrent < 0) Player.Instance.CanUseEnergy = false;
+            Player.Instance.RenderEnergyLine();
         }
     }
 
     private void FireRailgun()
     {
-        if (PlayerInput.Mouse0 && PlayerInput.Mouse1 && !PlayerInput.Mouse2 && _nextFireRailgunTimer <= 0)
+        if (PlayerInput.Mouse0 && PlayerInput.Mouse1 && !PlayerInput.Mouse2 && _nextFireRailgunTimer <= 0 && Player.Instance.CanUseEnergy && Player.Instance.EnergyCurrent > 0)
         {
-            GameObject effect = Instantiate(_RailgunEffectCurrent, _railgunShootingPoint.position, Quaternion.Euler(new Vector3(0, 0, AimGun.RotationZ)));
+            GameObject effect = Instantiate(_railgunEffectCurrent, _railgunShootingPoint.position, Quaternion.Euler(new Vector3(0, 0, AimGun.RotationZ)));
             effect.transform.SetParent(_railgunShootingPoint);
 
             GameObject railgunProjectile = Instantiate(_railgunProjectilePrefabCurrent, _railgunShootingPoint.position, Quaternion.Euler(new Vector3(0, 0, AimGun.RotationZ)));
@@ -118,6 +127,9 @@ public class Shoot : MonoBehaviour
             _rigidbody2D.AddForce(CalculateRecoilDirection() * _recoilForceCurrent, ForceMode2D.Impulse);
 
             _nextFireRailgunTimer = _railgunFirePeriodCurrent;
+            Player.Instance.EnergyCurrent -= _railgunEnergyCostCurrent;
+            if (Player.Instance.EnergyCurrent < 0) Player.Instance.CanUseEnergy = false;
+            Player.Instance.RenderEnergyLine();
         }
     }
 
@@ -169,6 +181,7 @@ public class Shoot : MonoBehaviour
         _pistolDamageCurrent = _pistolDamagePU;
         _pistolProjectileSpeedCurrent = _pistolProjectileSpeedPU;
         _pistolStoppingActionCurrent = _pistolStoppingActionPU;
+        _pistolEnergyCostCurrent = _pistolEnergyCostPU;
         _pistolEffectCurrent = _pistolEffectPU;
 
         // Railgun PU
@@ -178,7 +191,8 @@ public class Shoot : MonoBehaviour
         _railgunProjectileSpeedCurrent = _railgunProjectileSpeedPU;
         _recoilForceCurrent = _recoilForcePU;
         _railgunStoppingActionCurrent = _railgunStoppingActionPU;
-        _RailgunEffectCurrent = _RailgunEffectPU;
+        _railgunEnergyCostCurrent = _railgunEnergyCostPU;
+        _railgunEffectCurrent = _RailgunEffectPU;
     }
     private void SetPowerUpOff()
     {
@@ -188,6 +202,7 @@ public class Shoot : MonoBehaviour
         _pistolDamageCurrent = _pistolDamage;
         _pistolProjectileSpeedCurrent = _pistolProjectileSpeed;
         _pistolStoppingActionCurrent = _pistiolStoppingAction;
+        _pistolEnergyCostCurrent = _pistolEnergyCost;
         _pistolEffectCurrent = _pistolEffect;
         
         // Railgun Common
@@ -197,6 +212,7 @@ public class Shoot : MonoBehaviour
         _railgunProjectileSpeedCurrent = _railgunProjectileSpeed;
         _recoilForceCurrent = _recoilForce;
         _railgunStoppingActionCurrent = _railgunStoppingAction;
-        _RailgunEffectCurrent = _RailgunEffect;
+        _railgunEnergyCostCurrent = _railgunEnergyCost;
+        _railgunEffectCurrent = _RailgunEffect;
     }
 }
