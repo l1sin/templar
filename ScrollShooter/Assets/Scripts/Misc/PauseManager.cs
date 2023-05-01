@@ -1,9 +1,11 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PauseManager : MonoBehaviour
 {
     public static PauseManager Instance { get; private set; }
     public static bool IsPaused;
+    private bool IsMainMenu;
 
     private void Awake()
     {
@@ -14,9 +16,12 @@ public class PauseManager : MonoBehaviour
 
     public void TogglePause()
     {
-        IsPaused = !IsPaused;
-        if (IsPaused) PauseOn();
-        else PauseOff();
+        if (!IsMainMenu)
+        {
+            IsPaused = !IsPaused;
+            if (IsPaused) PauseOn();
+            else PauseOff();
+        }
     }
 
     private void PauseOn()
@@ -33,11 +38,34 @@ public class PauseManager : MonoBehaviour
     {
         if (Instance != null && Instance != this)
         {
-            Destroy(Instance);
+            Destroy(gameObject);
         }
         else
         {
             Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+    }
+
+    void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        if (scene.buildIndex == 0)
+        {
+            IsMainMenu = true;
+        }
+        else
+        {
+            IsMainMenu = false;
         }
     }
 }

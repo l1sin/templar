@@ -7,9 +7,6 @@ public class AudioManager : MonoBehaviour
 
     [SerializeField] private AudioMixer _audioMixer;
 
-    [Range(-80f, 20f)] [SerializeField] public float MusicVolume;
-    [Range(-80f, 20f)] [SerializeField] public float SoundVolume;
-
     private void Awake()
     {
         SetSingleton();
@@ -24,14 +21,14 @@ public class AudioManager : MonoBehaviour
     {
         if (Instance != null && Instance != this)
         {
-            Destroy(Instance);
+            Destroy(gameObject);
         }
         else
         {
             Instance = this;
+            DontDestroyOnLoad(gameObject);
         }
     }
-
 
     public void MakeSound(Vector3 position, AudioClip audioClip, AudioMixerGroup audioMixerGroup, bool dontDestroyOnLoad = true, string name = "Sound")
     {

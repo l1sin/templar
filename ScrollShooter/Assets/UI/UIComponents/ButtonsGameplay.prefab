@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1574120046665930707}
   - component: {fileID: 1574120046665930708}
   m_Layer: 5
-  m_Name: ButtonsGameplayGrid
+  m_Name: ButtonsGameplay
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
