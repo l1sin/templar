@@ -20,4 +20,9 @@ public class GlobalStrings
     public const string Recharge = "RechargeSpeed";
     public const string Discharge = "DischargeSpeed";
     #endregion
+
+    #region Sound
+    public const string Music = "Music";
+    public const string SFX = "SFX";
+    #endregion
 }
