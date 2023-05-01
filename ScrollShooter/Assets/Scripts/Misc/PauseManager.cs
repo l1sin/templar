@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PauseManager : MonoBehaviour
@@ -22,12 +21,11 @@ public class PauseManager : MonoBehaviour
 
     private void PauseOn()
     {
-        UI.Instance.InstantiatePauseMenu();
         Time.timeScale = 0;
+        UI.Instance.InstantiateMenu(UI.Instance.PauseMenu);
     }
     private void PauseOff()
     {
-        UI.Instance.ClosePauseMenu();
         Time.timeScale = 1;
     }
 

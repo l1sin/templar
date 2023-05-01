@@ -22,4 +22,19 @@ public class ButtonsMethods : MonoBehaviour
     {
         Application.Quit();
     }
+
+    public static void OpenMenu(GameObject menu)
+    {
+        UI.Instance.InstantiateMenu(menu);
+    }
+
+    public static void CloseLastMenu()
+    {
+        UI.Instance.CloseLastMenu();
+    }
+
+    public static void DestroyMenu(GameObject menu)
+    {
+        Destroy(menu);
+    }
 }

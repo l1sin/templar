@@ -36,7 +36,14 @@ public class PlayerInput : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            PauseManager.Instance.TogglePause();
+            if (UI.Instance.MenuQueue.Count == 0)
+            {
+                PauseManager.Instance.TogglePause();
+            }
+            else
+            {
+                UI.Instance.CloseLastMenu();
+            }
         }
     }
 

@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
@@ -5,9 +6,15 @@ public class UI : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI _moneyText;
     [SerializeField] private float _money;
-    [SerializeField] private GameObject _pauseMenu;
     [SerializeField] private Transform _canvas;
-    private GameObject _menuInstance;
+    
+    [Header("UI prefabs")]
+    [SerializeField] public GameObject PauseMenu;
+    [SerializeField] public GameObject PauseOptions;
+    [SerializeField] public GameObject DarkBG;
+
+    public List<GameObject> MenuQueue;
+
     public static UI Instance { get; private set; }
 
     private void Start()
@@ -21,16 +28,27 @@ public class UI : MonoBehaviour
         _moneyText.text = _money.ToString();
     }
 
-    public void InstantiatePauseMenu()
+    public void InstantiateMenu(GameObject menu)
     {
-        _menuInstance = Instantiate(_pauseMenu);
-        _menuInstance.transform.SetParent(_canvas, false);
+        GameObject newMenu = Instantiate(menu);
+
+        if (MenuQueue.Count == 0)
+        {
+            newMenu.transform.SetParent(_canvas, false);
+            GameObject newBackground =  Instantiate(DarkBG);
+            newBackground.transform.SetParent(newMenu.transform, false);
+            newBackground.transform.SetSiblingIndex(0);
+        }
+        
+        else newMenu.transform.SetParent(MenuQueue[MenuQueue.Count - 1].transform, false);
+        MenuQueue.Add(newMenu);
     }
 
-    public void ClosePauseMenu()
+    public void CloseLastMenu()
     {
-        Destroy(_menuInstance);
-        _menuInstance = null;
+        Destroy(MenuQueue[MenuQueue.Count - 1]);
+        MenuQueue.RemoveAt(MenuQueue.Count - 1);
+        if (MenuQueue.Count == 0) PauseManager.Instance.TogglePause();
     }
 
     public void SetSingleton()
