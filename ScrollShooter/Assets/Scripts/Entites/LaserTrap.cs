@@ -12,6 +12,8 @@ public class LaserTrap : Enemy
     [SerializeField] private float _damagePeriod;
     [SerializeField] private float _burstOnPeriod;
     [SerializeField] private float _burstOffPeriod;
+    [SerializeField] private GameObject _laserImpactVFX;
+    [SerializeField] private Renderer _laserImpactRenderer;
 
      private float _burstOnTimer;
      private float _burstOffTimer;
@@ -26,6 +28,7 @@ public class LaserTrap : Enemy
         _burstOffTimer = _burstOffPeriod;
         _animator.SetFloat(GlobalStrings.Recharge, 1f / _burstOffPeriod);
         _animator.SetFloat(GlobalStrings.Discharge, 1f / _burstOnPeriod);
+        _laserImpactRenderer.enabled = false;
     }
 
     protected override void Update()
@@ -47,16 +50,21 @@ public class LaserTrap : Enemy
     private void RenderLaser()
     {
         _lineRenderer.enabled = true;
+        _laserImpactRenderer.enabled = true;
         var hit = Physics2D.BoxCast(_shootingPoint.position, _beamSize, 0, (Vector2)transform.TransformDirection(Vector2.right), Mathf.Infinity, _layerGroundMask);
         if (hit)
         {
             _lineRenderer.SetPosition(1, new Vector3(Mathf.Abs((hit.point - (Vector2)_shootingPoint.transform.position).magnitude), 0, 0));
+            float newRotationZ = Mathf.Atan2(hit.normal.y, hit.normal.x) * Mathf.Rad2Deg;
+            _laserImpactVFX.transform.rotation = Quaternion.Euler(0,0, newRotationZ + 180);
+            _laserImpactVFX.transform.localPosition = new Vector3(Mathf.Abs((hit.point - (Vector2)_shootingPoint.transform.position).magnitude), 0, 0);
         }
     }
 
     private void StopRenderingLaser()
     {
         _lineRenderer.enabled = false;
+        _laserImpactRenderer.enabled = false;
     }
 
     private void DamageTargets()

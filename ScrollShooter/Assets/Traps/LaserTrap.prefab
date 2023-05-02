@@ -29,6 +29,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 99767821684619474}
+  - {fileID: 7325258730504014861}
   m_Father: {fileID: 99767823156556827}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -284,6 +285,8 @@ MonoBehaviour:
   _damagePeriod: 0.25
   _burstOnPeriod: 1
   _burstOffPeriod: 4
+  _laserImpactVFX: {fileID: 8376018721345068489}
+  _laserImpactRenderer: {fileID: 1435940860017973530}
 --- !u!61 &2040152516537405184
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -330,3 +333,79 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
+--- !u!1001 &738746856
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 99767821449882118}
+    m_Modifications:
+    - target: {fileID: 1435940859280324850, guid: 116a4e9c91e436c4383d7393a1742cc0, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7325258730034769381, guid: 116a4e9c91e436c4383d7393a1742cc0, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7325258730034769381, guid: 116a4e9c91e436c4383d7393a1742cc0, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.21867943
+      objectReference: {fileID: 0}
+    - target: {fileID: 7325258730034769381, guid: 116a4e9c91e436c4383d7393a1742cc0, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7325258730034769381, guid: 116a4e9c91e436c4383d7393a1742cc0, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7325258730034769381, guid: 116a4e9c91e436c4383d7393a1742cc0, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7325258730034769381, guid: 116a4e9c91e436c4383d7393a1742cc0, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7325258730034769381, guid: 116a4e9c91e436c4383d7393a1742cc0, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7325258730034769381, guid: 116a4e9c91e436c4383d7393a1742cc0, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7325258730034769381, guid: 116a4e9c91e436c4383d7393a1742cc0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7325258730034769381, guid: 116a4e9c91e436c4383d7393a1742cc0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7325258730034769381, guid: 116a4e9c91e436c4383d7393a1742cc0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8376018720874773537, guid: 116a4e9c91e436c4383d7393a1742cc0, type: 3}
+      propertyPath: m_Name
+      value: LaserImpact
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 116a4e9c91e436c4383d7393a1742cc0, type: 3}
+--- !u!212 &1435940860017973530 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 1435940859280324850, guid: 116a4e9c91e436c4383d7393a1742cc0, type: 3}
+  m_PrefabInstance: {fileID: 738746856}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &7325258730504014861 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7325258730034769381, guid: 116a4e9c91e436c4383d7393a1742cc0, type: 3}
+  m_PrefabInstance: {fileID: 738746856}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &8376018721345068489 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8376018720874773537, guid: 116a4e9c91e436c4383d7393a1742cc0, type: 3}
+  m_PrefabInstance: {fileID: 738746856}
+  m_PrefabAsset: {fileID: 0}
