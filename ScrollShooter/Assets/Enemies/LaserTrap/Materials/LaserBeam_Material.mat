@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: LaserBeam
+  m_Name: LaserBeam_Material
   m_Shader: {fileID: -6465566751694194690, guid: 9c60e10c5d651904eb8c7a669b85ee79, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []

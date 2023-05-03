@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 7a085ef562ff2a34ab65da48161c881e
+guid: 43686352ac131f24d8334a354f083c3e
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -44,7 +44,7 @@ TextureImporter:
   compressionQuality: 50
   spriteMode: 2
   spriteExtrude: 1
-  spriteMeshType: 1
+  spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 32
@@ -141,7 +141,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: LaserTrap_0
+      name: LaserTrapTier1_SpriteSheet_0
       rect:
         serializedVersion: 2
         x: 0
@@ -155,14 +155,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d8493414cc843f9429b563cf81cb433f
-      internalID: 670531599
+      spriteID: acba381d372a18147ad6e2774d4b4435
+      internalID: -965583034
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: LaserTrap_1
+      name: LaserTrapTier1_SpriteSheet_1
       rect:
         serializedVersion: 2
         x: 32
@@ -176,14 +176,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2b465e44f3329b04aaa5a27dd5a2cfe2
-      internalID: 1954759938
+      spriteID: 4d1dd95f508ba0342b3e5cd5705e3ef9
+      internalID: 1515291508
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: LaserTrap_2
+      name: LaserTrapTier1_SpriteSheet_2
       rect:
         serializedVersion: 2
         x: 64
@@ -197,14 +197,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 186f348b2734806409132bd3ccc024b4
-      internalID: 698134859
+      spriteID: 5d91cab22b842134090d0ba4b97c2bf9
+      internalID: -1376657744
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: LaserTrap_3
+      name: LaserTrapTier1_SpriteSheet_3
       rect:
         serializedVersion: 2
         x: 96
@@ -218,14 +218,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b2e0c3ae87898ab49a61c95c2640dc6d
-      internalID: -531976264
+      spriteID: 5fd0de891bf879a408b946d649810acc
+      internalID: 220300884
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: LaserTrap_4
+      name: LaserTrapTier1_SpriteSheet_4
       rect:
         serializedVersion: 2
         x: 128
@@ -239,14 +239,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: edd23cb95280a334689e244428d9cc79
-      internalID: 1942880527
+      spriteID: 700c5224f7233b54ea58a44a12918333
+      internalID: -2015173741
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: LaserTrap_5
+      name: LaserTrapTier1_SpriteSheet_5
       rect:
         serializedVersion: 2
         x: 160
@@ -260,8 +260,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1408c9dcf84465d4db4cc7c2fbffbd76
-      internalID: -682868860
+      spriteID: b8e56d2f481bbc745a54e3760fbbffff
+      internalID: -971385774
       vertices: []
       indices: 
       edges: []
@@ -277,12 +277,12 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      LaserTrap_2: 698134859
-      LaserTrap_5: -682868860
-      LaserTrap_3: -531976264
-      LaserTrap_1: 1954759938
-      LaserTrap_4: 1942880527
-      LaserTrap_0: 670531599
+      LaserTrapTier1_SpriteSheet_3: 220300884
+      LaserTrapTier1_SpriteSheet_4: -2015173741
+      LaserTrapTier1_SpriteSheet_5: -971385774
+      LaserTrapTier1_SpriteSheet_0: -965583034
+      LaserTrapTier1_SpriteSheet_1: 1515291508
+      LaserTrapTier1_SpriteSheet_2: -1376657744
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
