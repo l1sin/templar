@@ -119,4 +119,6 @@ MonoBehaviour:
   PauseOptions: {fileID: 6229816966346376431, guid: 7381bb624d456aa409d7d48de1b97985, type: 3}
   DarkBG: {fileID: 5417532796748928247, guid: 37980761432a70349898b0bb716073dc, type: 3}
   HUD: {fileID: 868923902968579413, guid: 65d98a932d90a984eb97c862fc7d271d, type: 3}
+  GameOverMenu: {fileID: 6229816966346376431, guid: 4a8889fd88a575249a5332a8c208f58f, type: 3}
+  LevelCompleteMenu: {fileID: 6229816966346376431, guid: 0bc65fcde2e0be840976be94709ad1f5, type: 3}
   MenuQueue: []

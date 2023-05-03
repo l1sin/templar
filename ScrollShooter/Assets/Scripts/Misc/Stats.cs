@@ -5,12 +5,21 @@ using UnityEngine.SceneManagement;
 public class Stats : MonoBehaviour
 {
     [SerializeField] public float Money;
+    [SerializeField] public float TimeInSeconds;
 
     public static Stats Instance { get; private set; }
 
     private void Awake()
     {
         SetSingleton();
+    }
+
+    private void Update()
+    {
+        if (!Player.Instance.LevelComplete && !PauseManager.IsPaused)
+        {
+            TimeInSeconds += Time.deltaTime;
+        }  
     }
 
     public void AddMoney(float money)

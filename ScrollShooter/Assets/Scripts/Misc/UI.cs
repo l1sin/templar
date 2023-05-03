@@ -12,6 +12,8 @@ public class UI : MonoBehaviour
     [SerializeField] public GameObject PauseOptions;
     [SerializeField] public GameObject DarkBG;
     [SerializeField] public GameObject HUD;
+    [SerializeField] public GameObject GameOverMenu;
+    [SerializeField] public GameObject LevelCompleteMenu;
 
     public List<GameObject> MenuQueue;
 
@@ -32,10 +34,15 @@ public class UI : MonoBehaviour
             GameObject newBackground =  Instantiate(DarkBG);
             newBackground.transform.SetParent(newMenu.transform, false);
             newBackground.transform.SetSiblingIndex(0);
-        }
-        
+        }    
         else newMenu.transform.SetParent(MenuQueue[MenuQueue.Count - 1].transform, false);
         MenuQueue.Add(newMenu);
+    }
+
+    public void InstantiateMenuNoQueue(GameObject menu)
+    {
+        GameObject newMenu = Instantiate(menu);
+        newMenu.transform.SetParent(_canvas, false);
     }
 
     public void CloseLastMenu()

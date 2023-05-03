@@ -17,6 +17,9 @@ public class Player : BaseEntity
 
     [SerializeField] public bool CanUseEnergy;
 
+    [SerializeField] public bool GameOver;
+    [SerializeField] public bool LevelComplete;
+
     public static Player Instance { get; private set; }
 
     protected override void Awake()
@@ -42,6 +45,7 @@ public class Player : BaseEntity
         }
         EnergyRegeneration();
         RestorePower();
+        if (Input.GetKeyDown(KeyCode.P)) FinishLevel();
     }
 
     public override void GetDamage(float damage)
@@ -132,6 +136,20 @@ public class Player : BaseEntity
     public void RenderEnergyLine()
     {
         HUD.Instance.ChangeEnergy(EnergyCurrent, MaxEnergy);
+    }
+
+    protected override void Die()
+    {
+        PauseManager.Instance.TogglePause();
+        UI.Instance.InstantiateMenuNoQueue(UI.Instance.GameOverMenu);
+        GameOver = true;
+    }
+
+    public void FinishLevel()
+    {
+        PauseManager.Instance.TogglePause();
+        UI.Instance.InstantiateMenuNoQueue(UI.Instance.LevelCompleteMenu);
+        LevelComplete = true;
     }
 
     public void RestorePower()

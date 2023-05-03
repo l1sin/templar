@@ -16,7 +16,7 @@ public class PauseManager : MonoBehaviour
 
     public void TogglePause()
     {
-        if (!IsMainMenu)
+        if (!IsMainMenu && !Player.Instance.GameOver && !Player.Instance.LevelComplete)
         {
             IsPaused = !IsPaused;
             if (IsPaused) PauseOn();

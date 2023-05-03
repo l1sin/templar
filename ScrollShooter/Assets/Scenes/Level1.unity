@@ -1147,7 +1147,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 2
-  m_Size: {x: 93.75, y: 93.75}
+  m_Size: {x: 75, y: 37.5}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -1365,7 +1365,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 2
-  m_Size: {x: 93.75, y: 93.75}
+  m_Size: {x: 75, y: 37.5}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -37448,7 +37448,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 147f4e86df500f445bdb5a84547bdf12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxHealthPoints: 100
+  _maxHealthPoints: 10
   _currentHealthPoints: 0
   _damageBlinkMaterial: {fileID: 2100000, guid: b7c67bad527385c408d0785160b2dde6, type: 2}
   Powerup: 0
@@ -37463,6 +37463,8 @@ MonoBehaviour:
   _energyRegenerationPU: 20
   _energyRegenerationCurrent: 0
   CanUseEnergy: 0
+  GameOver: 0
+  LevelComplete: 0
 --- !u!61 &1305053623
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -37583,7 +37585,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 2
-  m_Size: {x: 93.75, y: 93.75}
+  m_Size: {x: 75, y: 37.5}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -37643,12 +37645,12 @@ MonoBehaviour:
   - 1
   - 0.6
   - 0.3
-  - 0
+  - 0.1
   _parallaxEffectivenessY:
   - 1
   - 0.6
   - 0.3
-  - 0
+  - 0.1
   _renderers:
   - {fileID: 648001831}
   - {fileID: 1318025617}
@@ -37767,7 +37769,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 2
-  m_Size: {x: 93.75, y: 93.75}
+  m_Size: {x: 75, y: 37.5}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
