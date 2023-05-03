@@ -2,18 +2,18 @@ using UnityEngine;
 
 public class BaseEntity : MonoBehaviour
 {
-    [SerializeField] protected float _maxHealthPoints;
-    [SerializeField] protected float _currentHealthPoints;
+    [SerializeField] protected float MaxHealth;
+    [SerializeField] protected float CurrentHealth;
     private float _damageBlinkLength = 0.1f;
     private float _damageBlinkTimer;
     private bool _isDamaged;
-    protected Material _currentMaterial;
-    [SerializeField] protected Material _damageBlinkMaterial;
-    protected Material _tempMaterial;
+    protected Material CurrentMaterial;
+    [SerializeField] protected Material DamageBlinkMaterial;
+    protected Material TempMaterial;
 
     protected virtual void Awake()
     {
-        _currentHealthPoints = _maxHealthPoints;
+        CurrentHealth = MaxHealth;
     }
 
     protected virtual void Update()
@@ -27,28 +27,28 @@ public class BaseEntity : MonoBehaviour
 
     public virtual void GetDamage(float damage)
     {
-        _currentHealthPoints -= damage;
+        CurrentHealth -= damage;
         DamageBlink();
-        if (_currentHealthPoints <= 0)
+        if (CurrentHealth <= 0)
         {
             Die();
         }
     }
     public virtual void GetHeal(float heal)
     {
-        _currentHealthPoints += heal;
-        if (_currentHealthPoints >= _maxHealthPoints)
+        CurrentHealth += heal;
+        if (CurrentHealth >= MaxHealth)
         {
-            _currentHealthPoints = _maxHealthPoints;
+            CurrentHealth = MaxHealth;
         }
     }
 
     private void DamageBlink()
     {
         _isDamaged = true;
-        if (_currentMaterial != _damageBlinkMaterial) _tempMaterial = _currentMaterial;
+        if (CurrentMaterial != DamageBlinkMaterial) TempMaterial = CurrentMaterial;
         _damageBlinkTimer = _damageBlinkLength;
-        _currentMaterial = _damageBlinkMaterial;
+        CurrentMaterial = DamageBlinkMaterial;
         ApplyMaterial();
     }
 
@@ -57,7 +57,7 @@ public class BaseEntity : MonoBehaviour
         _damageBlinkTimer -= Time.deltaTime;
         if (_damageBlinkTimer <= 0)
         {
-            _currentMaterial = _tempMaterial;
+            CurrentMaterial = TempMaterial;
             ApplyMaterial();
             _isDamaged = false;
         }

@@ -32,13 +32,13 @@ public class EnergyShield : MonoBehaviour
 
     private void Activate()
     {
-        if (!PlayerInput.Mouse0 && PlayerInput.Mouse1 && PlayerInput.Mouse2 && Player.Instance.CanUseEnergy && Player.Instance.EnergyCurrent > 0)
+        if (!PlayerInput.Mouse0 && PlayerInput.Mouse1 && PlayerInput.Mouse2 && Player.Instance.CanUseEnergy && Player.Instance.CurrentEnergy > 0)
         {
             IsActive = true;
             _collider.enabled = true;
             _energyShieldRenderer.enabled = true;
-            Player.Instance.EnergyCurrent -= Player.Instance._energyRegenerationCurrent * Time.deltaTime + _energyDrainCurrent * Time.deltaTime;
-            if (Player.Instance.EnergyCurrent < 0) Player.Instance.CanUseEnergy = false;
+            Player.Instance.CurrentEnergy -= Player.Instance.EnergyRegenerationCurrent * Time.deltaTime + _energyDrainCurrent * Time.deltaTime;
+            if (Player.Instance.CurrentEnergy < 0) Player.Instance.CanUseEnergy = false;
             Player.Instance.RenderEnergyLine();
         }
         else
@@ -78,7 +78,7 @@ public class EnergyShield : MonoBehaviour
 
     public void AbsorbDamage(float damage)
     {
-        if (Player.Instance.CanUseEnergy) Player.Instance.EnergyCurrent -= damage * _absorbDamageMultiplierCurrent;
-        if (Player.Instance.EnergyCurrent < 0) Instantiate(_shieldBreakEffectCurrent, _energyShield.transform.position, _energyShield.transform.rotation);
+        if (Player.Instance.CanUseEnergy) Player.Instance.CurrentEnergy -= damage * _absorbDamageMultiplierCurrent;
+        if (Player.Instance.CurrentEnergy < 0) Instantiate(_shieldBreakEffectCurrent, _energyShield.transform.position, _energyShield.transform.rotation);
     }
 }

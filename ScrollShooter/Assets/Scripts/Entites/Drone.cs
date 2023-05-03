@@ -1,11 +1,9 @@
-using System.Threading;
 using UnityEngine;
 
 public class Drone : Enemy
 {
     [Header("Main references")]
     [SerializeField] private Rigidbody2D _rigidbody2D;
-    [SerializeField] private Transform _body;
     [SerializeField] private Transform _minigun;
     [SerializeField] private Transform _shootingPoint;
     [SerializeField] private LineRenderer _laserPointer;
@@ -45,14 +43,11 @@ public class Drone : Enemy
     private float _rotationZDeg;
     private Vector3 _difference;
 
-    [Header("Trace")]
-    [SerializeField] private float _traceLength;
-
     private void Start()
     {
         _burstReloadTimer = _burstReloadLength;
         _minigunAnimator.SetFloat(GlobalStrings.MinigunSpeed, 0);
-        _difference = _target.transform.position + Vector3.up - transform.position;
+        _difference = Target.transform.position + Vector3.up - transform.position;
         _goForth = true;
         _spotted = false;
         _patrolPoints = new Vector2[2];
@@ -64,7 +59,7 @@ public class Drone : Enemy
     protected override void Update()
     {
         base.Update();
-        _difference = _target.transform.position + Vector3.up - transform.position;
+        _difference = Target.transform.position + Vector3.up - transform.position;
 
         if (!_spotted) CheckForPlayer();
         else
@@ -110,21 +105,13 @@ public class Drone : Enemy
     {
         if (!_spotted)
         {
-            if (_direction.x > 0)
-            {
-                _body.transform.rotation = Quaternion.Euler(0, 0, 0);
-                _minigun.transform.rotation = Quaternion.Euler(0, 0, 0);
-            }
-            else
-            {
-                _body.transform.rotation = Quaternion.Euler(0, 180, 0);
-                _minigun.transform.rotation = Quaternion.Euler(0, 180, 0);
-            } 
+            if (_direction.x > 0) foreach (SpriteRenderer spriteRenderer in SpriteRenderers) spriteRenderer.flipX = false;
+            else foreach(SpriteRenderer spriteRenderer in SpriteRenderers) spriteRenderer.flipX = true;
         }
         else
         {
-            if (_target.transform.position.x - transform.position.x > 0) _body.transform.rotation = Quaternion.Euler(0, 0, 0);
-            else _body.transform.rotation = Quaternion.Euler(0, 180, 0);
+            if (Target.transform.position.x - transform.position.x > 0) SpriteRenderers[0].flipX = false;
+            else SpriteRenderers[0].flipX = true;
         }
     }
 
@@ -179,7 +166,7 @@ public class Drone : Enemy
 
     private void MoveToDestination()
     {
-        _direction = (_target.position + Vector3.up * 3 - transform.position).normalized;
+        _direction = (Target.position + Vector3.up * 3 - transform.position).normalized;
         _rigidbody2D.AddForce(_direction * _moveSpeed, ForceMode2D.Force);
     }
 
@@ -205,7 +192,11 @@ public class Drone : Enemy
 
     private void CheckForPlayer()
     {
-        if (_spotDistance > _difference.magnitude) _spotted = true;
+        if (_spotDistance > _difference.magnitude)
+        {
+            SpriteRenderers[1].flipX = false;
+            _spotted = true;
+        } 
     }
 
     private void ClampVelocity()

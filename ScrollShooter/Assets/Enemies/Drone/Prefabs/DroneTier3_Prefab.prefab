@@ -1,0 +1,99 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &3235208289470040927
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2976927901525278952, guid: ae25c9976df8a5144826b837d39cb9dc, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2976927901525278952, guid: ae25c9976df8a5144826b837d39cb9dc, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2976927901525278952, guid: ae25c9976df8a5144826b837d39cb9dc, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2976927901525278952, guid: ae25c9976df8a5144826b837d39cb9dc, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2976927901525278952, guid: ae25c9976df8a5144826b837d39cb9dc, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2976927901525278952, guid: ae25c9976df8a5144826b837d39cb9dc, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2976927901525278952, guid: ae25c9976df8a5144826b837d39cb9dc, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2976927901525278952, guid: ae25c9976df8a5144826b837d39cb9dc, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2976927901525278952, guid: ae25c9976df8a5144826b837d39cb9dc, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2976927901525278952, guid: ae25c9976df8a5144826b837d39cb9dc, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2976927901525278952, guid: ae25c9976df8a5144826b837d39cb9dc, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2976927901525278953, guid: ae25c9976df8a5144826b837d39cb9dc, type: 3}
+      propertyPath: Drop
+      value: 
+      objectReference: {fileID: 7376253408015881492, guid: ad588bc67a25c014dab9c9fe279efab1, type: 3}
+    - target: {fileID: 2976927901525278953, guid: ae25c9976df8a5144826b837d39cb9dc, type: 3}
+      propertyPath: _damage
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2976927901525278953, guid: ae25c9976df8a5144826b837d39cb9dc, type: 3}
+      propertyPath: MaxHealth
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 2976927901525278953, guid: ae25c9976df8a5144826b837d39cb9dc, type: 3}
+      propertyPath: _distance
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 2976927901525278953, guid: ae25c9976df8a5144826b837d39cb9dc, type: 3}
+      propertyPath: _moveSpeed
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 2976927901525278953, guid: ae25c9976df8a5144826b837d39cb9dc, type: 3}
+      propertyPath: _burstAmount
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 2976927901525278953, guid: ae25c9976df8a5144826b837d39cb9dc, type: 3}
+      propertyPath: _maxVelocity
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 2976927901525278953, guid: ae25c9976df8a5144826b837d39cb9dc, type: 3}
+      propertyPath: _spotDistance
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2976927901525278953, guid: ae25c9976df8a5144826b837d39cb9dc, type: 3}
+      propertyPath: _burstReloadLength
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2976927901525278958, guid: ae25c9976df8a5144826b837d39cb9dc, type: 3}
+      propertyPath: m_Name
+      value: DroneTier3_Prefab
+      objectReference: {fileID: 0}
+    - target: {fileID: 3729261153685691086, guid: ae25c9976df8a5144826b837d39cb9dc, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 95ec8bc9e3244ca4b9b4a28eaf1bb02a, type: 2}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: ae25c9976df8a5144826b837d39cb9dc, type: 3}

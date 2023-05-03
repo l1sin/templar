@@ -93,7 +93,7 @@ public class Shoot : MonoBehaviour
 
     private void FirePistol()
     {
-        if (PlayerInput.Mouse0 && !PlayerInput.Mouse1 && !PlayerInput.Mouse2 && _nextFirePistolTimer <= 0 && Player.Instance.CanUseEnergy && Player.Instance.EnergyCurrent > 0)
+        if (PlayerInput.Mouse0 && !PlayerInput.Mouse1 && !PlayerInput.Mouse2 && _nextFirePistolTimer <= 0 && Player.Instance.CanUseEnergy && Player.Instance.CurrentEnergy > 0)
         {
             GameObject effect = Instantiate(_pistolEffectCurrent, _pistolShootingPoint.position, Quaternion.Euler(new Vector3(0, 0, AimGun.RotationZ)));
             effect.transform.SetParent(_pistolShootingPoint);
@@ -105,15 +105,15 @@ public class Shoot : MonoBehaviour
             projectileParameters.StoppingAction = _pistolStoppingActionCurrent;
 
             _nextFirePistolTimer = _pistolFirePeriodCurrent;
-            Player.Instance.EnergyCurrent -= _pistolEnergyCostCurrent;
-            if (Player.Instance.EnergyCurrent < 0) Player.Instance.CanUseEnergy = false;
+            Player.Instance.CurrentEnergy -= _pistolEnergyCostCurrent;
+            if (Player.Instance.CurrentEnergy < 0) Player.Instance.CanUseEnergy = false;
             Player.Instance.RenderEnergyLine();
         }
     }
 
     private void FireRailgun()
     {
-        if (PlayerInput.Mouse0 && PlayerInput.Mouse1 && !PlayerInput.Mouse2 && _nextFireRailgunTimer <= 0 && Player.Instance.CanUseEnergy && Player.Instance.EnergyCurrent > 0)
+        if (PlayerInput.Mouse0 && PlayerInput.Mouse1 && !PlayerInput.Mouse2 && _nextFireRailgunTimer <= 0 && Player.Instance.CanUseEnergy && Player.Instance.CurrentEnergy > 0)
         {
             GameObject effect = Instantiate(_railgunEffectCurrent, _railgunShootingPoint.position, Quaternion.Euler(new Vector3(0, 0, AimGun.RotationZ)));
             effect.transform.SetParent(_railgunShootingPoint);
@@ -127,8 +127,8 @@ public class Shoot : MonoBehaviour
             _rigidbody2D.AddForce(CalculateRecoilDirection() * _recoilForceCurrent, ForceMode2D.Impulse);
 
             _nextFireRailgunTimer = _railgunFirePeriodCurrent;
-            Player.Instance.EnergyCurrent -= _railgunEnergyCostCurrent;
-            if (Player.Instance.EnergyCurrent < 0) Player.Instance.CanUseEnergy = false;
+            Player.Instance.CurrentEnergy -= _railgunEnergyCostCurrent;
+            if (Player.Instance.CurrentEnergy < 0) Player.Instance.CanUseEnergy = false;
             Player.Instance.RenderEnergyLine();
         }
     }

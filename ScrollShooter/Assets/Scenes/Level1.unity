@@ -37448,9 +37448,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 147f4e86df500f445bdb5a84547bdf12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxHealthPoints: 10
-  _currentHealthPoints: 0
-  _damageBlinkMaterial: {fileID: 2100000, guid: b7c67bad527385c408d0785160b2dde6, type: 2}
+  MaxHealth: 100
+  CurrentHealth: 0
+  DamageBlinkMaterial: {fileID: 2100000, guid: b7c67bad527385c408d0785160b2dde6, type: 2}
   Powerup: 0
   _bodyController: {fileID: 1305053613}
   _energyShield: {fileID: 163993152}
@@ -37458,10 +37458,10 @@ MonoBehaviour:
   _materialRed: {fileID: 2100000, guid: a445ad3edc166a348997527b230ac797, type: 2}
   _powerupTimer: 0
   MaxEnergy: 100
-  EnergyCurrent: 0
+  CurrentEnergy: 0
   _energyRegeneration: 10
   _energyRegenerationPU: 20
-  _energyRegenerationCurrent: 0
+  EnergyRegenerationCurrent: 0
   CanUseEnergy: 0
   GameOver: 0
   LevelComplete: 0

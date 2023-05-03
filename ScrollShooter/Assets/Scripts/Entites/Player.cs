@@ -10,15 +10,15 @@ public class Player : BaseEntity
     [SerializeField] private float _powerupTimer;
 
     [SerializeField] public float MaxEnergy;
-    [SerializeField] public float EnergyCurrent;
+    [SerializeField] public float CurrentEnergy;
     [SerializeField] private float _energyRegeneration;
     [SerializeField] private float _energyRegenerationPU;
-    [HideInInspector] public float _energyRegenerationCurrent;
+    [HideInInspector] public float EnergyRegenerationCurrent;
 
-    [SerializeField] public bool CanUseEnergy;
+    [HideInInspector] public bool CanUseEnergy;
 
-    [SerializeField] public bool GameOver;
-    [SerializeField] public bool LevelComplete;
+    [HideInInspector] public bool GameOver;
+    [HideInInspector] public bool LevelComplete;
 
     public static Player Instance { get; private set; }
 
@@ -28,7 +28,7 @@ public class Player : BaseEntity
         SetSingleton();
         ChangeColorBlue();
         ApplyMaterial();
-        EnergyCurrent = MaxEnergy;
+        CurrentEnergy = MaxEnergy;
     }
 
     protected override void Update()
@@ -37,11 +37,11 @@ public class Player : BaseEntity
         if (Powerup)
         {
             PowerupCountdown();
-            _energyRegenerationCurrent = _energyRegenerationPU;
+            EnergyRegenerationCurrent = _energyRegenerationPU;
         }
         else
         {
-            _energyRegenerationCurrent = _energyRegeneration;
+            EnergyRegenerationCurrent = _energyRegeneration;
         }
         EnergyRegeneration();
         RestorePower();
@@ -51,13 +51,13 @@ public class Player : BaseEntity
     public override void GetDamage(float damage)
     {
         base.GetDamage(damage);
-        HUD.Instance.ChangeHealth(_currentHealthPoints, _maxHealthPoints);
+        HUD.Instance.ChangeHealth(CurrentHealth, MaxHealth);
     }
 
     public override void GetHeal(float heal)
     {
         base.GetHeal(heal);
-        HUD.Instance.ChangeHealth(_currentHealthPoints, _maxHealthPoints);
+        HUD.Instance.ChangeHealth(CurrentHealth, MaxHealth);
     }
 
     private void PowerupCountdown()
@@ -81,31 +81,31 @@ public class Player : BaseEntity
 
     private void ChangeColorBlue()
     {
-        _currentMaterial = _materialBlue;
-        _tempMaterial = _materialBlue;
+        CurrentMaterial = _materialBlue;
+        TempMaterial = _materialBlue;
     }
     private void ChangeColorRed()
     {
-        _currentMaterial = _materialRed;
-        _tempMaterial = _materialBlue;
+        CurrentMaterial = _materialRed;
+        TempMaterial = _materialBlue;
     }
 
     protected override void ApplyMaterial()
     {
-        _bodyController.HeadRenderer.material = _currentMaterial;
-        _bodyController.BodyRenderer.material = _currentMaterial;
+        _bodyController.HeadRenderer.material = CurrentMaterial;
+        _bodyController.BodyRenderer.material = CurrentMaterial;
 
-        _bodyController.LeftHandActiveBackRRenderer.material = _currentMaterial;
-        _bodyController.LeftHandInactiveBackRRenderer.material = _currentMaterial;
-        _bodyController.RightHandActiveFrontRRenderer.material = _currentMaterial;
-        _bodyController.RightHandInactiveFrontRRenderer.material = _currentMaterial;
+        _bodyController.LeftHandActiveBackRRenderer.material = CurrentMaterial;
+        _bodyController.LeftHandInactiveBackRRenderer.material = CurrentMaterial;
+        _bodyController.RightHandActiveFrontRRenderer.material = CurrentMaterial;
+        _bodyController.RightHandInactiveFrontRRenderer.material = CurrentMaterial;
 
-        _bodyController.LeftHandActiveFrontLRenderer.material = _currentMaterial;
-        _bodyController.LeftHandInactiveFrontLRenderer.material = _currentMaterial;
-        _bodyController.RightHandActiveBackLRenderer.material = _currentMaterial;
-        _bodyController.RightHandInactiveBackLRenderer.material = _currentMaterial;
+        _bodyController.LeftHandActiveFrontLRenderer.material = CurrentMaterial;
+        _bodyController.LeftHandInactiveFrontLRenderer.material = CurrentMaterial;
+        _bodyController.RightHandActiveBackLRenderer.material = CurrentMaterial;
+        _bodyController.RightHandInactiveBackLRenderer.material = CurrentMaterial;
 
-        if (_currentMaterial != _damageBlinkMaterial) _energyShield.material = _currentMaterial;
+        if (CurrentMaterial != DamageBlinkMaterial) _energyShield.material = CurrentMaterial;
     }
 
     private void SetSingleton()
@@ -122,20 +122,20 @@ public class Player : BaseEntity
 
     private void EnergyRegeneration()
     {
-        EnergyCurrent += _energyRegenerationCurrent * Time.deltaTime;
-        if (EnergyCurrent > MaxEnergy)
+        CurrentEnergy += EnergyRegenerationCurrent * Time.deltaTime;
+        if (CurrentEnergy > MaxEnergy)
         {
-            EnergyCurrent = MaxEnergy;
+            CurrentEnergy = MaxEnergy;
         }
-        if (EnergyCurrent < 0)
+        if (CurrentEnergy < 0)
         {
-            EnergyCurrent = 0;
+            CurrentEnergy = 0;
         }
         RenderEnergyLine();
     }
     public void RenderEnergyLine()
     {
-        HUD.Instance.ChangeEnergy(EnergyCurrent, MaxEnergy);
+        HUD.Instance.ChangeEnergy(CurrentEnergy, MaxEnergy);
     }
 
     protected override void Die()
@@ -157,7 +157,7 @@ public class Player : BaseEntity
         if (!CanUseEnergy)
         {
             HUD.Instance.ChangeEnergyBarColor(HUD.Instance.NoEnergyColor);
-            if (EnergyCurrent == MaxEnergy)
+            if (CurrentEnergy == MaxEnergy)
             {
                 CanUseEnergy = true;
                 HUD.Instance.ChangeEnergyBarColor(HUD.Instance.CanUseEnergyColor);

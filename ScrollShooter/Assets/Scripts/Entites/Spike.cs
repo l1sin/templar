@@ -24,14 +24,14 @@ public class Spike : Enemy
         _patrolPoints = new Vector2[2];
         _patrolPoints[0] = (Vector2)transform.position - _patrolDistance;
         _patrolPoints[1] = (Vector2)transform.position + _patrolDistance;
-        _playerDistance = _target.position - transform.position;
+        _playerDistance = Target.position - transform.position;
     }
 
     protected override void Update()
     {
         base.Update();
         _attackCooldownTimer -= Time.deltaTime;
-        _playerDistance = _target.position - transform.position;
+        _playerDistance = Target.position - transform.position;
     }
 
     private void FixedUpdate()
@@ -51,7 +51,7 @@ public class Spike : Enemy
 
     private void MoveToTarget()
     {
-        if (_target.position.x - transform.position.x > 0)
+        if (Target.position.x - transform.position.x > 0)
         {
             MoveRight();
         }
