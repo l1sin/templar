@@ -37,4 +37,17 @@ public static class Calculator
 
         return newShootingDirection;
     }
+
+    public static Vector2 DegToVector2(float deg)
+    {
+        Vector2 vector = new Vector2(Mathf.Cos(deg * Mathf.Deg2Rad), Mathf.Sin(deg * Mathf.Deg2Rad));
+        return vector;
+    }
+
+    public static float Vector2ToDeg(Vector2 vector)
+    {
+        float deg;
+        deg = Mathf.Atan2(vector.y, vector.x) * Mathf.Rad2Deg;
+        return deg;
+    }
 }

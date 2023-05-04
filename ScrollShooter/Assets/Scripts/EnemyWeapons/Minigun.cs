@@ -2,31 +2,30 @@ using UnityEngine;
 
 public class Minigun : MonoBehaviour
 {
+    [Header("References")]
     [SerializeField] private Transform[] _miniguns;
     [SerializeField] private Animator[] _minigunAnimators;
-    [SerializeField] private float _minigunAnimationSpeed;
-    [SerializeField] private float _missDeg;
-    [SerializeField] private float _minigunDamage;
-
-    [SerializeField] private float _minigunBurstAmount;
-    [SerializeField] private float _minigunShotAmount;
-
-    [SerializeField] private float _minigunBurstReloadTimer;
-    [SerializeField] private float _minigunBurstReloadLength;
-    [SerializeField] private float _minigunNextFireTimer;
-    [SerializeField] private float _minigunFirePeriod;
-
     [SerializeField] private Transform[] _minigunShootingPoints;
     [SerializeField] private GameObject _tracerPrefab;
     [SerializeField] private GameObject _tracerReflectedPrefab;
-
+    
+    [Header("Preferences")]
     [SerializeField] private LayerMask _minigunHitLayerMask;
-
-    [SerializeField] private float _reflectLength;
+    [SerializeField] private float _minigunDamage;
+    [SerializeField] private float _minigunBurstAmount;
+    [SerializeField] private float _minigunFirePeriod;
+    [SerializeField] private float _minigunBurstReloadLength;
     [SerializeField] private float _shootDistance;
+    [SerializeField] private float _minigunAnimationSpeed;
+    [SerializeField] private float _missDeg;
+    [SerializeField] private float _reflectLength;
 
-    private bool _shotPerformed;
-    private Transform Target;
+    [Header("Internal Values")]
+    [HideInInspector] private float _minigunShotAmount;
+    [HideInInspector] private float _minigunBurstReloadTimer;
+    [HideInInspector] private float _minigunNextFireTimer;
+    [HideInInspector] private bool _shotPerformed;
+    [HideInInspector] private Transform Target;
 
     private void Awake()
     {

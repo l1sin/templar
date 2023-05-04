@@ -1,29 +1,31 @@
 using UnityEngine;
+using static UnityEngine.ParticleSystem;
 
 public class Lasergun : MonoBehaviour
 {
+    [Header("References")]
     [SerializeField] private Transform[] _laserguns;
     [SerializeField] private Animator[] _lasergunAnimators;
-
+    [SerializeField] private Transform[] _lasergunShootingPoints;
     [SerializeField] private LineRenderer[] _lineRenderers;
     [SerializeField] private SpriteRenderer[] _laserImpactRenderers;
-    [SerializeField] private Transform[] _lasergunShootingPoints;
+    [SerializeField] private GameObject _laserImpactVFX;
+
+    [Header("Preferences")]
     [SerializeField] private Vector2 _beamSize;
     [SerializeField] private LayerMask _stopLaserLayerMask;
     [SerializeField] private LayerMask _hitLaserLayerMask;
-    [SerializeField] private GameObject _laserImpactVFX;
-
     [SerializeField] private float _laserDamage;
     [SerializeField] private float _laserDamagePeriod;
     [SerializeField] private float _laserBurstOnPeriod;
     [SerializeField] private float _laserBurstOffPeriod;
 
-    [SerializeField] private float _laserBurstOnTimer;
-    [SerializeField] private float _laserBurstOffTimer;
-    [SerializeField] private float _laserNextDamageTimer;
-    [SerializeField] private bool _laserBurst = false;
-
-    private Transform Target;
+    [Header("Internal Values")]
+    [HideInInspector] private float _laserBurstOnTimer;
+    [HideInInspector] private float _laserBurstOffTimer;
+    [HideInInspector] private float _laserNextDamageTimer;
+    [HideInInspector] private bool _laserBurst = false;
+    [HideInInspector] private Transform Target;
 
     private void Awake()
     {
@@ -74,7 +76,6 @@ public class Lasergun : MonoBehaviour
 
     private void StopRenderingLaser()
     {
-        Debug.Log("Stop render");
         for (int i = 0; i < _laserguns.Length; i++)
         {
             _lineRenderers[i].enabled = false;
@@ -106,6 +107,7 @@ public class Lasergun : MonoBehaviour
         if (_laserBurstOnTimer <= 0)
         {
             _laserBurst = false;
+            foreach(Animator lasergunAnimator in _lasergunAnimators) lasergunAnimator.SetBool(GlobalStrings.Burst, _laserBurst);
             _laserBurstOffTimer = _laserBurstOffPeriod;
             StopRenderingLaser();
         }
@@ -115,6 +117,7 @@ public class Lasergun : MonoBehaviour
         if (_laserBurstOffTimer <= 0)
         {
             _laserBurst = true;
+            foreach (Animator lasergunAnimator in _lasergunAnimators) lasergunAnimator.SetBool(GlobalStrings.Burst, _laserBurst);
             _laserBurstOnTimer = _laserBurstOnPeriod;
         }
     }
