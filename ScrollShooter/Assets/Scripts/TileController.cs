@@ -40,7 +40,6 @@ public class TileController : MonoBehaviour
         {
             TileBase tile = _tilemap.GetTile(tilePos);
             bool tileInfo = _dataFromTiles[tile].IsBro;
-            Debug.Log(tile + " is at position " + tilePos + " and bool IsBro = " + tileInfo);
         }
     }
 }

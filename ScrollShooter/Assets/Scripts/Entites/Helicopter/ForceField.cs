@@ -4,7 +4,8 @@ public class ForceField : MonoBehaviour
 {
     [Header("Color")]
     [SerializeField] private SpriteRenderer _spriteRenderer;
-    [SerializeField][Range(0f, 1f)] private float _alpha;
+    [SerializeField][Range(0f, 1f)] private float _maxAlpha;
+    [SerializeField][Range(0f, 1f)] private float _ignitionAlpha;
     [SerializeField][Range(0f, 1f)] private float _phase;
     [HideInInspector] private MaterialPropertyBlock _materialPropertyBlock;
     [SerializeField][GradientUsage(true)] private Gradient _gradient;
@@ -19,31 +20,34 @@ public class ForceField : MonoBehaviour
 
     [SerializeField] private Collider2D _collider2D;
 
-
-    [HideInInspector] private float _currentAlpha;
-    [HideInInspector] private bool _forceFieldEnabled;
-    [HideInInspector] private float _forceFieldRegenerationTimer;
-    [HideInInspector] private float _ignitionInterpolator;
-    [HideInInspector] private bool _ignitionInterpolatorGoUp;
-    [HideInInspector] private bool _ignitionComplete;
+    [Header("Hidden values")]
+    [SerializeField] private float _currentAlpha;
+    [SerializeField] private bool _forceFieldEnabled;
+    [SerializeField] private float _forceFieldRegenerationTimer;
+    [SerializeField] private float _ignitionInterpolator;
+    [SerializeField] private bool _ignitionInterpolatorGoUp;
+    [SerializeField] private bool _ignitionComplete;
 
     private void Awake()
     {
         _materialPropertyBlock = new MaterialPropertyBlock();
+        _currentAlpha = _maxAlpha;
+        _ignitionComplete = true;
+        _forceFieldEnabled = true;
+        _currentForceFieldHealth = _maxForceFieldHealth;
+        UpdateColor();
     }
 
     private void Update()
     {
         if (!_forceFieldEnabled) RegenerateForceField();
-        Ignite();
+        if (!_ignitionComplete) Ignite();
+
     }
     public void GetDamage(float damage)
     {
         _currentForceFieldHealth -= damage;
-        _phase = _currentForceFieldHealth / _maxForceFieldHealth;
-        _materialPropertyBlock.SetColor("_Color", _gradient.Evaluate(_phase));
-        _materialPropertyBlock.SetFloat("_Alpha", _currentAlpha);
-        _spriteRenderer.SetPropertyBlock(_materialPropertyBlock);
+        UpdateColor();
         if (_currentForceFieldHealth <= 0) DisableForceField();
     }
 
@@ -52,7 +56,7 @@ public class ForceField : MonoBehaviour
         _forceFieldEnabled = false;
         _collider2D.enabled = false;
         _spriteRenderer.enabled = false;
-        _forceFieldRegenerationTimer = _forceFieldRegenerationTime;
+        
     }
 
     public void EnableForceField()
@@ -60,7 +64,8 @@ public class ForceField : MonoBehaviour
         _forceFieldEnabled = true;
         _collider2D.enabled = true;
         _spriteRenderer.enabled = true;
-
+        _forceFieldRegenerationTimer = _forceFieldRegenerationTime;
+        _currentForceFieldHealth = _maxForceFieldHealth;
         StartIgnition();
     }
 
@@ -74,13 +79,14 @@ public class ForceField : MonoBehaviour
     {
         if (!_ignitionComplete)
         {
-            if (_ignitionInterpolatorGoUp) _currentAlpha = Mathf.Lerp(_alpha, 1, _ignitionInterpolator);
-            else _currentAlpha = Mathf.Lerp(_alpha, _ignitionInterpolator, 1);
+            if (_ignitionInterpolator >= 1 && _ignitionInterpolatorGoUp) _ignitionInterpolatorGoUp = false;
+            else if (_ignitionInterpolator <= 0 && !_ignitionInterpolatorGoUp) _ignitionComplete = true;
 
-            _ignitionInterpolator += Time.deltaTime * _ignitionTime;
+            if (_ignitionInterpolatorGoUp) _ignitionInterpolator += Time.deltaTime * (1 / _ignitionTime);
+            else _ignitionInterpolator -= Time.deltaTime * (1 / _ignitionTime);
 
-            if (_ignitionInterpolator >= 1) _ignitionInterpolatorGoUp = false;
-            else if (_ignitionInterpolator <= 0) _ignitionComplete = true;
+            _currentAlpha = Mathf.Lerp(_maxAlpha, _ignitionAlpha, _ignitionInterpolator);
+            UpdateColor();
         } 
     }
 
@@ -89,5 +95,13 @@ public class ForceField : MonoBehaviour
         _ignitionComplete = false;
         _ignitionInterpolator = 0;
         _ignitionInterpolatorGoUp = true;
+    }
+
+    private void UpdateColor()
+    {
+        _phase = _currentForceFieldHealth / _maxForceFieldHealth;
+        _materialPropertyBlock.SetColor("_Color", _gradient.Evaluate(_phase));
+        _materialPropertyBlock.SetFloat("_Alpha", _currentAlpha);
+        _spriteRenderer.SetPropertyBlock(_materialPropertyBlock);
     }
 }

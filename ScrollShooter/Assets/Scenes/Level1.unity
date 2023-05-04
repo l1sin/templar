@@ -2065,21 +2065,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _spriteRenderer: {fileID: 2143030872}
-  _alpha: 0.2
-  _time: 0
+  _maxAlpha: 0.2
+  _ignitionAlpha: 1
+  _phase: 0
   _gradient:
     serializedVersion: 2
-    key0: {r: 18.164822, g: 0.5706227, b: 0, a: 1}
-    key1: {r: 12.169811, g: 6.817643, b: 0, a: 1}
-    key2: {r: 0, g: 1.9883435, b: 22.339624, a: 1}
-    key3: {r: 14.054902, g: 0.4392157, b: 0, a: 1}
+    key0: {r: 24.251463, g: 0, b: 0, a: 1}
+    key1: {r: 18.164822, g: 0.5706227, b: 0, a: 1}
+    key2: {r: 12.169811, g: 6.817643, b: 0, a: 1}
+    key3: {r: 0, g: 1.9883435, b: 22.339624, a: 1}
     key4: {r: 0, g: 0, b: 0, a: 1}
     key5: {r: 0, g: 0, b: 0, a: 0}
     key6: {r: 0, g: 0, b: 0, a: 0}
     key7: {r: 0, g: 0, b: 0, a: 0}
     ctime0: 0
-    ctime1: 32768
-    ctime2: 65535
+    ctime1: 21781
+    ctime2: 43562
     ctime3: 65535
     ctime4: 0
     ctime5: 0
@@ -2094,8 +2095,19 @@ MonoBehaviour:
     atime6: 0
     atime7: 0
     m_Mode: 0
-    m_NumColorKeys: 3
+    m_NumColorKeys: 4
     m_NumAlphaKeys: 2
+  _maxForceFieldHealth: 30
+  _currentForceFieldHealth: 0
+  _forceFieldRegenerationTime: 1
+  _ignitionTime: 0.2
+  _collider2D: {fileID: 2143030873}
+  _currentAlpha: 0
+  _forceFieldEnabled: 0
+  _forceFieldRegenerationTimer: 0
+  _ignitionInterpolator: 0
+  _ignitionInterpolatorGoUp: 0
+  _ignitionComplete: 0
 --- !u!1 &915650531
 GameObject:
   m_ObjectHideFlags: 0
@@ -38133,7 +38145,7 @@ MonoBehaviour:
   _materialBlue: {fileID: 2100000, guid: 8c2551f5370471340ba7c658b5c257ac, type: 2}
   _materialRed: {fileID: 2100000, guid: a445ad3edc166a348997527b230ac797, type: 2}
   _powerupTimer: 0
-  MaxEnergy: 100
+  MaxEnergy: 1000
   CurrentEnergy: 0
   _energyRegeneration: 10
   _energyRegenerationPU: 20
@@ -39214,7 +39226,8 @@ GameObject:
   - component: {fileID: 2143030870}
   - component: {fileID: 2143030872}
   - component: {fileID: 2143030871}
-  m_Layer: 0
+  - component: {fileID: 2143030873}
+  m_Layer: 11
   m_Name: ForceField
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -39308,3 +39321,65 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!60 &2143030873
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2143030869}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 7.1875, y: 3.53125}
+    newSize: {x: 6.5625, y: 2.90625}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 1.9663823, y: -1.4788334}
+      - {x: 2.8505368, y: -1.073564}
+      - {x: 3.1305978, y: -0.8639617}
+      - {x: 3.3361506, y: -0.6669588}
+      - {x: 3.547293, y: -0.30102873}
+      - {x: 3.5784497, y: -0.17327547}
+      - {x: 3.5928562, y: 0.011923313}
+      - {x: 3.578594, y: 0.1673398}
+      - {x: 3.561395, y: 0.2929139}
+      - {x: 3.46846, y: 0.47221375}
+      - {x: 3.2495472, y: 0.7644806}
+      - {x: 2.9431353, y: 1.009973}
+      - {x: 2.646242, y: 1.1866479}
+      - {x: 2.0340977, y: 1.4620957}
+      - {x: 1.4200108, y: 1.6149383}
+      - {x: 0.91311145, y: 1.7011828}
+      - {x: 0.45993757, y: 1.7615318}
+      - {x: 0.030344963, y: 1.765625}
+      - {x: -0.46231508, y: 1.7642069}
+      - {x: -0.8370857, y: 1.7135239}
+      - {x: -1.4095235, y: 1.6283588}
+      - {x: -2.3350034, y: 1.3390245}
+      - {x: -2.864131, y: 1.063827}
+      - {x: -3.361682, y: 0.6246271}
+      - {x: -3.5782213, y: 0.17098379}
+      - {x: -3.5917678, y: 0.0016088486}
+      - {x: -3.5781045, y: -0.16361475}
+      - {x: -3.403811, y: -0.56844616}
+      - {x: -3.2289271, y: -0.7751384}
+      - {x: -2.9520006, y: -0.997839}
+      - {x: -2.5416312, y: -1.2404068}
+      - {x: -2.0333152, y: -1.4542911}
+      - {x: -1.2199616, y: -1.6511538}
+      - {x: -0.46326828, y: -1.7548203}
+      - {x: 0.00963974, y: -1.765625}
+      - {x: 0.46754813, y: -1.7520308}
+      - {x: 1.2019873, y: -1.6641064}

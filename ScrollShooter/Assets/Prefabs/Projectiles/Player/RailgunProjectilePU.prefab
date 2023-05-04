@@ -112,7 +112,8 @@ MonoBehaviour:
   - {fileID: 2979228963393319366}
   _layerMask:
     serializedVersion: 2
-    m_Bits: 576
+    m_Bits: 2624
+  _rigidbody2D: {fileID: 0}
 --- !u!114 &-6455258503675424304
 MonoBehaviour:
   m_ObjectHideFlags: 0

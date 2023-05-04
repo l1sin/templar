@@ -74,6 +74,11 @@ public class BaseProjectile : MonoBehaviour
                 rigidbody2D.AddForce(_direction * StoppingAction, ForceMode2D.Impulse);
             }
 
+            if (collision.GetComponentInParent<ForceField>() != null)
+            {
+                collision.GetComponentInParent<ForceField>().GetDamage(Damage);
+            }
+
             foreach (Effect effect in _effects)
             {
                 effect.SeparateParent();
