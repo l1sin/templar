@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6369805344875795322}
   - component: {fileID: 6420080393389273234}
   m_Layer: 0
-  m_Name: Tracer
+  m_Name: TracerReflected
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -79,13 +79,13 @@ LineRenderer:
   - {x: 1, y: 0, z: 0}
   m_Parameters:
     serializedVersion: 3
-    widthMultiplier: 0.1
+    widthMultiplier: 0.05
     widthCurve:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0.8661461
+        value: 1
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -94,7 +94,7 @@ LineRenderer:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 1
-        value: 0.4966887
+        value: 0
         inSlope: 0
         outSlope: 0
         tangentMode: 0

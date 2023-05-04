@@ -12,7 +12,7 @@ public class Enemy : BaseEntity
         base.Awake();
         CurrentMaterial = SpriteRenderers[0].material;
         ApplyMaterial();
-        Target = Player.Instance.transform;
+        Target = Player.Instance.Target;
     }
     protected override void Die()
     {

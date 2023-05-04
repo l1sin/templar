@@ -1,4 +1,3 @@
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class Helicopter : Enemy
@@ -24,20 +23,27 @@ public class Helicopter : Enemy
     [SerializeField] private float _firePeriod;
 
     [SerializeField] private Transform[] _minigunShootingPoints;
-    [SerializeField] private GameObject _tracePrefab;
+    [SerializeField] private GameObject _tracerPrefab;
+    [SerializeField] private GameObject _tracerReflectedPrefab;
 
     [SerializeField] private LayerMask _enemyMask;
     [SerializeField] private LayerMask _stopMask;
 
     [SerializeField] private float _reflectLength;
+    [SerializeField] private float _shootDistance;
 
     private bool _shotPerformed;
 
+    protected override void Awake()
+    {
+        base.Awake();
+        _burstReloadTimer = _burstReloadLength;
+        _nextFireTimer = 0;        
+    }
     protected override void Update()
     {
         base.Update();
         RotateWeapons();
-        Shoot();
         ResetTimer();
 
         if (_shotAmount < _burstAmount)
@@ -55,14 +61,11 @@ public class Helicopter : Enemy
             }
         }
     }
-
     private void RotateWeapons()
     {
         foreach (Transform minigun in _miniguns) minigun.transform.rotation = Quaternion.Euler(0, 0, CalculateRotationZDeg(minigun, Target));
         foreach (Transform lasergun in _laserguns) lasergun.transform.rotation = Quaternion.Euler(0, 0, CalculateRotationZDeg(lasergun, Target));
     }
-
-
     private void Shoot()
     {
         for (int i = 0; i < _miniguns.Length; i++)
@@ -72,12 +75,12 @@ public class Helicopter : Enemy
             if (_nextFireTimer <= 0)
             {
                 var shootingDirection = RandomizeShootingDirection(_miniguns[i], Target, _missDeg);
-                RaycastHit2D hit = Physics2D.Raycast(_minigunShootingPoints[i].position, shootingDirection, Mathf.Infinity, _enemyMask);
+                RaycastHit2D hit = Physics2D.Raycast(_minigunShootingPoints[i].position, shootingDirection, _shootDistance, _enemyMask);
 
 
                 if (hit)
                 {
-                    LineRenderer trace = Trace(_minigunShootingPoints[i], hit.point - (Vector2)_minigunShootingPoints[i].position);
+                    Trace(_minigunShootingPoints[i], hit.point - (Vector2)_minigunShootingPoints[i].position);
                     if (hit.collider.gameObject.layer == 7)
                     {
                         hit.collider.GetComponent<BaseEntity>().GetDamage(_minigunDamage);
@@ -85,16 +88,12 @@ public class Helicopter : Enemy
                     else if (hit.collider.gameObject.layer == 10)
                     {
                         Player.Instance.gameObject.GetComponent<EnergyShield>().AbsorbDamage(_minigunDamage);
-                        Vector3 normal = hit.normal;
-
-                        trace.positionCount++;
-                        var newRay = Physics2D.Raycast(trace.GetPosition(1), Vector2.Reflect(shootingDirection, normal).normalized * _reflectLength);
-                        trace.SetPosition(2, newRay.point);
+                        TraceReflect(_minigunShootingPoints[i], hit.point, hit.normal);
                     }
                 }
                 else
                 {
-                    Trace(_minigunShootingPoints[i], shootingDirection * _reflectLength);
+                    Trace(_minigunShootingPoints[i], shootingDirection * _shootDistance);
                 }
                 _shotPerformed = true;
             }
@@ -105,58 +104,28 @@ public class Helicopter : Enemy
             _nextFireTimer = _firePeriod;
             _shotAmount++;
         }
-
-
-        //if (_nextFireTimer <= 0)
-        //{
-        //    foreach (Transform minigun in _miniguns)
-        //    {
-        //        hit = Physics2D.Raycast(_shootingPoint.position, _shootingDirection, _distance, _layerMask);
-        //    }
-        //    _shootingAngle = _rotationZDeg + Random.Range(-_missDeg, _missDeg);
-        //    _shootingDirection = new Vector2(Mathf.Cos(_shootingAngle * Mathf.Deg2Rad), Mathf.Sin(_shootingAngle * Mathf.Deg2Rad));
-
-        //    _hit = Physics2D.Raycast(_shootingPoint.position, _shootingDirection, _distance, _layerMask);
-
-        //    _shotAmount++;
-
-        //    if (_hit)
-        //    {
-        //        var trace = Trace(_hit.point - (Vector2)_shootingPoint.position);
-        //        if (_hit.collider.gameObject.layer == 7)
-        //        {
-        //            _hit.collider.GetComponent<BaseEntity>().GetDamage(_damage);
-        //        }
-        //        else if (_hit.collider.gameObject.layer == 10)
-        //        {
-        //            Player.Instance.gameObject.GetComponent<EnergyShield>().AbsorbDamage(_damage);
-        //            Vector3 normal = _hit.normal;
-        //            trace.positionCount++;
-        //            var newRay = Physics2D.Raycast(trace.GetPosition(1), Vector2.Reflect(_shootingDirection, normal).normalized * _distance, Mathf.Infinity, _layerMask);
-        //            trace.SetPosition(2, newRay.point);
-        //        }
-        //        _nextFireTimer = _firePeriod;
-        //    }
-        //    else
-        //    {
-        //        Trace(_shootingDirection * _distance);
-        //    }
-        //}
     }
-
     private void ResetTimer()
     {
         _nextFireTimer -= Time.deltaTime;
     }
-
     private LineRenderer Trace(Transform shootingPoint, Vector2 endpos)
     {
-        var trace = Instantiate(_tracePrefab, shootingPoint.position, Quaternion.identity);
+        var trace = Instantiate(_tracerPrefab, shootingPoint.position, Quaternion.identity);
         var lineRenderer = trace.GetComponent<LineRenderer>();
         lineRenderer.SetPosition(1, endpos);
         return lineRenderer;
     }
 
+    private LineRenderer TraceReflect(Transform shootingPoint, Vector2 hitPoint,  Vector3 normal)
+    {
+        GameObject trace = Instantiate(_tracerReflectedPrefab, hitPoint, Quaternion.identity);
+        LineRenderer lineRenderer = trace.GetComponent<LineRenderer>();
+        Vector2 reflectionDirection = Vector2.Reflect(hitPoint - (Vector2)shootingPoint.position, normal).normalized;
+        float reflectionLength = Random.Range(0, _reflectLength);
+        lineRenderer.SetPosition(1, reflectionDirection * reflectionLength);
+        return lineRenderer;
+    }
 
     private Vector3 CalculateDirection(Transform myTransform, Transform targetTransform)
     {
@@ -173,7 +142,6 @@ public class Helicopter : Enemy
 
         return rotationZRad;
     }
-
     private float CalculateRotationZDeg(Transform myTransform, Transform targetTransform)
     {
         Vector3 direction;
@@ -186,10 +154,10 @@ public class Helicopter : Enemy
 
         return rotationZDeg;
     }
-
     private Vector3 RandomizeShootingDirection(Transform myTransform, Transform targetTransform, float missDeg)
     {
         float newShootingAngle = CalculateRotationZDeg(myTransform, targetTransform) + Random.Range(-missDeg, missDeg);
+        Random.InitState(System.DateTime.Now.Millisecond);
         Vector3 newShootingDirection = new Vector2(Mathf.Cos(newShootingAngle * Mathf.Deg2Rad), Mathf.Sin(newShootingAngle * Mathf.Deg2Rad));
 
         return newShootingDirection;

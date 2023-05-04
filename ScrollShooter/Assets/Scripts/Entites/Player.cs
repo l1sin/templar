@@ -13,6 +13,7 @@ public class Player : BaseEntity
     [SerializeField] public float CurrentEnergy;
     [SerializeField] private float _energyRegeneration;
     [SerializeField] private float _energyRegenerationPU;
+    [SerializeField] public Transform Target;
     [HideInInspector] public float EnergyRegenerationCurrent;
 
     [HideInInspector] public bool CanUseEnergy;

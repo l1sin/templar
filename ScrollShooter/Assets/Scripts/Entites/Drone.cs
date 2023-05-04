@@ -47,7 +47,7 @@ public class Drone : Enemy
     {
         _burstReloadTimer = _burstReloadLength;
         _minigunAnimator.SetFloat(GlobalStrings.MinigunSpeed, 0);
-        _difference = Target.transform.position + Vector3.up - transform.position;
+        _difference = Target.position - transform.position;
         _goForth = true;
         _spotted = false;
         _patrolPoints = new Vector2[2];
@@ -59,7 +59,7 @@ public class Drone : Enemy
     protected override void Update()
     {
         base.Update();
-        _difference = Target.transform.position + Vector3.up - transform.position;
+        _difference = Target.position - transform.position;
 
         if (!_spotted) CheckForPlayer();
         else
@@ -166,7 +166,7 @@ public class Drone : Enemy
 
     private void MoveToDestination()
     {
-        _direction = (Target.position + Vector3.up * 3 - transform.position).normalized;
+        _direction = (Target.position + Vector3.up * 2 - transform.position).normalized;
         _rigidbody2D.AddForce(_direction * _moveSpeed, ForceMode2D.Force);
     }
 
