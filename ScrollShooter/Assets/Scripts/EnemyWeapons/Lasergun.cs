@@ -57,7 +57,7 @@ public class Lasergun : MonoBehaviour
     public void ResetThis()
     {
         foreach (Animator lasergunAnimator in _lasergunAnimators) lasergunAnimator.SetBool(GlobalStrings.Burst, _laserBurst);
-        foreach (Transform lasergun in _laserguns) lasergun.transform.rotation = Quaternion.identity;
+        foreach (Transform lasergun in _laserguns) lasergun.transform.localRotation = Quaternion.identity;
         StopRenderingLaser();
         _laserBurst = false;
         _laserBurstOffTimer = _laserBurstOffPeriod;

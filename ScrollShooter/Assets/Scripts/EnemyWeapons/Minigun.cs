@@ -55,7 +55,7 @@ public class Minigun : MonoBehaviour
     public void ResetThis()
     {
         foreach (Animator minigunAnimator in _minigunAnimators) minigunAnimator.SetFloat(GlobalStrings.MinigunSpeed, 0);
-        foreach (Transform minigun in _miniguns) minigun.transform.rotation = Quaternion.identity;
+        foreach (Transform minigun in _miniguns) minigun.transform.localRotation = Quaternion.identity;
         _minigunShotAmount = _minigunBurstAmount;
         _minigunBurstReloadTimer = _minigunBurstReloadLength;
         _minigunNextFireTimer = 0;

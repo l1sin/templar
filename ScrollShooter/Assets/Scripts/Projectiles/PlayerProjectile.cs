@@ -22,7 +22,7 @@ public class PlayerProjectile : BaseProjectile
 
         if ((HitMask.value & (1 << collision.transform.gameObject.layer)) > 0)
         {
-            if (collision.GetComponentInParent<ForceField>() != null)
+            if (collision.gameObject.layer == 11 && collision.GetComponentInParent<ForceField>() != null)
             {
                 if (_isRailgunProjectile)
                 {
@@ -53,7 +53,6 @@ public class PlayerProjectile : BaseProjectile
     {
         Direction = Vector2.Reflect(Direction, _normal);
         transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, transform.localEulerAngles.y, Calculator.Vector2ToDeg(Direction));
-        Debug.Log("Reflect");
     }
 
     private void DestroyProjectile()
