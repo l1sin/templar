@@ -1,5 +1,4 @@
 using UnityEngine;
-using static UnityEngine.ParticleSystem;
 
 public class Lasergun : MonoBehaviour
 {
@@ -29,9 +28,12 @@ public class Lasergun : MonoBehaviour
 
     private void Awake()
     {
-        _laserBurstOnTimer = _laserBurstOnPeriod;
-        _laserBurstOffTimer = _laserBurstOffPeriod;
-        foreach (SpriteRenderer laserImpactRenderer in _laserImpactRenderers) laserImpactRenderer.enabled = false;
+        foreach (Animator lasergunAnimator in _lasergunAnimators) lasergunAnimator.SetBool(GlobalStrings.Burst, _laserBurst);
+        foreach (Transform lasergun in _laserguns) lasergun.transform.rotation = Quaternion.identity;
+        StopRenderingLaser();
+        _laserBurst = false;
+        _laserBurstOffTimer = 0;
+        _laserNextDamageTimer = 0;
         Target = Player.Instance.Target;
     }
 
@@ -55,6 +57,16 @@ public class Lasergun : MonoBehaviour
         {
             StartBurst();
         }
+    }
+
+    public void Reset()
+    {
+        foreach (Animator lasergunAnimator in _lasergunAnimators) lasergunAnimator.SetBool(GlobalStrings.Burst, _laserBurst);
+        foreach (Transform lasergun in _laserguns) lasergun.transform.rotation = Quaternion.identity;
+        StopRenderingLaser();
+        _laserBurst = false;
+        _laserBurstOffTimer = 0;
+        _laserNextDamageTimer = 0;
     }
 
     private void RenderLaser()

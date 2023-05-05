@@ -1,4 +1,3 @@
-using Unity.Burst.CompilerServices;
 using UnityEngine;
 
 public class Spike : Enemy
@@ -15,12 +14,15 @@ public class Spike : Enemy
     private Vector2[] _patrolPoints;
     private Vector2 _playerDistance;
     private bool _goForth;
-    private bool _spotted;
+    [SerializeField] public bool Spotted = false;
+    [SerializeField] private LayerMask _groundMask;
+    [SerializeField] private float _groundCheckRadius;
+    private bool _isGrounded;
 
-    private void Start()
+    protected override void Awake()
     {
+        base.Awake();
         _goForth = true;
-        _spotted = false;
         _patrolPoints = new Vector2[2];
         _patrolPoints[0] = (Vector2)transform.position - _patrolDistance;
         _patrolPoints[1] = (Vector2)transform.position + _patrolDistance;
@@ -30,6 +32,7 @@ public class Spike : Enemy
     protected override void Update()
     {
         base.Update();
+        CheckGround();
         _attackCooldownTimer -= Time.deltaTime;
         _playerDistance = Target.position - transform.position;
     }
@@ -37,14 +40,14 @@ public class Spike : Enemy
     private void FixedUpdate()
     {
         ClampVelocity();
-        if (!_spotted)
+        if (!Spotted)
         {
             CheckForPlayer();
-            Patrol();
+            if (_isGrounded) Patrol();
         }
         else
         {
-            MoveToTarget();
+            if (_isGrounded) MoveToTarget();
         }
        
     }
@@ -95,11 +98,21 @@ public class Spike : Enemy
 
     private void CheckForPlayer()
     {
-        if (_spotDistance > _playerDistance.magnitude) _spotted = true;
+        if (_spotDistance > _playerDistance.magnitude) Spotted = true;
     }
 
     private void ClampVelocity()
     {
         _rigidbody2D.velocity = Vector2.ClampMagnitude(_rigidbody2D.velocity, _maxVelocity);
+    }
+
+    private void CheckGround()
+    {
+        _isGrounded = Physics2D.OverlapCircle(transform.position, _groundCheckRadius, _groundMask);
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.DrawWireSphere(transform.position, _groundCheckRadius);
     }
 }

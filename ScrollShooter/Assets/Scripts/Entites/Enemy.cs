@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Enemy : BaseEntity
 {
-    [SerializeField] protected GameObject Drop;
+    [SerializeField] public GameObject Drop;
     [SerializeField] protected GameObject VFX;
     [SerializeField] protected SpriteRenderer[] SpriteRenderers;
     protected Transform Target;

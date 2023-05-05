@@ -62,6 +62,11 @@ MonoBehaviour:
   _attackCooldown: 1
   _spotDistance: 3
   _patrolDistance: {x: 3, y: 0}
+  Spotted: 0
+  _groundMask:
+    serializedVersion: 2
+    m_Bits: 64
+  _groundCheckRadius: 0.4
 --- !u!50 &8196130516812020309
 Rigidbody2D:
   serializedVersion: 4
