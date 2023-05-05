@@ -35,6 +35,7 @@ public class ForceField : MonoBehaviour
         _ignitionComplete = true;
         _forceFieldEnabled = true;
         _currentForceFieldHealth = _maxForceFieldHealth;
+        _forceFieldRegenerationTimer = _forceFieldRegenerationTime;
         UpdateColor();
     }
 

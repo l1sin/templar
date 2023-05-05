@@ -1016,7 +1016,7 @@ TextureImporter:
     nameFileIdTable:
       Idle_2: -2012907004
       Run_8: -98294136
-      Run_0: -2088168114
+      Limb_4: -1510997149
       Run_6: -1280253941
       Idle_4: 390754301
       Projectile: -875750690
@@ -1043,17 +1043,17 @@ TextureImporter:
       Walk_2: -79147120
       Jump&Fall_0: -2096391443
       Jump&Fall_1: 912379746
-      Run_3: 1882077181
+      Walk_3: -1616008083
       Walk_7: -1050966307
       Walk_1: 1012969828
-      Walk_3: -1616008083
+      Run_4: 1449179046
       Run_7: 1407625658
       Limb_0: -672575262
-      Run_4: 1449179046
+      Run_0: -2088168114
       Run_10: 1607715691
       Limb_3: -432465142
-      Limb_4: -1510997149
       Run_9: -151783213
+      Run_3: 1882077181
       Run_5: 1749741816
   spritePackingTag: 
   pSDRemoveMatte: 0

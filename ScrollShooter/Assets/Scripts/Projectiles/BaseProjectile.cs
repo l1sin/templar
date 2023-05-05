@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class BaseProjectile : MonoBehaviour
 {
@@ -6,16 +7,15 @@ public class BaseProjectile : MonoBehaviour
     [SerializeField] public float Speed;
     [SerializeField] public float Damage;
     [SerializeField] public float StoppingAction;
-    [SerializeField] protected float _lifeTime;
-    [SerializeField] private GameObject _hitEffect;
-    [SerializeField] private Effect[] _effects;
-    [SerializeField] private LayerMask _layerMask;
-    [SerializeField] private Rigidbody2D _rigidbody2D;
-    private Vector2 _direction;
+    [SerializeField] protected float LifeTime;
+    [SerializeField] protected GameObject HitEffect;
+    [SerializeField] protected Effect[] Effects;
+    [SerializeField]protected LayerMask HitMask;
+    protected Vector2 Direction;
 
     private void Awake()
     {
-        _direction = CalculateDirectionVector();
+        Direction = Calculator.DegToVector2(transform.localEulerAngles.z);
     }
 
     private void Update()
@@ -33,16 +33,16 @@ public class BaseProjectile : MonoBehaviour
 
     private void DestroyOnTimer()
     {
-        _lifeTime -= Time.deltaTime;
-        if (_lifeTime <= 0)
+        LifeTime -= Time.deltaTime;
+        if (LifeTime <= 0)
         {
             Destroy(gameObject);
         }
     }
 
-    private void MakeSweepTest2D()
+    protected virtual void MakeSweepTest2D()
     {
-        var hit = Physics2D.Raycast(transform.position, _direction, Speed * Time.deltaTime, _layerMask);
+        var hit = Physics2D.Raycast(transform.position, Direction, Speed * Time.deltaTime, HitMask);
         if (hit)
         {
             transform.position = hit.point;
@@ -50,19 +50,11 @@ public class BaseProjectile : MonoBehaviour
         }
     }
 
-    private Vector2 CalculateDirectionVector()
+    protected virtual void MakeCollision(Collider2D collision)
     {
-        Vector2 direction;
-        direction.x = Mathf.Cos(transform.localRotation.eulerAngles.z * Mathf.Deg2Rad);
-        direction.y = Mathf.Sin(transform.localRotation.eulerAngles.z * Mathf.Deg2Rad);
-        return direction;
-    }
-
-    private void MakeCollision(Collider2D collision)
-    {
-        if ((_layerMask.value & (1 << collision.transform.gameObject.layer)) > 0)
+        if ((HitMask.value & (1 << collision.transform.gameObject.layer)) > 0)
         {
-            Instantiate(_hitEffect, transform.position, transform.rotation);
+            Instantiate(HitEffect, transform.position, transform.rotation);
 
             if (collision.TryGetComponent<BaseEntity>(out BaseEntity baseEntity))
             {
@@ -71,15 +63,10 @@ public class BaseProjectile : MonoBehaviour
 
             if (collision.TryGetComponent<Rigidbody2D>(out Rigidbody2D rigidbody2D))
             {
-                rigidbody2D.AddForce(_direction * StoppingAction, ForceMode2D.Impulse);
+                rigidbody2D.AddForce(Direction * StoppingAction, ForceMode2D.Impulse);
             }
 
-            if (collision.GetComponentInParent<ForceField>() != null)
-            {
-                collision.GetComponentInParent<ForceField>().GetDamage(Damage);
-            }
-
-            foreach (Effect effect in _effects)
+            foreach (Effect effect in Effects)
             {
                 effect.SeparateParent();
             }

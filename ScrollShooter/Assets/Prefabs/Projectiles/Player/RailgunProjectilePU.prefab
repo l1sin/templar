@@ -105,15 +105,17 @@ MonoBehaviour:
   Speed: 0
   Damage: 0
   StoppingAction: 0
-  _lifeTime: 10
-  _hitEffect: {fileID: 8511207746711925164, guid: 754c254e1ff9a584c800c0d8e9f20618, type: 3}
-  _effects:
+  LifeTime: 10
+  HitEffect: {fileID: 8511207746711925164, guid: 754c254e1ff9a584c800c0d8e9f20618, type: 3}
+  Effects:
   - {fileID: 495596443256779150}
   - {fileID: 2979228963393319366}
-  _layerMask:
+  HitMask:
     serializedVersion: 2
     m_Bits: 2624
-  _rigidbody2D: {fileID: 0}
+  _isRailgunProjectile: 1
+  _normal: {x: 0, y: 0, z: 0}
+  _trail: {fileID: 2903161651555477982}
 --- !u!114 &-6455258503675424304
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -331,6 +333,11 @@ MonoBehaviour:
 --- !u!4 &1648228051699498781 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 541679410416428808, guid: cf6d3ce669374c8478613945cba95342, type: 3}
+  m_PrefabInstance: {fileID: 1250804581879928853}
+  m_PrefabAsset: {fileID: 0}
+--- !u!96 &2903161651555477982 stripped
+TrailRenderer:
+  m_CorrespondingSourceObject: {fileID: 4112307628651213259, guid: cf6d3ce669374c8478613945cba95342, type: 3}
   m_PrefabInstance: {fileID: 1250804581879928853}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &3517938161414945441

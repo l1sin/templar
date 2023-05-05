@@ -99,9 +99,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Speed: 0
   Damage: 0
-  _lifeTime: 10
-  _overlapBoxOffset: {x: 0, y: 0, z: 0}
-  _overlapBoxSize: {x: 0.03, y: 0.03, z: 0}
-  _layers:
+  StoppingAction: 0
+  LifeTime: 10
+  HitEffect: {fileID: 0}
+  Effects: []
+  HitMask:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 0

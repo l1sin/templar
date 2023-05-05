@@ -9,7 +9,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 99767823156556825, guid: 9c1a7a2c30f29554599478fbf2f34d40, type: 3}
       propertyPath: m_Name
-      value: LaserTrapBase_Prefab 1
+      value: LaserTrapTier1_Prefab
       objectReference: {fileID: 0}
     - target: {fileID: 99767823156556827, guid: 9c1a7a2c30f29554599478fbf2f34d40, type: 3}
       propertyPath: m_RootOrder
