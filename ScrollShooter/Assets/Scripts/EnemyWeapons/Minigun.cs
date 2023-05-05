@@ -29,11 +29,7 @@ public class Minigun : MonoBehaviour
 
     private void Awake()
     {
-        foreach (Animator minigunAnimator in _minigunAnimators) minigunAnimator.SetFloat(GlobalStrings.MinigunSpeed, 0);
-        foreach (Transform minigun in _miniguns) minigun.transform.rotation = Quaternion.identity;
-        _minigunShotAmount = 0;
-        _minigunBurstReloadTimer = _minigunBurstReloadLength;
-        _minigunNextFireTimer = 0;
+        ResetThis();
         Target = Player.Instance.Target;
     }
 
@@ -56,11 +52,11 @@ public class Minigun : MonoBehaviour
             }
         }
     }
-    public void Reset()
+    public void ResetThis()
     {
         foreach (Animator minigunAnimator in _minigunAnimators) minigunAnimator.SetFloat(GlobalStrings.MinigunSpeed, 0);
         foreach (Transform minigun in _miniguns) minigun.transform.rotation = Quaternion.identity;
-        _minigunShotAmount = 0;
+        _minigunShotAmount = _minigunBurstAmount;
         _minigunBurstReloadTimer = _minigunBurstReloadLength;
         _minigunNextFireTimer = 0;
     }

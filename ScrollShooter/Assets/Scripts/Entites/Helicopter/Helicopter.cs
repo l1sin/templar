@@ -81,7 +81,7 @@ public class Helicopter : Enemy
     {
         _minigun.enabled = false;
         _lasergun.enabled = false;
-        _minigun.Reset();
-        _lasergun.Reset();
+        _minigun.ResetThis();
+        _lasergun.ResetThis();
     }
 }

@@ -28,12 +28,7 @@ public class Lasergun : MonoBehaviour
 
     private void Awake()
     {
-        foreach (Animator lasergunAnimator in _lasergunAnimators) lasergunAnimator.SetBool(GlobalStrings.Burst, _laserBurst);
-        foreach (Transform lasergun in _laserguns) lasergun.transform.rotation = Quaternion.identity;
-        StopRenderingLaser();
-        _laserBurst = false;
-        _laserBurstOffTimer = 0;
-        _laserNextDamageTimer = 0;
+        ResetThis();
         Target = Player.Instance.Target;
     }
 
@@ -59,13 +54,13 @@ public class Lasergun : MonoBehaviour
         }
     }
 
-    public void Reset()
+    public void ResetThis()
     {
         foreach (Animator lasergunAnimator in _lasergunAnimators) lasergunAnimator.SetBool(GlobalStrings.Burst, _laserBurst);
         foreach (Transform lasergun in _laserguns) lasergun.transform.rotation = Quaternion.identity;
         StopRenderingLaser();
         _laserBurst = false;
-        _laserBurstOffTimer = 0;
+        _laserBurstOffTimer = _laserBurstOffPeriod;
         _laserNextDamageTimer = 0;
     }
 
