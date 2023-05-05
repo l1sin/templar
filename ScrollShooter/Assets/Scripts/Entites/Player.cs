@@ -153,7 +153,18 @@ public class Player : BaseEntity
         LevelComplete = true;
     }
 
-    public void RestorePower()
+    public void ApplyBattery(float energy)
+    {
+        CurrentEnergy += energy;
+        CanUseEnergy = true;
+        HUD.Instance.ChangeEnergyBarColor(HUD.Instance.CanUseEnergyColor);
+        if (CurrentEnergy > MaxEnergy)
+        {
+            CurrentEnergy = MaxEnergy;
+        }
+    }
+
+    private void RestorePower()
     {
         if (!CanUseEnergy)
         {

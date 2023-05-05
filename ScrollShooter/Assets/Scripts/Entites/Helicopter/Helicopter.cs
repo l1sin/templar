@@ -66,7 +66,6 @@ public class Helicopter : Enemy
         float random1 = Random.Range(_minRandomX, _maxRandomX);
         float random2 = Random.Range(0, 2) * 2 - 1;
         float randomX = random1 * random2;
-        Debug.Log($"{random1} * {random2} = {randomX}");
         float randomY = Random.Range(0, _maxRandomY);
         Vector3 randomPosition = new Vector3(randomX, randomY, 0);
         _destination = Target.transform.position + Vector3.up * _altitude + randomPosition; 
