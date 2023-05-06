@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
-using UnityEngine.WSA;
 
 public class AutoDecorate : MonoBehaviour
 {
@@ -51,7 +50,7 @@ public class AutoDecorate : MonoBehaviour
         TilePos = RemoveNullTiles(allTiles);
         foreach (Vector3Int tile in TilePos)
         {
-            if (Random.Range(0f, 1f) < _tileChance && _targetTilemap.GetSprite(tile) == _groundTile)
+            if (Random.Range(0f, 1f) < _tileChance && (_targetTilemap.GetSprite(tile) == _groundTile || _groundTile == null))
             {
                 _thisTilemap.SetTile(tile, _tiles[Random.Range(0, _tiles.Length)]);
             }
