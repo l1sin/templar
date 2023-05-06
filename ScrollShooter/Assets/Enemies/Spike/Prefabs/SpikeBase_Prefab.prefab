@@ -61,7 +61,8 @@ MonoBehaviour:
   _contactDamage: 5
   _attackCooldown: 1
   _spotDistance: 3
-  _patrolDistance: {x: 3, y: 0}
+  _patrolDistance: {x: 2, y: 0}
+  _reachDistance: 0.2
   Spotted: 0
   _groundMask:
     serializedVersion: 2

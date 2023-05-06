@@ -14,6 +14,7 @@ public class Spike : Enemy
     private Vector2[] _patrolPoints;
     private Vector2 _playerDistance;
     private bool _goForth;
+    [SerializeField] private float _reachDistance = 0.2f;
     [SerializeField] public bool Spotted = false;
     [SerializeField] private LayerMask _groundMask;
     [SerializeField] private float _groundCheckRadius;
@@ -92,8 +93,8 @@ public class Spike : Enemy
         if (_goForth) MoveRight();
         else MoveLeft();
 
-        if (Mathf.Abs((_patrolPoints[0] - (Vector2)transform.position).x) < 0.1f) _goForth = true;
-        else if (Mathf.Abs((_patrolPoints[1] - (Vector2)transform.position).x) < 0.1f) _goForth = false;
+        if (Mathf.Abs((_patrolPoints[0] - (Vector2)transform.position).x) < _reachDistance) _goForth = true;
+        else if (Mathf.Abs((_patrolPoints[1] - (Vector2)transform.position).x) < _reachDistance) _goForth = false;
     }
 
     private void CheckForPlayer()

@@ -343,7 +343,7 @@ MonoBehaviour:
   _burstAmount: 5
   _burstReloadLength: 2
   _moveSpeed: 10
-  _spotDistance: 3
+  _spotDistance: 5
   _patrolDistance: {x: 3, y: 0}
   _maxVelocity: 10
   _canMove: 1
