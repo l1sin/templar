@@ -64,5 +64,5 @@ public class BaseEntity : MonoBehaviour
     }
 
     protected virtual void ApplyMaterial() { }
-    protected virtual void Die() { }
+    public virtual void Die() { }
 }

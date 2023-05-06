@@ -14,7 +14,7 @@ public class Enemy : BaseEntity
         ApplyMaterial();
         Target = Player.Instance.Target;
     }
-    protected override void Die()
+    public override void Die()
     {
         Instantiate(Drop, transform.position, Quaternion.identity);
         Instantiate(VFX, transform.position, Quaternion.identity);

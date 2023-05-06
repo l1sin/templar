@@ -139,7 +139,7 @@ public class Player : BaseEntity
         HUD.Instance.ChangeEnergy(CurrentEnergy, MaxEnergy);
     }
 
-    protected override void Die()
+    public override void Die()
     {
         PauseManager.Instance.TogglePause();
         UI.Instance.InstantiateMenuNoQueue(UI.Instance.GameOverMenu);
