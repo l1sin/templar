@@ -15,6 +15,14 @@ public class AutoDecorateButton : Editor
         {
             autoDecorate.PlaceRandomTiles();
         }
+        if (GUILayout.Button("Generate Specific"))
+        {
+            autoDecorate.PlaceRandomTilesSpecific();
+        }
+        if (GUILayout.Button("Generate On Top"))
+        {
+            autoDecorate.PlaceRandomTilesOnTop();
+        }
         if (GUILayout.Button("Destroy"))
         {
             autoDecorate.DestroyTiles();

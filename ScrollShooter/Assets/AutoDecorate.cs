@@ -33,7 +33,6 @@ public class AutoDecorate : MonoBehaviour
 
     private List<Vector3Int> RemoveNullTiles(List<Vector3Int> list)
     {
-
         for (int i = list.Count - 1; i >= 0; i--)
         {
             if (_targetTilemap.GetTile(list[i]) == null)
@@ -44,13 +43,55 @@ public class AutoDecorate : MonoBehaviour
         return list;
     }
 
+    private List<Vector3Int> GetUpperTiles(List<Vector3Int> list)
+    {
+        List <Vector3Int> newList = new List<Vector3Int>();
+
+        for (int i = list.Count - 1; i >= 0; i--)
+        {
+            Vector3Int upperTile = list[i] + Vector3Int.up;
+            if (_targetTilemap.GetTile(upperTile) == null)
+            {
+                newList.Add(upperTile);
+            }
+        }
+        return list;
+    }
+
+    public void PlaceRandomTilesSpecific()
+    {
+        var allTiles = GetAllTilesPos(_targetTilemap);
+        TilePos = RemoveNullTiles(allTiles);
+        foreach (Vector3Int tile in TilePos)
+        {
+            if (Random.Range(0f, 1f) < _tileChance && (_targetTilemap.GetSprite(tile) == _groundTile))
+            {
+                _thisTilemap.SetTile(tile, _tiles[Random.Range(0, _tiles.Length)]);
+            }
+        }
+    }
+
     public void PlaceRandomTiles()
     {
         var allTiles = GetAllTilesPos(_targetTilemap);
         TilePos = RemoveNullTiles(allTiles);
         foreach (Vector3Int tile in TilePos)
         {
-            if (Random.Range(0f, 1f) < _tileChance && (_targetTilemap.GetSprite(tile) == _groundTile || _groundTile == null))
+            if (Random.Range(0f, 1f) < _tileChance)
+            {
+                _thisTilemap.SetTile(tile, _tiles[Random.Range(0, _tiles.Length)]);
+            }
+        }
+    }
+
+    public void PlaceRandomTilesOnTop()
+    {
+        var allTiles = GetAllTilesPos(_targetTilemap);
+        TilePos = RemoveNullTiles(allTiles);
+        TilePos = GetUpperTiles(TilePos);
+        foreach (Vector3Int tile in TilePos)
+        {
+            if (Random.Range(0f, 1f) < _tileChance)
             {
                 _thisTilemap.SetTile(tile, _tiles[Random.Range(0, _tiles.Length)]);
             }
