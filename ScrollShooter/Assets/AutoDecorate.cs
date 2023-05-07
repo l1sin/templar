@@ -6,7 +6,7 @@ public class AutoDecorate : MonoBehaviour
 {
     [SerializeField] private Tilemap _targetTilemap;
     [SerializeField] private Tilemap _thisTilemap;
-    [SerializeField] public static List<Vector3Int> TilePos = new List<Vector3Int>();
+    [SerializeField] public List<Vector3Int> TilePos = new List<Vector3Int>();
     [SerializeField] private TileBase[] _tiles;
     [SerializeField] private float _tileChance;
     [SerializeField] private Sprite _groundTile;
@@ -55,7 +55,7 @@ public class AutoDecorate : MonoBehaviour
                 newList.Add(upperTile);
             }
         }
-        return list;
+        return newList;
     }
 
     public void PlaceRandomTilesSpecific()
@@ -88,8 +88,8 @@ public class AutoDecorate : MonoBehaviour
     {
         var allTiles = GetAllTilesPos(_targetTilemap);
         TilePos = RemoveNullTiles(allTiles);
-        TilePos = GetUpperTiles(TilePos);
-        foreach (Vector3Int tile in TilePos)
+        var topTiles = GetUpperTiles(TilePos);
+        foreach (Vector3Int tile in topTiles)
         {
             if (Random.Range(0f, 1f) < _tileChance)
             {
