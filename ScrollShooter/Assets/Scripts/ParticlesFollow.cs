@@ -18,9 +18,6 @@ public class ParticlesFollow : MonoBehaviour
     [SerializeField] private List<GameObject> _d;
     [SerializeField] private List<GameObject> _hC;
     [SerializeField] private List<GameObject> _u;
-
-    
-    
     
 
     private void Update()
@@ -65,7 +62,6 @@ public class ParticlesFollow : MonoBehaviour
                 position.x = _startPoint.x + _size.x * x;
                 position.y = _startPoint.y + _size.y * y;
                 GameObject newSystem = Instantiate(_particleSystem, position + (Vector2)transform.position, Quaternion.identity, transform);
-                newSystem.name = $"{x}:{y}";
                 _systems.Add(newSystem);
                 _particles[x, y] = newSystem;
             }
@@ -114,7 +110,6 @@ public class ParticlesFollow : MonoBehaviour
         _r = new List<GameObject>(_l);
         _l = new List<GameObject>(_vC);
         _vC = new List<GameObject>(temp);
-        Debug.Log("Move right");
     }
     private void MoveUp()
     {
@@ -126,7 +121,6 @@ public class ParticlesFollow : MonoBehaviour
         _u = new List<GameObject>(_d);
         _d = new List<GameObject>(_hC);
         _hC = new List<GameObject>(temp);
-        Debug.Log("Move up");
     }
     private void MoveLeft()
     {
@@ -138,7 +132,6 @@ public class ParticlesFollow : MonoBehaviour
         _l = new List<GameObject>(_r);
         _r = new List<GameObject>(_vC);
         _vC = new List<GameObject>(temp);
-        Debug.Log("Move left");
     }
     private void MoveDown()
     {
@@ -150,7 +143,6 @@ public class ParticlesFollow : MonoBehaviour
         _d = new List<GameObject>(_u);
         _u = new List<GameObject>(_hC);
         _hC = new List<GameObject>(temp);
-        Debug.Log("Move down");
     }
 
     public void Clear()
