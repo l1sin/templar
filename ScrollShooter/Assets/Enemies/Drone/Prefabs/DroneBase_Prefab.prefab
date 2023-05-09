@@ -279,6 +279,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2976927901525278952}
   - component: {fileID: 2976927901525278953}
+  - component: {fileID: 7795716925349376696}
   - component: {fileID: 2976927901525278954}
   - component: {fileID: 2976927901525278955}
   - component: {fileID: 3729261153685691086}
@@ -333,26 +334,64 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 6ed4ede63620be54a9ff7ab19b35b274, type: 3}
   _deathMixerGroup: {fileID: -1876883571504349357, guid: f049ff7059f18e64b9e8e3a880d2ad45, type: 2}
   _rigidbody2D: {fileID: 2976927901525278954}
-  _minigun: {fileID: 2976927900934665863}
-  _shootingPoint: {fileID: 2976927900254206709}
-  _laserPointer: {fileID: 2976927900355572681}
-  _tracePrefab: {fileID: 6369805344875795321, guid: f8d622ff4f73ef842ba4a05e015093e9, type: 3}
-  _minigunAnimator: {fileID: 2976927900934665862}
-  _firePeriod: 0.1
-  _damage: 1
-  _distance: 5
-  _missRad: 10
-  _layerMask:
-    serializedVersion: 2
-    m_Bits: 1216
-  _minigunAnimationSpeed: 20
-  _burstAmount: 5
-  _burstReloadLength: 2
-  _moveSpeed: 10
-  _spotDistance: 5
+  _minigun: {fileID: 7795716925349376696}
+  _spotDistance: 4
   _patrolDistance: {x: 3, y: 0}
   _maxVelocity: 10
-  _canMove: 1
+  _altitude: 3
+  _maxRandomX: 3
+  _maxRandomY: 2
+  _minRandomX: 1
+  _minRandomY: 0
+  _reachDistance: 0.5
+  _tooFarDistance: 7
+  _acceleration: 30
+  _deceleration: 30
+  _correctionDeceleration: 1
+  _waitTime: 0.2
+  _waitTimer: 0
+--- !u!114 &7795716925349376696
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2976927901525278958}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1355ab21f600e7b4fabf3d6ba094da4e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _miniguns:
+  - {fileID: 2976927900934665863}
+  _minigunAnimators:
+  - {fileID: 2976927900934665862}
+  _minigunShootingPoints:
+  - {fileID: 2976927900254206709}
+  _tracerPrefab: {fileID: 6369805344875795321, guid: f8d622ff4f73ef842ba4a05e015093e9, type: 3}
+  _tracerReflectedPrefab: {fileID: 6369805344875795321, guid: a625a96bb3a71454d804e5385a63176f, type: 3}
+  _minigunHitLayerMask:
+    serializedVersion: 2
+    m_Bits: 1216
+  _minigunDamage: 1
+  _minigunBurstAmount: 5
+  _minigunFirePeriod: 0.1
+  _minigunBurstReloadLength: 2
+  _shootDistance: 10
+  _minigunAnimationSpeed: 5
+  _missDeg: 10
+  _reflectLength: 1
+  _shots:
+  - {fileID: 8300000, guid: c3e221e9ebf328c4a8a3eb5db4c64333, type: 3}
+  - {fileID: 8300000, guid: 4a804f9bf5ff4a6429cc8b5468827d14, type: 3}
+  - {fileID: 8300000, guid: ac41be9d67b89c94d918cb1fa0cc2ac5, type: 3}
+  - {fileID: 8300000, guid: 886cc2e1639e94c40a50ca5787325d27, type: 3}
+  - {fileID: 8300000, guid: 94fea802a5ab3a54e85280242e194321, type: 3}
+  _richochets:
+  - {fileID: 8300000, guid: ed3cbc7fd9ae0bc4a88d3e0dd90ed59e, type: 3}
+  - {fileID: 8300000, guid: 3e058ac959a1e7b45904420c7b3131ac, type: 3}
+  - {fileID: 8300000, guid: f98579e568606c24896cbb887fd5069b, type: 3}
+  _shotMixerGroup: {fileID: -2021402441661938335, guid: f049ff7059f18e64b9e8e3a880d2ad45, type: 2}
 --- !u!50 &2976927901525278954
 Rigidbody2D:
   serializedVersion: 4

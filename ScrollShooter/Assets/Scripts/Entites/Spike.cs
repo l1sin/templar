@@ -77,14 +77,16 @@ public class Spike : Enemy
 
     private void OnCollisionStay2D(Collision2D collision)
     {
-        if (collision.gameObject.layer == 7 && _attackCooldownTimer <= 0)
+        Collider2D thisCollider = collision.GetContact(0).collider;
+        if (thisCollider.gameObject.layer == 7 && _attackCooldownTimer <= 0)
         {
-            collision.gameObject.GetComponent<Player>().GetDamage(_contactDamage);
+            thisCollider.gameObject.GetComponent<BaseEntity>().GetDamage(_contactDamage);
             _attackCooldownTimer = _attackCooldown;
         }
-        else if (collision.gameObject.layer == 10 && _attackCooldownTimer <= 0)
+        else if (thisCollider.gameObject.layer == 10 && _attackCooldownTimer <= 0)
         {
             Player.Instance.gameObject.GetComponent<EnergyShield>().AbsorbDamage(_contactDamage);
+            _attackCooldownTimer = _attackCooldown;
         }
     }
 

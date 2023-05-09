@@ -65,7 +65,7 @@ public class AimGun : MonoBehaviour
         }
         else if (RotationZ > 180 - _headFlex || RotationZ < -180 + _headFlex)
         {
-            _bodyController.Head.transform.rotation = Quaternion.Euler(180, 0, -RotationZ  * _headRotationPower);
+            _bodyController.Head.transform.rotation = Quaternion.Euler(180, 0, -RotationZ * _headRotationPower);
         }
     }
 

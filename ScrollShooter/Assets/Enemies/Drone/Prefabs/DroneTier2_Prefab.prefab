@@ -68,6 +68,10 @@ PrefabInstance:
       value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 2976927901525278953, guid: ae25c9976df8a5144826b837d39cb9dc, type: 3}
+      propertyPath: _waitTime
+      value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 2976927901525278953, guid: ae25c9976df8a5144826b837d39cb9dc, type: 3}
       propertyPath: _moveSpeed
       value: 12
       objectReference: {fileID: 0}
@@ -77,11 +81,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2976927901525278953, guid: ae25c9976df8a5144826b837d39cb9dc, type: 3}
       propertyPath: _maxVelocity
-      value: 12
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 2976927901525278953, guid: ae25c9976df8a5144826b837d39cb9dc, type: 3}
+      propertyPath: _acceleration
+      value: 35
       objectReference: {fileID: 0}
     - target: {fileID: 2976927901525278953, guid: ae25c9976df8a5144826b837d39cb9dc, type: 3}
       propertyPath: _spotDistance
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 2976927901525278953, guid: ae25c9976df8a5144826b837d39cb9dc, type: 3}
       propertyPath: _burstReloadLength
@@ -95,5 +103,17 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 9c51273ba4188bc4bad07081b22a6320, type: 2}
+    - target: {fileID: 7795716925349376696, guid: ae25c9976df8a5144826b837d39cb9dc, type: 3}
+      propertyPath: _missDeg
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7795716925349376696, guid: ae25c9976df8a5144826b837d39cb9dc, type: 3}
+      propertyPath: _shootDistance
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 7795716925349376696, guid: ae25c9976df8a5144826b837d39cb9dc, type: 3}
+      propertyPath: _minigunBurstAmount
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ae25c9976df8a5144826b837d39cb9dc, type: 3}

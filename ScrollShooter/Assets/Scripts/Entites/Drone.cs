@@ -4,204 +4,169 @@ public class Drone : Enemy
 {
     [Header("Main references")]
     [SerializeField] private Rigidbody2D _rigidbody2D;
-    [SerializeField] private Transform _minigun;
-    [SerializeField] private Transform _shootingPoint;
-    [SerializeField] private LineRenderer _laserPointer;
-    [SerializeField] private GameObject _tracePrefab;
-    [SerializeField] private Animator _minigunAnimator;
-
-    [Header("Shooting")]
-    [SerializeField] private float _firePeriod;
-    [SerializeField] private float _damage;
-    [SerializeField] private float _distance;
-    [SerializeField] private float _missRad;
-    private float _shootingAngle;
-    private Vector2 _shootingDirection;
-    [SerializeField] private LayerMask _layerMask;
-    [SerializeField] private float _minigunAnimationSpeed = 20f;
-    [SerializeField] private float _burstAmount = 5;
-    private float _shotAmount;
-    [SerializeField] private float _burstReloadLength = 2;
-    private float _burstReloadTimer;
-
-    private float _nextFireTimer;
-    private RaycastHit2D _laserTrackHit;
-    private RaycastHit2D _hit;
+    [SerializeField] private Minigun _minigun;
 
     [Header("Movement")]
-    [SerializeField] private float _moveSpeed;
     [SerializeField] private float _spotDistance;
     [SerializeField] private Vector2 _patrolDistance;
     [SerializeField] private float _maxVelocity;
-    [SerializeField] private bool _canMove;
+    [SerializeField] private float _altitude;
+    [SerializeField] private float _maxRandomX;
+    [SerializeField] private float _maxRandomY;
+    [SerializeField] private float _minRandomX;
+    [SerializeField] private float _minRandomY;
+    [SerializeField] private float _reachDistance;
+    [SerializeField] private float _tooFarDistance;
+    [SerializeField] private float _acceleration;
+    [SerializeField] private float _deceleration;
+    [SerializeField] private float _correctionDeceleration;
+    [SerializeField] private float _waitTime;
+    [SerializeField] private float _waitTimer;
+    [Header("Hidden")]
+
     private Vector2[] _patrolPoints;
-    private Vector3 _direction;
+    private Vector2 _direction;
+    private Vector2 _destination;
+    private float _distance;
+    private bool _stop;
     private bool _goForth;
     private bool _spotted;
 
     [Header("Rotation")]
-    private float _rotationZDeg;
     private Vector3 _difference;
 
-    private void Start()
+    protected override void Awake()
     {
-        _burstReloadTimer = _burstReloadLength;
-        _minigunAnimator.SetFloat(GlobalStrings.MinigunSpeed, 0);
+        base.Awake();
         _difference = Target.position - transform.position;
         _goForth = true;
         _spotted = false;
+        _minigun.enabled = _spotted;
         _patrolPoints = new Vector2[2];
         _patrolPoints[0] = (Vector2)transform.position - _patrolDistance;
         _patrolPoints[1] = (Vector2)transform.position + _patrolDistance;
-        _nextFireTimer = 0;
     }
 
     protected override void Update()
     {
         base.Update();
-        _difference = Target.position - transform.position;
-
+        Flip();
+        ResetTimers();
         if (!_spotted) CheckForPlayer();
-        else
         {
-            ResetTimer();
-            RotateMinigun();
-            TrackTarget();
-            if (_shotAmount < _burstAmount)
-            {
-                Shoot();
-            }
-            else
-            {
-                _minigunAnimator.SetFloat(GlobalStrings.MinigunSpeed, 0);
-                _burstReloadTimer -= Time.deltaTime;
-                if (_burstReloadTimer < 0)
-                {
-                    _shotAmount = 0;
-                    _burstReloadTimer = _burstReloadLength;
-                }
-            }       
+            if (_distance < _reachDistance && _waitTimer <= 0) ChooseNewDestination();
+            if ((Target.position - transform.position).magnitude > _tooFarDistance) ChooseNewDestination();
         }
-        Flip(); 
+        
     }
 
     private void FixedUpdate()
     {
-        if (!_canMove) return;
-        ClampVelocity();
         if (!_spotted) Patrol();
-        else MoveToDestination();
+        else if (!_stop)
+        {
+            MoveToDestination();
+        } 
+
+        if (_distance < _reachDistance)
+        {
+            Stop();
+        }
+        if (_waitTimer <= 0)
+        {
+            _stop = false;
+        }
+
+        ClampVelocity();
     }
 
-    private void RotateMinigun()
+    public override void GetDamage(float damage)
     {
-        var RotationZRad = Mathf.Atan2(_difference.normalized.y, _difference.normalized.x);
-        _rotationZDeg = RotationZRad * Mathf.Rad2Deg;
-
-        _minigun.transform.rotation = Quaternion.Euler(0, 0, _rotationZDeg);
+        base.GetDamage(damage);
+        SpotPlayer();
     }
 
     private void Flip()
     {
         if (!_spotted)
         {
-            if (_direction.x > 0) foreach (SpriteRenderer spriteRenderer in SpriteRenderers) spriteRenderer.flipX = false;
-            else foreach(SpriteRenderer spriteRenderer in SpriteRenderers) spriteRenderer.flipX = true;
+            if (_direction.x > 0) transform.rotation = Quaternion.Euler(0, 0, 0);
+            else transform.rotation = Quaternion.Euler(0, 180, 0);
         }
         else
         {
-            if (Target.transform.position.x - transform.position.x > 0) SpriteRenderers[0].flipX = false;
-            else SpriteRenderers[0].flipX = true;
+            if (Target.transform.position.x - transform.position.x > 0) transform.rotation = Quaternion.Euler(0, 0, 0);
+            else transform.rotation = Quaternion.Euler(0, 180, 0);
         }
     }
 
-    private void Shoot()
+    private void ChooseNewDestination()
     {
-        _minigunAnimator.SetFloat(GlobalStrings.MinigunSpeed, _minigunAnimationSpeed);
-
-        if (_difference.magnitude < _distance && _nextFireTimer <= 0)
-        {
-            _shootingAngle = _rotationZDeg + Random.Range(-_missRad, _missRad);
-            _shootingDirection = new Vector2(Mathf.Cos(_shootingAngle * Mathf.Deg2Rad), Mathf.Sin(_shootingAngle * Mathf.Deg2Rad));
-
-            _hit = Physics2D.Raycast(_shootingPoint.position, _shootingDirection, _distance, _layerMask);
-
-            _shotAmount++;
-
-            if (_hit)
-            {
-                var trace = Trace(_hit.point - (Vector2)_shootingPoint.position);
-                if (_hit.collider.gameObject.layer == 7)
-                {
-                    _hit.collider.GetComponent<BaseEntity>().GetDamage(_damage);
-                }
-                else if (_hit.collider.gameObject.layer == 10)
-                {
-                    Player.Instance.gameObject.GetComponent<EnergyShield>().AbsorbDamage(_damage);
-                    Vector3 normal = _hit.normal;
-                    trace.positionCount++;
-                    var newRay = Physics2D.Raycast(trace.GetPosition(1), Vector2.Reflect(_shootingDirection, normal).normalized * _distance, Mathf.Infinity, _layerMask);
-                    trace.SetPosition(2, newRay.point);
-                }
-                _nextFireTimer = _firePeriod;
-            }
-            else
-            {
-                Trace(_shootingDirection * _distance);
-            }
-        }
-    }
-
-    private void ResetTimer()
-    {
-        _nextFireTimer -= Time.deltaTime;
-    }
-
-    private void TrackTarget()
-    {
-        _laserPointer.enabled = true;
-        _laserTrackHit = Physics2D.Raycast(_shootingPoint.position, _difference, Mathf.Infinity, _layerMask);
-        _laserPointer.SetPosition(1, new Vector3(Mathf.Abs((_laserTrackHit.point - (Vector2)_shootingPoint.transform.position).magnitude), 0, 0));
-    }
-
-    private void MoveToDestination()
-    {
-        _direction = (Target.position + Vector3.up * 2 - transform.position).normalized;
-        _rigidbody2D.AddForce(_direction * _moveSpeed, ForceMode2D.Force);
-    }
-
-    private LineRenderer Trace(Vector2 endpos)
-    {
-        var trace = Instantiate(_tracePrefab, _shootingPoint.position, Quaternion.identity);
-        var lineRenderer = trace.GetComponent<LineRenderer>();
-        lineRenderer.SetPosition(1, endpos);
-        return lineRenderer;
+        float random1 = Random.Range(_minRandomX, _maxRandomX);
+        float random2 = Random.Range(0, 2) * 2 - 1;
+        float randomX = random1 * random2;
+        float randomY = Random.Range(0, _maxRandomY);
+        Vector3 randomPosition = new Vector3(randomX, randomY, 0);
+        _destination = Target.transform.position + Vector3.up * _altitude + randomPosition;
     }
 
     private void Patrol()
     {
 
-        if (_goForth) _direction = (_patrolPoints[1] - (Vector2)transform.position).normalized;
-        else _direction = (_patrolPoints[0] - (Vector2)transform.position).normalized;
+        if (_goForth) _destination = _patrolPoints[1];
+        else _destination = _patrolPoints[0];
 
-        _rigidbody2D.AddForce(_direction * _moveSpeed, ForceMode2D.Force);
+        MoveToDestination();
 
         if ((_patrolPoints[0] - (Vector2)transform.position).magnitude < 0.1f) _goForth = true;
         else if ((_patrolPoints[1] - (Vector2)transform.position).magnitude < 0.1f) _goForth = false;
+    }
+
+    private void MoveToDestination()
+    {
+        _direction = (_destination - (Vector2)transform.position).normalized;
+        _distance = (_destination - (Vector2)transform.position).magnitude;
+        _rigidbody2D.AddForce(_direction * _acceleration * _rigidbody2D.mass, ForceMode2D.Force);
+        CorrectDirection();
+    }
+
+
+    private void CorrectDirection()
+    {
+        _rigidbody2D.AddForce(new Vector2(-_rigidbody2D.velocity.x * _correctionDeceleration, -_rigidbody2D.velocity.y * _correctionDeceleration), ForceMode2D.Force);
+    }
+    private void Stop()
+    {
+        _rigidbody2D.AddForce(new Vector2(-_rigidbody2D.velocity.x * _deceleration, -_rigidbody2D.velocity.y * _deceleration), ForceMode2D.Force);
+        if (!_stop)
+        {
+            _stop = true;
+            _waitTimer = _waitTime;
+        }
     }
 
     private void CheckForPlayer()
     {
         if (_spotDistance > _difference.magnitude)
         {
-            SpriteRenderers[1].flipX = false;
-            _spotted = true;
+            SpotPlayer();
         } 
+    }
+
+    private void SpotPlayer()
+    {
+        _spotted = true;
+        _minigun.enabled = _spotted;
     }
 
     private void ClampVelocity()
     {
         _rigidbody2D.velocity = Vector2.ClampMagnitude(_rigidbody2D.velocity, _maxVelocity);
+    }
+
+    private void ResetTimers()
+    {
+        _waitTimer -= Time.deltaTime;
     }
 
 }

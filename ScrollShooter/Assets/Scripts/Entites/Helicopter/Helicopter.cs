@@ -33,23 +33,12 @@ public class Helicopter : Enemy
     {
         base.Update();
         Flip();
-        ClampVelocity();
         if (_distance < _reachDistance)
         {
             Stop();
             _waitTimer -= Time.deltaTime;
             if (_waitTimer <= 0) ChooseNewDestination();
-
         }
-    }
-
-    public override void Die()
-    {
-        Instantiate(Drop, transform.position, Quaternion.identity);
-        Instantiate(VFX, transform.position, Quaternion.identity);
-        Instantiate(_winTimerPrefab, transform.position, Quaternion.identity);
-        AudioManager.Instance.MakeSound(transform.position, _deathSounds, _deathMixerGroup);
-        Destroy(gameObject); 
     }
 
     private void FixedUpdate()
@@ -59,6 +48,16 @@ public class Helicopter : Enemy
             MoveToDestination();
             _stop = false;
         }
+        ClampVelocity();
+    }
+
+    public override void Die()
+    {
+        Instantiate(Drop, transform.position, Quaternion.identity);
+        Instantiate(VFX, transform.position, Quaternion.identity);
+        Instantiate(_winTimerPrefab, transform.position, Quaternion.identity);
+        AudioManager.Instance.MakeSound(transform.position, _deathSounds, _deathMixerGroup);
+        Destroy(gameObject);
     }
 
     private void ClampVelocity()
