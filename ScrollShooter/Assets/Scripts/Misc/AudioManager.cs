@@ -11,6 +11,7 @@ public class AudioManager : MonoBehaviour
     private void Awake()
     {
         SetSingleton();
+        SetSFXSpeed(1);
     }
 
     public void SetVolume(string mixerGroup, float newVolume)
@@ -46,6 +47,11 @@ public class AudioManager : MonoBehaviour
 
         audioSource.Play();
         return newSound;
+    }
+
+    public void SetSFXSpeed(float speed)
+    {
+        _audioMixer.SetFloat(GlobalStrings.SFXSpeed, speed);
     }
 
     public void StartBossMusic()

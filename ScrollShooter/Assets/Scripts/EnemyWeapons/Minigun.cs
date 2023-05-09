@@ -42,6 +42,7 @@ public class Minigun : MonoBehaviour
 
     private void Update()
     {
+        if (PauseManager.IsPaused) return;
         RotateWeapons();
         ResetTimers();
         if (_minigunShotAmount < _minigunBurstAmount)

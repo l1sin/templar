@@ -230,7 +230,7 @@ MonoBehaviour:
     m_Bits: 1088
   _layerHitMask:
     serializedVersion: 2
-    m_Bits: 1152
+    m_Bits: 1216
   _shootingPoint: {fileID: 99767821449882118}
   _lineRenderer: {fileID: 99767821684619475}
   _beamSize: {x: 0.19, y: 0.19}

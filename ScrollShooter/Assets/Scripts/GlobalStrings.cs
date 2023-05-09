@@ -24,5 +24,6 @@ public class GlobalStrings
     #region Sound
     public const string Music = "Music";
     public const string SFX = "SFX";
+    public const string SFXSpeed = "SFXSpeed";
     #endregion
 }

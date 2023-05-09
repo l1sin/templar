@@ -34,6 +34,7 @@ public class Drone : Enemy
     private bool _goForth;
     private bool _spotted;
     private float _waitTimer;
+
     [Header("Rotation")]
     private Vector3 _difference;
 
@@ -54,6 +55,7 @@ public class Drone : Enemy
         base.Update();
         Flip();
         ResetTimers();
+        _difference = Target.position - transform.position;
         if (!_spotted) CheckForPlayer();
         else
         {

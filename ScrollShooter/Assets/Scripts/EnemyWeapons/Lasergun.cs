@@ -46,6 +46,7 @@ public class Lasergun : MonoBehaviour
 
     private void Update()
     {
+        if (PauseManager.IsPaused) return;
         RotateWeapons();
         ResetTimers();
 

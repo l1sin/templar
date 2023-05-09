@@ -26,6 +26,7 @@ public class TileController : MonoBehaviour
 
     private void Update()
     {
+        if (PauseManager.IsPaused) return;
         if (Input.GetMouseButtonDown(0))
         {
             CheckTileData();

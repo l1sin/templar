@@ -27,6 +27,7 @@ public class HelicopterAttackPattern : MonoBehaviour
 
     private void Update()
     {
+        if (PauseManager.IsPaused) return;
         ResetTimers();
         StartAttack();
         StopAttack();

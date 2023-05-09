@@ -47,9 +47,9 @@ public class ForceField : MonoBehaviour
 
     private void Update()
     {
+        if (PauseManager.IsPaused) return;
         if (!_forceFieldEnabled) RegenerateForceField();
         if (!_ignitionComplete) Ignite();
-
     }
     public void GetDamage(float damage)
     {

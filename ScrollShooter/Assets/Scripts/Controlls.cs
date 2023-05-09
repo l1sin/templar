@@ -190,7 +190,7 @@ public class Controlls : MonoBehaviour
 
     private void Brake()
     {
-        if (PlayerInput.Movement == 0 && _isGrounded)
+        if ((PlayerInput.Movement == 0 || (PlayerInput.Movement >= 0 && _rigidbody2D.velocity.x < 0) || (PlayerInput.Movement <= 0 && _rigidbody2D.velocity.x > 0)) && _isGrounded)
         {
             _rigidbody2D.AddForce(new Vector2(-_rigidbody2D.velocity.x * _decelerationCurrent, 0));
         }

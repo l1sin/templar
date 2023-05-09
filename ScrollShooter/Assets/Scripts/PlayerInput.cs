@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerInput : MonoBehaviour
 {
@@ -39,7 +40,11 @@ public class PlayerInput : MonoBehaviour
             if (UI.Instance.MenuQueue.Count == 0)
             {
                 PauseManager.Instance.TogglePause();
-                UI.Instance.SetSystemCursor();
+                if (SceneManager.GetActiveScene().buildIndex != 0 && !Player.Instance.GameOver && !Player.Instance.LevelComplete)
+                {
+                    UI.Instance.InstantiateMenu(UI.Instance.PauseMenu);
+                    UI.Instance.SetSystemCursor();
+                } 
             }
             else
             {

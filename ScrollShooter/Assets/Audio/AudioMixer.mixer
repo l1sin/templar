@@ -128,6 +128,8 @@ AudioMixerController:
     name: Music
   - guid: 55a2b9e24143f4048a4b31039ac34d24
     name: SFX
+  - guid: 6ffc3ad7e196ea349b62ae2201556765
+    name: SFXSpeed
   m_AudioMixerGroupViews:
   - guids:
     - fb867abb0c051c14699711face4c9057

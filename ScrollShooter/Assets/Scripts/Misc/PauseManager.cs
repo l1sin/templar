@@ -27,11 +27,12 @@ public class PauseManager : MonoBehaviour
     private void PauseOn()
     {
         Time.timeScale = 0;
-        UI.Instance.InstantiateMenu(UI.Instance.PauseMenu);
+        AudioManager.Instance.SetSFXSpeed(0);
     }
     private void PauseOff()
     {
         Time.timeScale = 1;
+        AudioManager.Instance.SetSFXSpeed(1);
     }
 
     private void SetSingleton()

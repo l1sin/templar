@@ -11,6 +11,7 @@ public class AudioPlayer : MonoBehaviour
     }
     private void Update()
     {
+        if (PauseManager.IsPaused) return;
         if (ASource.isPlaying == false)
         {
             Destroy(gameObject);

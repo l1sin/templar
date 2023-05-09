@@ -22,6 +22,7 @@ public class ParticlesFollow : MonoBehaviour
 
     private void Update()
     {
+        if (PauseManager.IsPaused) return;
         Follow();
     }
 

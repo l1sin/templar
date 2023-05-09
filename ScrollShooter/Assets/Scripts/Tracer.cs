@@ -7,6 +7,7 @@ public class Tracer : MonoBehaviour
 
     private void Update()
     {
+        if (PauseManager.IsPaused) return;
         _lineRenderer.widthMultiplier -= _decreaseWidth * Time.deltaTime;
         if (_lineRenderer.widthMultiplier <= 0)
         {
