@@ -6,6 +6,7 @@ public class AudioManager : MonoBehaviour
     public static AudioManager Instance { get; private set; }
 
     [SerializeField] private AudioMixer _audioMixer;
+    [SerializeField] private MusicPlayer _musicPlayer;
 
     private void Awake()
     {
@@ -30,7 +31,7 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    public void MakeSound(Vector3 position, AudioClip audioClip, AudioMixerGroup audioMixerGroup, bool dontDestroyOnLoad = true, string name = "Sound")
+    public void MakeSound(Vector3 position, AudioClip[] audioClips, AudioMixerGroup audioMixerGroup, bool dontDestroyOnLoad = true, string name = "Sound")
     {
         GameObject newSound = new GameObject(name);
         newSound.transform.position = position;
@@ -40,9 +41,22 @@ public class AudioManager : MonoBehaviour
         audioPlayer.ASource = audioSource;
         audioPlayer.DontDestroy = dontDestroyOnLoad;
 
-        audioSource.clip = audioClip;
+        audioSource.clip = audioClips[Random.Range(0, audioClips.Length)];
         audioSource.outputAudioMixerGroup = audioMixerGroup;
 
         audioSource.Play();
+    }
+
+    public void StartBossMusic()
+    {
+        _musicPlayer.StartBossMusic();
+    }
+    public void StartLossSound()
+    {
+        _musicPlayer.StartLossSound();
+    }
+    public void StartWinSound()
+    {
+        _musicPlayer.StartWinSound();
     }
 }

@@ -104,7 +104,6 @@ public class ParticlesFollow : MonoBehaviour
         foreach(var i in _l)
         {
             i.transform.Translate(Vector2.right * _size.x * 3);
-            Debug.Log(i.name);
         }
         List<GameObject> temp = new List<GameObject>(_r);
         _r = new List<GameObject>(_l);

@@ -568,6 +568,9 @@ MonoBehaviour:
   MaxHealth: 100
   CurrentHealth: 0
   DamageBlinkMaterial: {fileID: 2100000, guid: b7c67bad527385c408d0785160b2dde6, type: 2}
+  _hitSounds:
+  - {fileID: 8300000, guid: b8846282125f59543be880e671129df4, type: 3}
+  _audioMixer: {fileID: 8075247928854164116, guid: f049ff7059f18e64b9e8e3a880d2ad45, type: 2}
   Drop: {fileID: 3412947331010560513, guid: be030aadf64448d41bfe591ab885c099, type: 3}
   VFX: {fileID: 9209774075378230884, guid: 8eece7513d5c0e545935a155e6b09865, type: 3}
   SpriteRenderers:

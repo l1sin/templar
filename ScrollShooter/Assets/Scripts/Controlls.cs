@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class Controlls : MonoBehaviour
 {
@@ -42,9 +43,15 @@ public class Controlls : MonoBehaviour
     [SerializeField] private float _animationSpeedPU = 1.5f;
     private float _animationSpeedCurrent;
 
+    [Header("Audio")]
+    [SerializeField] private AudioClip[] _footSteps;
+    [SerializeField] private AudioClip[] _jumps;
+    [SerializeField] private AudioClip[] _lands;
+    [SerializeField] private AudioMixerGroup _mixerGroup;
+
     private void Awake()
     {
-        _isGrounded = false;
+        _isGrounded = true;
     }
 
     private void Update()
@@ -88,7 +95,7 @@ public class Controlls : MonoBehaviour
         {
             SetPowerupOn();
         }
-        else 
+        else
         {
             SetPowerupOff();
         }
@@ -100,6 +107,7 @@ public class Controlls : MonoBehaviour
         {
             float jumpForce = Mathf.Sqrt(_jumpHeightCurrent * -2 * (Physics2D.gravity.y * _rigidbody2D.gravityScale));
             _rigidbody2D.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+            AudioManager.Instance.MakeSound(transform.position, _jumps, _mixerGroup);
         }
     }
 
@@ -130,7 +138,7 @@ public class Controlls : MonoBehaviour
             }
             _isRunning = false;
         }
-        
+
         // Limit acceleration
         if (_isGrounded)
         {
@@ -163,12 +171,21 @@ public class Controlls : MonoBehaviour
     {
         if (Physics2D.OverlapBox((Vector2)transform.position + _overlapBoxPoint, _overlapBoxSize, 0, _whatIsGround))
         {
+            if (!_isGrounded)
+            {
+                AudioManager.Instance.MakeSound(transform.position, _lands, _mixerGroup);
+            }
             _isGrounded = true;
         }
         else
         {
             _isGrounded = false;
         }
+    }
+
+    public void Step()
+    {
+        AudioManager.Instance.MakeSound(transform.position, _footSteps, _mixerGroup);
     }
 
     private void Brake()

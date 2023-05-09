@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class Player : BaseEntity
 {
@@ -14,6 +15,11 @@ public class Player : BaseEntity
     [SerializeField] private float _energyRegeneration;
     [SerializeField] private float _energyRegenerationPU;
     [SerializeField] public Transform Target;
+
+    [SerializeField] private AudioClip[] _chargeUp;
+    [SerializeField] private AudioClip[] _chargeDown;
+    [SerializeField] private AudioMixerGroup _energyMixerGroup;
+
     [HideInInspector] public float EnergyRegenerationCurrent;
 
     [HideInInspector] public bool CanUseEnergy;
@@ -30,6 +36,7 @@ public class Player : BaseEntity
         ChangeColorBlue();
         ApplyMaterial();
         CurrentEnergy = MaxEnergy;
+        CanUseEnergy = true;
     }
 
     protected override void Update()
@@ -121,6 +128,23 @@ public class Player : BaseEntity
         }
     }
 
+    public void PowerOff()
+    {
+        CanUseEnergy = false;
+        RenderEnergyLine();
+        AudioManager.Instance.MakeSound(transform.position, _chargeDown, _energyMixerGroup);
+    }
+
+    public void UseEnergy(float energy)
+    {
+        CurrentEnergy -= energy;
+        if (CurrentEnergy <= 0)
+        {
+            CurrentEnergy = 0;
+            PowerOff();
+        }
+    }
+
     private void EnergyRegeneration()
     {
         CurrentEnergy += EnergyRegenerationCurrent * Time.deltaTime;
@@ -143,6 +167,7 @@ public class Player : BaseEntity
     {
         PauseManager.Instance.TogglePause();
         UI.Instance.InstantiateMenuNoQueue(UI.Instance.GameOverMenu);
+        AudioManager.Instance.StartLossSound();
         GameOver = true;
     }
 
@@ -150,6 +175,7 @@ public class Player : BaseEntity
     {
         PauseManager.Instance.TogglePause();
         UI.Instance.InstantiateMenuNoQueue(UI.Instance.LevelCompleteMenu);
+        AudioManager.Instance.StartWinSound();
         LevelComplete = true;
     }
 
@@ -172,6 +198,7 @@ public class Player : BaseEntity
             if (CurrentEnergy == MaxEnergy)
             {
                 CanUseEnergy = true;
+                AudioManager.Instance.MakeSound(transform.position, _chargeUp, _energyMixerGroup);
                 HUD.Instance.ChangeEnergyBarColor(HUD.Instance.CanUseEnergyColor);
             }
         }

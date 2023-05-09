@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class BaseEntity : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class BaseEntity : MonoBehaviour
     protected Material CurrentMaterial;
     [SerializeField] protected Material DamageBlinkMaterial;
     protected Material TempMaterial;
+    [SerializeField] private AudioClip[] _hitSounds;
+    [SerializeField] private AudioMixerGroup _audioMixer;
 
     protected virtual void Awake()
     {
@@ -29,6 +32,7 @@ public class BaseEntity : MonoBehaviour
     {
         CurrentHealth -= damage;
         DamageBlink();
+        AudioManager.Instance.MakeSound(transform.position, _hitSounds, _audioMixer);
         if (CurrentHealth <= 0)
         {
             Die();

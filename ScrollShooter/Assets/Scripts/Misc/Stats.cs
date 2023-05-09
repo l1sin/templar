@@ -1,4 +1,3 @@
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -6,6 +5,7 @@ public class Stats : MonoBehaviour
 {
     [SerializeField] public float Money;
     [SerializeField] public float TimeInSeconds;
+    [SerializeField] public bool _mainMenu;
 
     public static Stats Instance { get; private set; }
 
@@ -16,7 +16,8 @@ public class Stats : MonoBehaviour
 
     private void Update()
     {
-        if (!Player.Instance.LevelComplete && !PauseManager.IsPaused)
+        if (PauseManager.IsPaused || _mainMenu) return;
+        if (!Player.Instance.LevelComplete || !Player.Instance.GameOver)
         {
             TimeInSeconds += Time.deltaTime;
         }  
@@ -53,6 +54,8 @@ public class Stats : MonoBehaviour
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
+        if (scene.buildIndex == 0) _mainMenu = true;
+        else _mainMenu = false;
         Money = 0;
     }
 }

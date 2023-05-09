@@ -37,9 +37,7 @@ public class EnergyShield : MonoBehaviour
             IsActive = true;
             _collider.enabled = true;
             _energyShieldRenderer.enabled = true;
-            Player.Instance.CurrentEnergy -= Player.Instance.EnergyRegenerationCurrent * Time.deltaTime + _energyDrainCurrent * Time.deltaTime;
-            if (Player.Instance.CurrentEnergy < 0) Player.Instance.CanUseEnergy = false;
-            Player.Instance.RenderEnergyLine();
+            Player.Instance.UseEnergy(Player.Instance.EnergyRegenerationCurrent * Time.deltaTime + _energyDrainCurrent * Time.deltaTime);
         }
         else
         {
@@ -78,7 +76,13 @@ public class EnergyShield : MonoBehaviour
 
     public void AbsorbDamage(float damage)
     {
-        if (Player.Instance.CanUseEnergy) Player.Instance.CurrentEnergy -= damage * _absorbDamageMultiplierCurrent;
-        if (Player.Instance.CurrentEnergy < 0) Instantiate(_shieldBreakEffectCurrent, _energyShield.transform.position, _energyShield.transform.rotation);
+        if (Player.Instance.CanUseEnergy)
+        {
+            Player.Instance.UseEnergy(damage * _absorbDamageMultiplierCurrent);
+            if (!Player.Instance.CanUseEnergy) 
+            {
+                Instantiate(_shieldBreakEffectCurrent, _energyShield.transform.position, _energyShield.transform.rotation);
+            }
+        } 
     }
 }

@@ -98,6 +98,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2db15e44388a9e049a29c73cb4efca11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _sounds:
+  - {fileID: 8300000, guid: 22f204b627c31c3438751e9bf5374dd5, type: 3}
+  _audioMixerGroup: {fileID: 7028946362160075592, guid: f049ff7059f18e64b9e8e3a880d2ad45, type: 2}
   _healAmount: 50
 --- !u!61 &250344007605294940
 BoxCollider2D:

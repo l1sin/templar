@@ -98,6 +98,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24af1d3ec91f1a447a3e5bf8313fb0ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _sounds:
+  - {fileID: 8300000, guid: af81a106fbac6c847aa99857d02dfdb8, type: 3}
+  _audioMixerGroup: {fileID: 7028946362160075592, guid: f049ff7059f18e64b9e8e3a880d2ad45, type: 2}
   _powerupTime: 20
 --- !u!58 &3412947331010560512
 CircleCollider2D:

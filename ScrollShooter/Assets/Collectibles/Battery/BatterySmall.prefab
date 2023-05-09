@@ -124,4 +124,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f34f5800230671744ada0bb9e8ea2317, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _sounds:
+  - {fileID: 8300000, guid: 7b4e532f1aff6ee40bea28a023bb1a1f, type: 3}
+  _audioMixerGroup: {fileID: 7028946362160075592, guid: f049ff7059f18e64b9e8e3a880d2ad45, type: 2}
   _energyAmount: 25

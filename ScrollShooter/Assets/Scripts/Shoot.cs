@@ -1,5 +1,5 @@
-using System.Threading;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class Shoot : MonoBehaviour
 {
@@ -13,6 +13,7 @@ public class Shoot : MonoBehaviour
     [SerializeField] private float _pistiolStoppingAction;
     [SerializeField] private float _pistolEnergyCost;
     [SerializeField] private GameObject _pistolEffect;
+    [SerializeField] private AudioClip[] _pistolSound;
 
     [Header("Pistol powerup")]
     [SerializeField] private GameObject _pistolProjectilePrefabPU;
@@ -42,6 +43,7 @@ public class Shoot : MonoBehaviour
     [SerializeField] private float _railgunStoppingAction;
     [SerializeField] private float _railgunEnergyCost;
     [SerializeField] private GameObject _RailgunEffect;
+    [SerializeField] private AudioClip[] _railgunSound;
 
     [Header("Railgun powerup")]
     [SerializeField] private GameObject _railgunProjectilePrefabPU;
@@ -67,6 +69,7 @@ public class Shoot : MonoBehaviour
     [SerializeField] private BodyController _bodyController;
     [SerializeField] private AimGun _aimGun;
     [SerializeField] private Player _player;
+    [SerializeField] private AudioMixerGroup _mixerGroup;
 
     [Header("Hidden")]
     [HideInInspector] private float _nextFirePistolTimer;
@@ -105,9 +108,8 @@ public class Shoot : MonoBehaviour
             projectileParameters.StoppingAction = _pistolStoppingActionCurrent;
 
             _nextFirePistolTimer = _pistolFirePeriodCurrent;
-            Player.Instance.CurrentEnergy -= _pistolEnergyCostCurrent;
-            if (Player.Instance.CurrentEnergy < 0) Player.Instance.CanUseEnergy = false;
-            Player.Instance.RenderEnergyLine();
+            Player.Instance.UseEnergy(_pistolEnergyCostCurrent);
+            AudioManager.Instance.MakeSound(transform.position, _pistolSound, _mixerGroup);
         }
     }
 
@@ -127,9 +129,8 @@ public class Shoot : MonoBehaviour
             _rigidbody2D.AddForce(CalculateRecoilDirection() * _recoilForceCurrent, ForceMode2D.Impulse);
 
             _nextFireRailgunTimer = _railgunFirePeriodCurrent;
-            Player.Instance.CurrentEnergy -= _railgunEnergyCostCurrent;
-            if (Player.Instance.CurrentEnergy < 0) Player.Instance.CanUseEnergy = false;
-            Player.Instance.RenderEnergyLine();
+            Player.Instance.UseEnergy(_railgunEnergyCostCurrent);
+            AudioManager.Instance.MakeSound(transform.position, _railgunSound, _mixerGroup);
         }
     }
 

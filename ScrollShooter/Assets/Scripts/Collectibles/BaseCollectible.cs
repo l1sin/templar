@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class BaseCollectible : MonoBehaviour
 {
@@ -6,6 +7,8 @@ public class BaseCollectible : MonoBehaviour
     private float _altitude = 0.1f;
     private Vector2[] _points;
     private bool _goUp;
+    [SerializeField] private AudioClip[] _sounds;
+    [SerializeField] private AudioMixerGroup _audioMixerGroup;
 
     private void Awake()
     {
@@ -31,6 +34,7 @@ public class BaseCollectible : MonoBehaviour
 
     protected virtual void Collect(Collider2D collision)
     {
+        AudioManager.Instance.MakeSound(transform.position, _sounds, _audioMixerGroup);
         Destroy(gameObject);
     }
 
