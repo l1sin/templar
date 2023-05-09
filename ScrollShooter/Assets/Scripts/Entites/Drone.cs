@@ -21,7 +21,9 @@ public class Drone : Enemy
     [SerializeField] private float _deceleration;
     [SerializeField] private float _correctionDeceleration;
     [SerializeField] private float _waitTime;
-    [SerializeField] private float _waitTimer;
+    [SerializeField] private LayerMask _groundMask;
+    [SerializeField] private float _groundCheckRadius;
+    
     [Header("Hidden")]
 
     private Vector2[] _patrolPoints;
@@ -31,7 +33,7 @@ public class Drone : Enemy
     private bool _stop;
     private bool _goForth;
     private bool _spotted;
-
+    private float _waitTimer;
     [Header("Rotation")]
     private Vector3 _difference;
 
@@ -53,6 +55,7 @@ public class Drone : Enemy
         Flip();
         ResetTimers();
         if (!_spotted) CheckForPlayer();
+        else
         {
             if (_distance < _reachDistance && _waitTimer <= 0) ChooseNewDestination();
             if ((Target.position - transform.position).magnitude > _tooFarDistance) ChooseNewDestination();
@@ -108,6 +111,7 @@ public class Drone : Enemy
         float randomY = Random.Range(0, _maxRandomY);
         Vector3 randomPosition = new Vector3(randomX, randomY, 0);
         _destination = Target.transform.position + Vector3.up * _altitude + randomPosition;
+        if (Physics2D.OverlapCircle(_destination, _groundCheckRadius, _groundMask)) ChooseNewDestination();
     }
 
     private void Patrol()
@@ -169,4 +173,8 @@ public class Drone : Enemy
         _waitTimer -= Time.deltaTime;
     }
 
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.DrawWireSphere(transform.position, _groundCheckRadius);
+    }
 }

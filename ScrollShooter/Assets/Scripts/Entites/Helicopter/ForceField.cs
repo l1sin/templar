@@ -20,6 +20,7 @@ public class ForceField : MonoBehaviour
     
 
     [SerializeField] private Collider2D _collider2D;
+    [SerializeField] private float _repulseForce;
 
     [Header("SFX")]
     [SerializeField] private AudioClip[] _ignitionSounds;
@@ -94,6 +95,22 @@ public class ForceField : MonoBehaviour
             _currentAlpha = Mathf.Lerp(_maxAlpha, _ignitionAlpha, _ignitionInterpolator);
             UpdateColor();
         } 
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.layer == 7)
+        {
+            Rigidbody2D rigidbody2D = collision.gameObject.GetComponent<Rigidbody2D>();
+            if (collision.transform.position.x - transform.position.x > 0)
+            {
+                rigidbody2D.AddForce(Vector2.right * _repulseForce, ForceMode2D.Impulse);
+            }
+            else
+            {
+                rigidbody2D.AddForce(Vector2.left * _repulseForce, ForceMode2D.Impulse);
+            } 
+        }
     }
 
     private void StartIgnition()

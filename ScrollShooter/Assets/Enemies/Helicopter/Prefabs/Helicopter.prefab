@@ -597,6 +597,10 @@ MonoBehaviour:
   _waitTimer: 0
   _stop: 0
   _deceleration: 20
+  _groundMask:
+    serializedVersion: 2
+    m_Bits: 64
+  _groundCheckRadius: 2
   _winTimerPrefab: {fileID: 6596451344309430909, guid: 55c3aa1c80d6c8345bdd00f6e8bfad4a, type: 3}
 --- !u!114 &6506593644580214623
 MonoBehaviour:
@@ -754,6 +758,7 @@ MonoBehaviour:
   _forceFieldRegenerationTime: 1
   _ignitionTime: 0.2
   _collider2D: {fileID: 6506593643723733142}
+  _repulseForce: 15
   _ignitionSounds:
   - {fileID: 8300000, guid: f7fa38041d80f9d4d8f644a2abadecbb, type: 3}
   _forceFieldMixerGroup: {fileID: 1693787950670452045, guid: f049ff7059f18e64b9e8e3a880d2ad45, type: 2}

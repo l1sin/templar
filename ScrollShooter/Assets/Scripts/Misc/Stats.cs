@@ -57,5 +57,6 @@ public class Stats : MonoBehaviour
         if (scene.buildIndex == 0) _mainMenu = true;
         else _mainMenu = false;
         Money = 0;
+        TimeInSeconds = 0;
     }
 }

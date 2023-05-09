@@ -22,6 +22,9 @@ public class Helicopter : Enemy
     [SerializeField] private bool _stop;
     [SerializeField] private float _deceleration;
 
+    [SerializeField] private LayerMask _groundMask;
+    [SerializeField] private float _groundCheckRadius;
+
     [SerializeField] private GameObject _winTimerPrefab;
     protected override void Awake()
     {
@@ -78,7 +81,8 @@ public class Helicopter : Enemy
         float randomX = random1 * random2;
         float randomY = Random.Range(0, _maxRandomY);
         Vector3 randomPosition = new Vector3(randomX, randomY, 0);
-        _destination = Target.transform.position + Vector3.up * _altitude + randomPosition; 
+        _destination = Target.transform.position + Vector3.up * _altitude + randomPosition;
+        if (Physics2D.OverlapCircle(_destination, _groundCheckRadius, _groundMask)) ChooseNewDestination();
     }
 
     private void MoveToDestination()
@@ -96,5 +100,10 @@ public class Helicopter : Enemy
             _stop = true;
             _waitTimer = _waitTime;
         }
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.DrawWireSphere(transform.position, _groundCheckRadius);
     }
 }
