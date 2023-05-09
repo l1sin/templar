@@ -21,6 +21,8 @@ public class Helicopter : Enemy
 
     [SerializeField] private bool _stop;
     [SerializeField] private float _deceleration;
+
+    [SerializeField] private GameObject _winTimerPrefab;
     protected override void Awake()
     {
         base.Awake();
@@ -39,6 +41,15 @@ public class Helicopter : Enemy
             if (_waitTimer <= 0) ChooseNewDestination();
 
         }
+    }
+
+    public override void Die()
+    {
+        Instantiate(Drop, transform.position, Quaternion.identity);
+        Instantiate(VFX, transform.position, Quaternion.identity);
+        Instantiate(_winTimerPrefab, transform.position, Quaternion.identity);
+        AudioManager.Instance.MakeSound(transform.position, _deathSounds, _deathMixerGroup);
+        Destroy(gameObject); 
     }
 
     private void FixedUpdate()

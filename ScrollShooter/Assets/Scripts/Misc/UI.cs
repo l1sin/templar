@@ -15,6 +15,9 @@ public class UI : MonoBehaviour
     [SerializeField] public GameObject GameOverMenu;
     [SerializeField] public GameObject LevelCompleteMenu;
 
+    [SerializeField] private Texture2D _systemCursor;
+    [SerializeField] private Texture2D _crosshair;
+
     public List<GameObject> MenuQueue;
 
     public static UI Instance { get; private set; }
@@ -49,7 +52,11 @@ public class UI : MonoBehaviour
     {
         Destroy(MenuQueue[MenuQueue.Count - 1]);
         MenuQueue.RemoveAt(MenuQueue.Count - 1);
-        if (MenuQueue.Count == 0) PauseManager.Instance.TogglePause();
+        if (MenuQueue.Count == 0)
+        {
+            PauseManager.Instance.TogglePause();
+            if (SceneManager.GetActiveScene().buildIndex != 0) SetCrosshair();
+        } 
     }
 
     public void SetSingleton()
@@ -63,6 +70,18 @@ public class UI : MonoBehaviour
             Instance = this;
             DontDestroyOnLoad(gameObject);
         }
+    }
+
+    public void SetSystemCursor()
+    {
+        Vector2 hotspot = new Vector2(0, 0);
+        Cursor.SetCursor(_systemCursor, hotspot, CursorMode.Auto);
+    }
+
+    public void SetCrosshair()
+    {
+        Vector2 hotspot = new Vector2(_crosshair.width * 0.5f, _crosshair.height * 0.5f);
+        Cursor.SetCursor(_crosshair, hotspot, CursorMode.Auto);
     }
 
     void OnEnable()
@@ -87,11 +106,13 @@ public class UI : MonoBehaviour
         {
             GameObject newMenu = Instantiate(MainMenu);
             newMenu.transform.SetParent(_canvas, false);
+            SetSystemCursor();
         }
         else
         {
             GameObject hud = Instantiate(HUD);
             hud.transform.SetParent(_canvas, false);
+            SetCrosshair();
         }
     }
 }

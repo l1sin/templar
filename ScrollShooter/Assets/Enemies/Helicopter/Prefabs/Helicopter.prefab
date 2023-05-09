@@ -597,6 +597,7 @@ MonoBehaviour:
   _waitTimer: 0
   _stop: 0
   _deceleration: 20
+  _winTimerPrefab: {fileID: 6596451344309430909, guid: 55c3aa1c80d6c8345bdd00f6e8bfad4a, type: 3}
 --- !u!114 &6506593644580214623
 MonoBehaviour:
   m_ObjectHideFlags: 0

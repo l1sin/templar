@@ -21,8 +21,8 @@ public class Enemy : BaseEntity
     {
         Instantiate(Drop, transform.position, Quaternion.identity);
         Instantiate(VFX, transform.position, Quaternion.identity);
-        Destroy(gameObject);
         AudioManager.Instance.MakeSound(transform.position, _deathSounds, _deathMixerGroup);
+        Destroy(gameObject);
     }
 
     protected override void ApplyMaterial()

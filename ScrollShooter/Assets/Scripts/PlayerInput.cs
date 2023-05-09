@@ -39,6 +39,7 @@ public class PlayerInput : MonoBehaviour
             if (UI.Instance.MenuQueue.Count == 0)
             {
                 PauseManager.Instance.TogglePause();
+                UI.Instance.SetSystemCursor();
             }
             else
             {
