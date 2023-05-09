@@ -329,6 +329,9 @@ MonoBehaviour:
   SpriteRenderers:
   - {fileID: 3729261153685691086}
   - {fileID: 2976927900934665857}
+  _deathSounds:
+  - {fileID: 8300000, guid: 6ed4ede63620be54a9ff7ab19b35b274, type: 3}
+  _deathMixerGroup: {fileID: -1876883571504349357, guid: f049ff7059f18e64b9e8e3a880d2ad45, type: 2}
   _rigidbody2D: {fileID: 2976927901525278954}
   _minigun: {fileID: 2976927900934665863}
   _shootingPoint: {fileID: 2976927900254206709}

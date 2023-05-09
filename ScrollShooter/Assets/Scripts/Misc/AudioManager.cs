@@ -31,7 +31,7 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    public void MakeSound(Vector3 position, AudioClip[] audioClips, AudioMixerGroup audioMixerGroup, bool dontDestroyOnLoad = true, string name = "Sound")
+    public GameObject MakeSound(Vector3 position, AudioClip[] audioClips, AudioMixerGroup audioMixerGroup, bool dontDestroyOnLoad = true, string name = "Sound")
     {
         GameObject newSound = new GameObject(name);
         newSound.transform.position = position;
@@ -45,6 +45,7 @@ public class AudioManager : MonoBehaviour
         audioSource.outputAudioMixerGroup = audioMixerGroup;
 
         audioSource.Play();
+        return newSound;
     }
 
     public void StartBossMusic()

@@ -114,6 +114,14 @@ MonoBehaviour:
   _isRailgunProjectile: 0
   _normal: {x: 0, y: 0, z: 0}
   _trail: {fileID: 8789876199167290651}
+  _reflectSounds:
+  - {fileID: 8300000, guid: 2585c87314f15244da66c02ebc890e6e, type: 3}
+  _reflectMixerGroup: {fileID: 1693787950670452045, guid: f049ff7059f18e64b9e8e3a880d2ad45, type: 2}
+  _pistolImpacts:
+  - {fileID: 8300000, guid: 7bdc8ef28ee4b934a9f3253b7329e6ab, type: 3}
+  _railgunImpacts:
+  - {fileID: 8300000, guid: e15bbfae98679fe4ba9656dcb7a51f54, type: 3}
+  _impactMixerGroup: {fileID: -2021402441661938335, guid: f049ff7059f18e64b9e8e3a880d2ad45, type: 2}
 --- !u!114 &-6455258503675424304
 MonoBehaviour:
   m_ObjectHideFlags: 0

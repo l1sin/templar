@@ -1,10 +1,13 @@
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class Enemy : BaseEntity
 {
     [SerializeField] public GameObject Drop;
     [SerializeField] protected GameObject VFX;
     [SerializeField] protected SpriteRenderer[] SpriteRenderers;
+    [SerializeField] protected AudioClip[] _deathSounds;
+    [SerializeField] protected AudioMixerGroup _deathMixerGroup;
     protected Transform Target;
 
     protected override void Awake()
@@ -19,6 +22,7 @@ public class Enemy : BaseEntity
         Instantiate(Drop, transform.position, Quaternion.identity);
         Instantiate(VFX, transform.position, Quaternion.identity);
         Destroy(gameObject);
+        AudioManager.Instance.MakeSound(transform.position, _deathSounds, _deathMixerGroup);
     }
 
     protected override void ApplyMaterial()

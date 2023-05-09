@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class ForceField : MonoBehaviour
 {
@@ -19,6 +20,10 @@ public class ForceField : MonoBehaviour
     
 
     [SerializeField] private Collider2D _collider2D;
+
+    [Header("SFX")]
+    [SerializeField] private AudioClip[] _ignitionSounds;
+    [SerializeField] private AudioMixerGroup _forceFieldMixerGroup;
 
     [Header("Hidden values")]
     [SerializeField] private float _currentAlpha;
@@ -93,6 +98,10 @@ public class ForceField : MonoBehaviour
 
     private void StartIgnition()
     {
+        if (_ignitionComplete)
+        {
+            AudioManager.Instance.MakeSound(transform.position, _ignitionSounds, _forceFieldMixerGroup);
+        }
         _ignitionComplete = false;
         _ignitionInterpolator = 0;
         _ignitionInterpolatorGoUp = true;

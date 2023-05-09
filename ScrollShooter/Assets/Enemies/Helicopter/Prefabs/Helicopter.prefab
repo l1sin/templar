@@ -578,6 +578,9 @@ MonoBehaviour:
   - {fileID: 6506593645275387306}
   - {fileID: 6506593645550041676}
   - {fileID: 6506593643520351104}
+  _deathSounds:
+  - {fileID: 8300000, guid: 3eb03ccf1053afe41ba989bdfe6e533a, type: 3}
+  _deathMixerGroup: {fileID: -1876883571504349357, guid: f049ff7059f18e64b9e8e3a880d2ad45, type: 2}
   _rigidbody2D: {fileID: 6506593644580214619}
   _maxVelocity: 10
   _acceleration: 30
@@ -628,6 +631,17 @@ MonoBehaviour:
   _minigunAnimationSpeed: 5
   _missDeg: 10
   _reflectLength: 2
+  _shots:
+  - {fileID: 8300000, guid: c3e221e9ebf328c4a8a3eb5db4c64333, type: 3}
+  - {fileID: 8300000, guid: 4a804f9bf5ff4a6429cc8b5468827d14, type: 3}
+  - {fileID: 8300000, guid: ac41be9d67b89c94d918cb1fa0cc2ac5, type: 3}
+  - {fileID: 8300000, guid: 886cc2e1639e94c40a50ca5787325d27, type: 3}
+  - {fileID: 8300000, guid: 94fea802a5ab3a54e85280242e194321, type: 3}
+  _richochets:
+  - {fileID: 8300000, guid: ed3cbc7fd9ae0bc4a88d3e0dd90ed59e, type: 3}
+  - {fileID: 8300000, guid: 3e058ac959a1e7b45904420c7b3131ac, type: 3}
+  - {fileID: 8300000, guid: f98579e568606c24896cbb887fd5069b, type: 3}
+  _shotMixerGroup: {fileID: -2021402441661938335, guid: f049ff7059f18e64b9e8e3a880d2ad45, type: 2}
 --- !u!114 &6506593644580214592
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -662,6 +676,9 @@ MonoBehaviour:
   _laserDamagePeriod: 0
   _laserBurstOnPeriod: 2
   _laserBurstOffPeriod: 2
+  _laserBeamSounds:
+  - {fileID: 8300000, guid: 4eec13c93cc4d0d42a6299c1e20a2ff8, type: 3}
+  _shotMixerGroup: {fileID: -2021402441661938335, guid: f049ff7059f18e64b9e8e3a880d2ad45, type: 2}
 --- !u!114 &6506593644580214620
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -736,6 +753,9 @@ MonoBehaviour:
   _forceFieldRegenerationTime: 1
   _ignitionTime: 0.2
   _collider2D: {fileID: 6506593643723733142}
+  _ignitionSounds:
+  - {fileID: 8300000, guid: f7fa38041d80f9d4d8f644a2abadecbb, type: 3}
+  _forceFieldMixerGroup: {fileID: 1693787950670452045, guid: f049ff7059f18e64b9e8e3a880d2ad45, type: 2}
   _currentAlpha: 0
   _forceFieldEnabled: 0
   _forceFieldRegenerationTimer: 0

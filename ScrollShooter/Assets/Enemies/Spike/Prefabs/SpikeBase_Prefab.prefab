@@ -58,6 +58,9 @@ MonoBehaviour:
   VFX: {fileID: 9209774075378230884, guid: 8eece7513d5c0e545935a155e6b09865, type: 3}
   SpriteRenderers:
   - {fileID: 8196130516812020311}
+  _deathSounds:
+  - {fileID: 8300000, guid: 6ed4ede63620be54a9ff7ab19b35b274, type: 3}
+  _deathMixerGroup: {fileID: -1876883571504349357, guid: f049ff7059f18e64b9e8e3a880d2ad45, type: 2}
   _rigidbody2D: {fileID: 8196130516812020309}
   _acceleration: 10
   _maxVelocity: 10

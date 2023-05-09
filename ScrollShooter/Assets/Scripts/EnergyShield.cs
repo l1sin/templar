@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class EnergyShield : MonoBehaviour
 {
@@ -22,6 +23,12 @@ public class EnergyShield : MonoBehaviour
     [SerializeField] private GameObject _shieldBreakEffectPU;
     [HideInInspector] private GameObject _shieldBreakEffectCurrent;
 
+    [SerializeField] private AudioClip[] _holdSound;
+    [SerializeField] private AudioClip[] _breakSound;
+    [SerializeField] private AudioMixerGroup _shieldMixerGroup;
+
+    [HideInInspector] private GameObject _holdSoundObject;
+
     private void Update()
     {
         if (PauseManager.IsPaused) return;
@@ -34,6 +41,13 @@ public class EnergyShield : MonoBehaviour
     {
         if (!PlayerInput.Mouse0 && PlayerInput.Mouse1 && PlayerInput.Mouse2 && Player.Instance.CanUseEnergy && Player.Instance.CurrentEnergy > 0)
         {
+            if (!IsActive)
+            {
+                _holdSoundObject = AudioManager.Instance.MakeSound(transform.position, _holdSound, _shieldMixerGroup);
+                _holdSoundObject.transform.SetParent(transform);
+                _holdSoundObject.GetComponent<AudioSource>().loop = true;
+            }
+
             IsActive = true;
             _collider.enabled = true;
             _energyShieldRenderer.enabled = true;
@@ -41,6 +55,10 @@ public class EnergyShield : MonoBehaviour
         }
         else
         {
+            if (IsActive)
+            {
+                Destroy(_holdSoundObject);
+            }
             IsActive = false;
             _collider.enabled = false;
             _energyShieldRenderer.enabled = false;
@@ -81,6 +99,7 @@ public class EnergyShield : MonoBehaviour
             Player.Instance.UseEnergy(damage * _absorbDamageMultiplierCurrent);
             if (!Player.Instance.CanUseEnergy) 
             {
+                AudioManager.Instance.MakeSound(transform.position, _breakSound, _shieldMixerGroup);
                 Instantiate(_shieldBreakEffectCurrent, _energyShield.transform.position, _energyShield.transform.rotation);
             }
         } 

@@ -1,10 +1,18 @@
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class PlayerProjectile : BaseProjectile
 {
     [SerializeField] private bool _isRailgunProjectile;
     [SerializeField] private Vector3 _normal;
     [SerializeField] private TrailRenderer _trail;
+
+    [SerializeField] private AudioClip[] _reflectSounds;
+    [SerializeField] private AudioMixerGroup _reflectMixerGroup;
+
+    [SerializeField] private AudioClip[] _pistolImpacts;
+    [SerializeField] private AudioClip[] _railgunImpacts;
+    [SerializeField] private AudioMixerGroup _impactMixerGroup;
 
     protected override void MakeSweepTest2D()
     {
@@ -19,6 +27,7 @@ public class PlayerProjectile : BaseProjectile
     }
     protected override void MakeCollision(Collider2D collision)
     {
+        
 
         if ((HitMask.value & (1 << collision.transform.gameObject.layer)) > 0)
         {
@@ -44,13 +53,15 @@ public class PlayerProjectile : BaseProjectile
                 {
                     rigidbody2D.AddForce(Direction * StoppingAction, ForceMode2D.Impulse);
                 }
-
+                if (_isRailgunProjectile) AudioManager.Instance.MakeSound(transform.position, _railgunImpacts, _impactMixerGroup);
+                else AudioManager.Instance.MakeSound(transform.position, _pistolImpacts, _impactMixerGroup);
                 DestroyProjectile();
             }
         }
     }
     private void Reflect()
     {
+        AudioManager.Instance.MakeSound(transform.position, _reflectSounds, _reflectMixerGroup);
         Direction = Vector2.Reflect(Direction, _normal);
         transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, transform.localEulerAngles.y, Calculator.Vector2ToDeg(Direction));
     }

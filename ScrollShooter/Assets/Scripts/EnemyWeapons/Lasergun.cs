@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class Lasergun : MonoBehaviour
 {
@@ -19,6 +20,11 @@ public class Lasergun : MonoBehaviour
     [SerializeField] private float _laserBurstOnPeriod;
     [SerializeField] private float _laserBurstOffPeriod;
 
+    [Header("SFX")]
+    [SerializeField] private AudioClip[] _laserBeamSounds;
+    [HideInInspector] private GameObject[] _laserBeamSoundObjects;
+    [SerializeField] private AudioMixerGroup _shotMixerGroup;
+
     [Header("Internal Values")]
     [HideInInspector] private float _laserBurstOnTimer;
     [HideInInspector] private float _laserBurstOffTimer;
@@ -29,6 +35,7 @@ public class Lasergun : MonoBehaviour
     private void Awake()
     {
         ResetThis();
+        _laserBeamSoundObjects = new GameObject[2];
         Target = Player.Instance.Target;
     }
 
@@ -114,7 +121,8 @@ public class Lasergun : MonoBehaviour
         if (_laserBurstOnTimer <= 0)
         {
             _laserBurst = false;
-            foreach(Animator lasergunAnimator in _lasergunAnimators) lasergunAnimator.SetBool(GlobalStrings.Burst, _laserBurst);
+            foreach (GameObject sound in _laserBeamSoundObjects) Destroy(sound);
+            foreach (Animator lasergunAnimator in _lasergunAnimators) lasergunAnimator.SetBool(GlobalStrings.Burst, _laserBurst);
             _laserBurstOffTimer = _laserBurstOffPeriod;
             StopRenderingLaser();
         }
@@ -123,6 +131,12 @@ public class Lasergun : MonoBehaviour
     {
         if (_laserBurstOffTimer <= 0)
         {
+            for (int i = 0; i < _laserguns.Length; i++)
+            {
+                _laserBeamSoundObjects[i] = AudioManager.Instance.MakeSound(transform.position, _laserBeamSounds, _shotMixerGroup);
+                _laserBeamSoundObjects[i].transform.SetParent(_laserguns[i]);
+                _laserBeamSoundObjects[i].GetComponent<AudioSource>().loop = true;
+            }
             _laserBurst = true;
             foreach (Animator lasergunAnimator in _lasergunAnimators) lasergunAnimator.SetBool(GlobalStrings.Burst, _laserBurst);
             _laserBurstOnTimer = _laserBurstOnPeriod;
