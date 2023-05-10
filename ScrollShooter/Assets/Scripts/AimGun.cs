@@ -18,7 +18,6 @@ public class AimGun : MonoBehaviour
     [HideInInspector] public static float RotationZ;
 
     [SerializeField] private float _headFlex = 30f;
-    [SerializeField] private float _headRotationPower;
 
     private void Update()
     {
@@ -59,13 +58,18 @@ public class AimGun : MonoBehaviour
 
     private void RotateHead()
     {
-        if (RotationZ > -_headFlex && RotationZ < _headFlex)
+        if (RotationZ > -90 && RotationZ < 90)
         {
-            _bodyController.Head.transform.rotation = Quaternion.Euler(0f, 0f, RotationZ * _headRotationPower);
+            _bodyController.Head.transform.rotation = Quaternion.Euler(0f, 0f, Mathf.Clamp(RotationZ, -_headFlex, _headFlex) );
+
         }
-        else if (RotationZ > 180 - _headFlex || RotationZ < -180 + _headFlex)
+        else if (RotationZ > 90)
         {
-            _bodyController.Head.transform.rotation = Quaternion.Euler(180, 0, -RotationZ * _headRotationPower);
+            _bodyController.Head.transform.rotation = Quaternion.Euler(180, 0, -Mathf.Clamp(RotationZ, 180 - _headFlex, 180) );
+        }
+        else if (RotationZ < -90)
+        {
+            _bodyController.Head.transform.rotation = Quaternion.Euler(180, 0, -Mathf.Clamp(RotationZ, -180, -180 + _headFlex));
         }
     }
 

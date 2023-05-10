@@ -104,7 +104,7 @@ LineRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 114949963
-  m_SortingLayer: 1
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Positions:
   - {x: 0, y: 0, z: 0}
@@ -240,6 +240,9 @@ MonoBehaviour:
   _burstOffPeriod: 4
   _laserImpactVFX: {fileID: 8376018721345068489}
   _laserImpactRenderer: {fileID: 1435940860017973530}
+  _laserBeamSound:
+  - {fileID: 8300000, guid: 4eec13c93cc4d0d42a6299c1e20a2ff8, type: 3}
+  _laserBeamMixerGroup: {fileID: -2021402441661938335, guid: f049ff7059f18e64b9e8e3a880d2ad45, type: 2}
 --- !u!61 &2040152516537405184
 BoxCollider2D:
   m_ObjectHideFlags: 0

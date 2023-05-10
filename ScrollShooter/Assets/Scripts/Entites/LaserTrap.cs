@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class LaserTrap : Enemy
 {
@@ -14,12 +15,15 @@ public class LaserTrap : Enemy
     [SerializeField] private float _burstOffPeriod;
     [SerializeField] private GameObject _laserImpactVFX;
     [SerializeField] private Renderer _laserImpactRenderer;
+    [SerializeField] private AudioClip[] _laserBeamSound;
+    [SerializeField] private AudioMixerGroup _laserBeamMixerGroup;
+    private GameObject _laserBeamSoundGameObject;
 
-     private float _burstOnTimer;
-     private float _burstOffTimer;
-     private float _nextDamageTimer;
+    private float _burstOnTimer;
+    private float _burstOffTimer;
+    private float _nextDamageTimer;
 
-     private bool _burst = false;
+    private bool _burst = false;
 
     protected override void Awake()
     {
@@ -75,12 +79,13 @@ public class LaserTrap : Enemy
             if (hit.collider.gameObject.layer == 7)
             {
                 hit.collider.GetComponent<BaseEntity>().GetDamage(_damage);
+                _nextDamageTimer = _damagePeriod;
             }
             else if (hit.collider.gameObject.layer == 10)
             {
                 Player.Instance.gameObject.GetComponent<EnergyShield>().AbsorbDamage(_damage);
-            }
-            _nextDamageTimer = _damagePeriod;
+                _nextDamageTimer = _damagePeriod;
+            }   
         }
     }
 
@@ -95,6 +100,10 @@ public class LaserTrap : Enemy
     {
         if (_burstOnTimer <= 0)
         {
+            if (true)
+            {
+                Destroy(_laserBeamSoundGameObject);
+            }
             _burst = false;
             _animator.SetBool(GlobalStrings.Burst, _burst);
             _burstOffTimer = _burstOffPeriod;
@@ -108,6 +117,7 @@ public class LaserTrap : Enemy
             _burst = true;
             _animator.SetBool(GlobalStrings.Burst, _burst);
             _burstOnTimer = _burstOnPeriod;
+            _laserBeamSoundGameObject = AudioManager.Instance.MakeSound(transform, _laserBeamSound, _laserBeamMixerGroup, true, true, true);
         }
     }
 }

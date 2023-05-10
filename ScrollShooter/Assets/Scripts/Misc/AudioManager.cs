@@ -32,7 +32,7 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    public GameObject MakeSound(Transform transform, AudioClip[] audioClips, AudioMixerGroup audioMixerGroup, bool follow = true, bool spatialblend = true, bool dontDestroyOnLoad = true, string name = "Sound")
+    public GameObject MakeSound(Transform transform, AudioClip[] audioClips, AudioMixerGroup audioMixerGroup, bool follow = true, bool spatialblend = true, bool loop = false, bool dontDestroyOnLoad = true, string name = "Sound")
     {
         GameObject newSound = new GameObject(name);
         newSound.transform.position = transform.position;
@@ -55,6 +55,10 @@ public class AudioManager : MonoBehaviour
         {
             audioPlayer.follow = follow;
             audioPlayer.followTarget = transform;
+        }
+        if (loop)
+        {
+            audioSource.loop = loop;
         }
 
         audioSource.Play();
