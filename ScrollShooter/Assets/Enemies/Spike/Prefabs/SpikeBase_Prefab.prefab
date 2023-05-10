@@ -65,7 +65,7 @@ MonoBehaviour:
   _maxVelocity: 10
   _contactDamage: 5
   _attackCooldown: 1
-  _spotDistance: 3
+  _spotDistance: 6
   _patrolDistance: {x: 2, y: 0}
   _reachDistance: 0.2
   Spotted: 0

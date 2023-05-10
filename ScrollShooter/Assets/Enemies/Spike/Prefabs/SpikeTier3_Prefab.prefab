@@ -29,7 +29,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8196130516812020308, guid: 3f9787895d67ba64283065227257f6ec, type: 3}
       propertyPath: _spotDistance
-      value: 5
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8196130516812020308, guid: 3f9787895d67ba64283065227257f6ec, type: 3}
       propertyPath: _contactDamage

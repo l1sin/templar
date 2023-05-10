@@ -64,7 +64,7 @@ MonoBehaviour:
   _deathMixerGroup: {fileID: -1876883571504349357, guid: f049ff7059f18e64b9e8e3a880d2ad45, type: 2}
   _rigidbody2D: {fileID: 2976927901525278954}
   _minigun: {fileID: 7795716925349376696}
-  _spotDistance: 4
+  _spotDistance: 9
   _patrolDistance: {x: 3, y: 0}
   _maxVelocity: 10
   _altitude: 3
@@ -210,7 +210,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -128959107
-  m_SortingLayer: 3
+  m_SortingLayer: 2
   m_SortingOrder: 1
   m_Sprite: {fileID: 1012357210, guid: 305d88aeef864d64d97fe3b702e35914, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

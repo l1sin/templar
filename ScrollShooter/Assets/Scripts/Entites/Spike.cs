@@ -52,6 +52,12 @@ public class Spike : Enemy
         }
     }
 
+    public override void GetDamage(float damage)
+    {
+        base.GetDamage(damage);
+        Spotted = true;
+    }
+
     private void MoveToTarget()
     {
         if (Target.position.x - transform.position.x > 0)

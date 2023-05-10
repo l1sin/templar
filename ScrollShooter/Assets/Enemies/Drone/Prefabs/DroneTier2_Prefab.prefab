@@ -89,7 +89,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2976927901525278953, guid: ae25c9976df8a5144826b837d39cb9dc, type: 3}
       propertyPath: _spotDistance
-      value: 5
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2976927901525278953, guid: ae25c9976df8a5144826b837d39cb9dc, type: 3}
       propertyPath: _burstReloadLength
