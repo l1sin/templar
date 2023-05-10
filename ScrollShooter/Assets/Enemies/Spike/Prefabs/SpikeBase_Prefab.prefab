@@ -75,6 +75,7 @@ MonoBehaviour:
     m_Bits: 64
   _groundCheckRadius: 0.4
   _changeDirectionTimer: 10
+  _changeDirectionTime: 3
 --- !u!50 &8196130516812020309
 Rigidbody2D:
   serializedVersion: 4

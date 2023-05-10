@@ -101,7 +101,7 @@ MonoBehaviour:
   _sounds:
   - {fileID: 8300000, guid: af81a106fbac6c847aa99857d02dfdb8, type: 3}
   _audioMixerGroup: {fileID: 7028946362160075592, guid: f049ff7059f18e64b9e8e3a880d2ad45, type: 2}
-  _powerupTime: 20
+  _powerupTime: 30
 --- !u!58 &3412947331010560512
 CircleCollider2D:
   m_ObjectHideFlags: 0

@@ -18,8 +18,6 @@ public class Spike : Enemy
     [SerializeField] public bool Spotted = false;
     [SerializeField] private LayerMask _groundMask;
     [SerializeField] private float _groundCheckRadius;
-    [SerializeField] private float _changeDirectionTimer;
-    private float _changeDirectionTime;
     private bool _isGrounded;
 
     protected override void Awake()
@@ -52,7 +50,6 @@ public class Spike : Enemy
         {
             if (_isGrounded) MoveToTarget();
         }
-
     }
 
     private void MoveToTarget()
@@ -99,12 +96,10 @@ public class Spike : Enemy
 
         if (Mathf.Abs((_patrolPoints[0] - (Vector2)transform.position).x) < _reachDistance)
         {
-            _changeDirectionTimer = _changeDirectionTime;
             _goForth = true;
         }
         else if (Mathf.Abs((_patrolPoints[1] - (Vector2)transform.position).x) < _reachDistance)
         {
-            _changeDirectionTimer = _changeDirectionTime;
             _goForth = false;
         }
     }
@@ -127,14 +122,6 @@ public class Spike : Enemy
     private void ResetTimers()
     {
         _attackCooldownTimer -= Time.deltaTime;
-        _changeDirectionTimer -= Time.deltaTime;
-    }
-    private void ChangeDirection()
-    {
-        if (_changeDirectionTimer <= 0)
-        {
-            _goForth = !_goForth;
-        }
     }
 
     private void OnDrawGizmosSelected()
