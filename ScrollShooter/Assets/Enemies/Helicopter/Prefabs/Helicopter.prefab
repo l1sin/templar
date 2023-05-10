@@ -308,7 +308,7 @@ MonoBehaviour:
   SpriteRenderers:
   - {fileID: 6506593644580214595}
   - {fileID: 6506593645275387306}
-  - {fileID: 0}
+  - {fileID: 3206882558703068402}
   - {fileID: 6506593643520351104}
   _deathSounds:
   - {fileID: 8300000, guid: 3eb03ccf1053afe41ba989bdfe6e533a, type: 3}
@@ -829,6 +829,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4c414384357cea549b693b6c51d5368c, type: 3}
+--- !u!212 &3206882558703068402 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 5423807432590829876, guid: 4c414384357cea549b693b6c51d5368c, type: 3}
+  m_PrefabInstance: {fileID: 7477135013316087238}
+  m_PrefabAsset: {fileID: 0}
 --- !u!95 &3206882558703068403 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 5423807432590829877, guid: 4c414384357cea549b693b6c51d5368c, type: 3}

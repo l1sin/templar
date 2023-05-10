@@ -60,7 +60,7 @@ MonoBehaviour:
   VFX: {fileID: 9209774075378230884, guid: 8eece7513d5c0e545935a155e6b09865, type: 3}
   SpriteRenderers:
   - {fileID: 3729261153685691086}
-  - {fileID: 0}
+  - {fileID: 8170992330679307154}
   _deathSounds:
   - {fileID: 8300000, guid: 6ed4ede63620be54a9ff7ab19b35b274, type: 3}
   _deathMixerGroup: {fileID: -1876883571504349357, guid: f049ff7059f18e64b9e8e3a880d2ad45, type: 2}
@@ -305,6 +305,11 @@ PrefabInstance:
 --- !u!4 &8170992330368064565 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5423807432816098963, guid: 4c414384357cea549b693b6c51d5368c, type: 3}
+  m_PrefabInstance: {fileID: 4188363202060870310}
+  m_PrefabAsset: {fileID: 0}
+--- !u!212 &8170992330679307154 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 5423807432590829876, guid: 4c414384357cea549b693b6c51d5368c, type: 3}
   m_PrefabInstance: {fileID: 4188363202060870310}
   m_PrefabAsset: {fileID: 0}
 --- !u!95 &8170992330679307155 stripped
