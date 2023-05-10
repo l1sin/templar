@@ -47,9 +47,10 @@ public class AudioManager : MonoBehaviour
 
         if (spatialblend)
         {
+            audioSource.rolloffMode = AudioRolloffMode.Linear;
             audioSource.spatialBlend = 1f;
-            audioSource.minDistance = 5;
-            audioSource.maxDistance = 10;
+            audioSource.minDistance = 1f;
+            audioSource.maxDistance = 20f;
         }
         if (follow)
         {
