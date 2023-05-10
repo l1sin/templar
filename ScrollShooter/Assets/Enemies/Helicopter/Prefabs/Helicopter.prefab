@@ -253,7 +253,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -128959107
   m_SortingLayer: 3
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: -2112080801, guid: 1b9dee9f85920834c887f07bbb9a9878, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -297,7 +297,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49e7976ec5bf4a94f841a16bcd191450, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxHealth: 100
+  MaxHealth: 200
   CurrentHealth: 0
   DamageBlinkMaterial: {fileID: 2100000, guid: b7c67bad527385c408d0785160b2dde6, type: 2}
   _hitSounds:
@@ -305,11 +305,7 @@ MonoBehaviour:
   _audioMixer: {fileID: 8075247928854164116, guid: f049ff7059f18e64b9e8e3a880d2ad45, type: 2}
   Drop: {fileID: 3412947331010560513, guid: be030aadf64448d41bfe591ab885c099, type: 3}
   VFX: {fileID: 9209774075378230884, guid: 8eece7513d5c0e545935a155e6b09865, type: 3}
-  SpriteRenderers:
-  - {fileID: 6506593644580214595}
-  - {fileID: 6506593645275387306}
-  - {fileID: 3206882558703068402}
-  - {fileID: 6506593643520351104}
+  Renderer: {fileID: 6506593644580214595}
   _deathSounds:
   - {fileID: 8300000, guid: 3eb03ccf1053afe41ba989bdfe6e533a, type: 3}
   _deathMixerGroup: {fileID: -1876883571504349357, guid: f049ff7059f18e64b9e8e3a880d2ad45, type: 2}
@@ -332,7 +328,7 @@ MonoBehaviour:
   _groundMask:
     serializedVersion: 2
     m_Bits: 64
-  _groundCheckRadius: 2
+  _groundCheckRadius: 2.5
   _winTimerPrefab: {fileID: 6596451344309430909, guid: 55c3aa1c80d6c8345bdd00f6e8bfad4a, type: 3}
 --- !u!114 &6506593644580214623
 MonoBehaviour:
@@ -361,7 +357,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1216
   _minigunDamage: 1
-  _minigunBurstAmount: 5
+  _minigunBurstAmount: 10
   _minigunFirePeriod: 0.1
   _minigunBurstReloadLength: 4
   _shootDistance: 10
@@ -409,7 +405,7 @@ MonoBehaviour:
   _hitLaserLayerMask:
     serializedVersion: 2
     m_Bits: 1152
-  _laserDamage: 0.01
+  _laserDamage: 0.04
   _laserDamagePeriod: 0
   _laserBurstOnPeriod: 2
   _laserBurstOffPeriod: 2
@@ -433,9 +429,6 @@ MonoBehaviour:
   - {fileID: 3798230828923828743, guid: c19adddc9a61c734ba0a0208d4c727d7, type: 3}
   - {fileID: 3798230828923828743, guid: 913260d8a0307c541aac7ed752c85cff, type: 3}
   _drops:
-  - {fileID: 4252604739332193911, guid: b03441c188f5a714d9b5b63e88a2200f, type: 3}
-  - {fileID: 1918132914811776367, guid: 64296e1b883e4f24ab16071bf3e82051, type: 3}
-  - {fileID: 9036780368749546730, guid: 9d30860138cc61247bb2ddab479b477e, type: 3}
   - {fileID: 846722426151338356, guid: ce471ecc8da9fd84c971e1dd83b348b6, type: 3}
   - {fileID: 998026415338467601, guid: 86829a5e87380d444a5edb09bb55154a, type: 3}
   - {fileID: 3495064606541653708, guid: 7579eed59b7b7b24bb344ed38d18502d, type: 3}
@@ -485,9 +478,9 @@ MonoBehaviour:
     m_Mode: 0
     m_NumColorKeys: 4
     m_NumAlphaKeys: 2
-  _maxForceFieldHealth: 30
+  _maxForceFieldHealth: 27
   _currentForceFieldHealth: 0
-  _forceFieldRegenerationTime: 1
+  _forceFieldRegenerationTime: 3
   _ignitionTime: 0.2
   _collider2D: {fileID: 6506593643723733142}
   _repulseForce: 15
@@ -654,16 +647,15 @@ PrefabInstance:
       propertyPath: m_Name
       value: Minigun1
       objectReference: {fileID: 0}
+    - target: {fileID: 5423807432590829876, guid: 4c414384357cea549b693b6c51d5368c, type: 3}
+      propertyPath: m_SortingOrder
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4c414384357cea549b693b6c51d5368c, type: 3}
 --- !u!4 &6506593644980945421 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5423807432816098963, guid: 4c414384357cea549b693b6c51d5368c, type: 3}
-  m_PrefabInstance: {fileID: 1227561224288812190}
-  m_PrefabAsset: {fileID: 0}
---- !u!212 &6506593645275387306 stripped
-SpriteRenderer:
-  m_CorrespondingSourceObject: {fileID: 5423807432590829876, guid: 4c414384357cea549b693b6c51d5368c, type: 3}
   m_PrefabInstance: {fileID: 1227561224288812190}
   m_PrefabAsset: {fileID: 0}
 --- !u!95 &6506593645275387307 stripped
@@ -743,11 +735,6 @@ SpriteRenderer:
   m_CorrespondingSourceObject: {fileID: 8232326177736994115, guid: 7c8d1a6fec20faf4ab09f48cbc3ad6f2, type: 3}
   m_PrefabInstance: {fileID: 4296000709638372539}
   m_PrefabAsset: {fileID: 0}
---- !u!212 &6506593643520351104 stripped
-SpriteRenderer:
-  m_CorrespondingSourceObject: {fileID: 7048808037532460859, guid: 7c8d1a6fec20faf4ab09f48cbc3ad6f2, type: 3}
-  m_PrefabInstance: {fileID: 4296000709638372539}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6506593643520351105 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7048808037532460858, guid: 7c8d1a6fec20faf4ab09f48cbc3ad6f2, type: 3}
@@ -823,17 +810,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Minigun2
       objectReference: {fileID: 0}
+    - target: {fileID: 5423807432590829876, guid: 4c414384357cea549b693b6c51d5368c, type: 3}
+      propertyPath: m_SortingOrder
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 5423807432816098960, guid: 4c414384357cea549b693b6c51d5368c, type: 3}
       propertyPath: m_Name
       value: ShootingPoint2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4c414384357cea549b693b6c51d5368c, type: 3}
---- !u!212 &3206882558703068402 stripped
-SpriteRenderer:
-  m_CorrespondingSourceObject: {fileID: 5423807432590829876, guid: 4c414384357cea549b693b6c51d5368c, type: 3}
-  m_PrefabInstance: {fileID: 7477135013316087238}
-  m_PrefabAsset: {fileID: 0}
 --- !u!95 &3206882558703068403 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 5423807432590829877, guid: 4c414384357cea549b693b6c51d5368c, type: 3}

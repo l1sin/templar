@@ -117,7 +117,7 @@ public class ForceField : MonoBehaviour
     {
         if (_ignitionComplete)
         {
-            AudioManager.Instance.MakeSound(transform.position, _ignitionSounds, _forceFieldMixerGroup);
+            AudioManager.Instance.MakeSound(transform, _ignitionSounds, _forceFieldMixerGroup);
         }
         _ignitionComplete = false;
         _ignitionInterpolator = 0;

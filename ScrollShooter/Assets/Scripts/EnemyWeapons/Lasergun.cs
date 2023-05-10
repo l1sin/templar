@@ -134,7 +134,7 @@ public class Lasergun : MonoBehaviour
         {
             for (int i = 0; i < _laserguns.Length; i++)
             {
-                _laserBeamSoundObjects[i] = AudioManager.Instance.MakeSound(transform.position, _laserBeamSounds, _shotMixerGroup);
+                _laserBeamSoundObjects[i] = AudioManager.Instance.MakeSound(transform, _laserBeamSounds, _shotMixerGroup);
                 _laserBeamSoundObjects[i].transform.SetParent(_laserguns[i]);
                 _laserBeamSoundObjects[i].GetComponent<AudioSource>().loop = true;
             }

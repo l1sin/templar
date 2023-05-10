@@ -34,7 +34,7 @@ public class BaseCollectible : MonoBehaviour
 
     protected virtual void Collect(Collider2D collision)
     {
-        AudioManager.Instance.MakeSound(transform.position, _sounds, _audioMixerGroup);
+        AudioManager.Instance.MakeSound(transform, _sounds, _audioMixerGroup, false, false);
         Destroy(gameObject);
     }
 

@@ -43,7 +43,7 @@ public class EnergyShield : MonoBehaviour
         {
             if (!IsActive)
             {
-                _holdSoundObject = AudioManager.Instance.MakeSound(transform.position, _holdSound, _shieldMixerGroup);
+                _holdSoundObject = AudioManager.Instance.MakeSound(transform, _holdSound, _shieldMixerGroup);
                 _holdSoundObject.transform.SetParent(transform);
                 _holdSoundObject.GetComponent<AudioSource>().loop = true;
             }
@@ -99,7 +99,7 @@ public class EnergyShield : MonoBehaviour
             Player.Instance.UseEnergy(damage * _absorbDamageMultiplierCurrent);
             if (!Player.Instance.CanUseEnergy) 
             {
-                AudioManager.Instance.MakeSound(transform.position, _breakSound, _shieldMixerGroup);
+                AudioManager.Instance.MakeSound(transform, _breakSound, _shieldMixerGroup);
                 Instantiate(_shieldBreakEffectCurrent, _energyShield.transform.position, _energyShield.transform.rotation);
             }
         } 

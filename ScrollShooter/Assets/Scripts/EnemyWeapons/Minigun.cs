@@ -84,7 +84,7 @@ public class Minigun : MonoBehaviour
             {
                 var shootingDirection =  Calculator.RandomizeShootingDirection(_miniguns[i], Target, _missDeg);
                 RaycastHit2D hit = Physics2D.Raycast(_minigunShootingPoints[i].position, shootingDirection, _shootDistance, _minigunHitLayerMask);
-                AudioManager.Instance.MakeSound(transform.position, _shots, _shotMixerGroup);
+                AudioManager.Instance.MakeSound(transform, _shots, _shotMixerGroup);
 
                 if (hit)
                 {
@@ -96,7 +96,7 @@ public class Minigun : MonoBehaviour
                     else if (hit.collider.gameObject.layer == 10)
                     {
                         Player.Instance.gameObject.GetComponent<EnergyShield>().AbsorbDamage(_minigunDamage);
-                        AudioManager.Instance.MakeSound(transform.position, _richochets, _shotMixerGroup);
+                        AudioManager.Instance.MakeSound(transform, _richochets, _shotMixerGroup);
                         Tracer.TraceReflect(_tracerReflectedPrefab, _minigunShootingPoints[i], hit.point, hit.normal, _reflectLength);
                     }
                 }

@@ -32,7 +32,7 @@ public class BaseEntity : MonoBehaviour
     {
         CurrentHealth -= damage;
         DamageBlink();
-        AudioManager.Instance.MakeSound(transform.position, _hitSounds, _audioMixer);
+        AudioManager.Instance.MakeSound(transform, _hitSounds, _audioMixer);
         if (CurrentHealth <= 0)
         {
             Die();

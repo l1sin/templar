@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Helicopter : Enemy
 {
@@ -26,10 +27,15 @@ public class Helicopter : Enemy
     [SerializeField] private float _groundCheckRadius;
 
     [SerializeField] private GameObject _winTimerPrefab;
+    private GameObject _healthBar;
+    private Image _healthBarImage;
     protected override void Awake()
     {
         base.Awake();
         ChooseNewDestination();
+        _healthBar = UI.Instance.InstantiateMenuNoQueue(UI.Instance.BossHPBar);
+        _healthBarImage = _healthBar.transform.GetChild(1).GetComponentInChildren<Image>();
+        _healthBarImage.fillAmount = 1;
     }
 
     protected override void Update()
@@ -54,12 +60,18 @@ public class Helicopter : Enemy
         ClampVelocity();
     }
 
+    public override void GetDamage(float damage)
+    {
+        base.GetDamage(damage);
+        _healthBarImage.fillAmount = CurrentHealth / MaxHealth;
+    }
+
     public override void Die()
     {
         Instantiate(Drop, transform.position, Quaternion.identity);
         Instantiate(VFX, transform.position, Quaternion.identity);
         Instantiate(_winTimerPrefab, transform.position, Quaternion.identity);
-        AudioManager.Instance.MakeSound(transform.position, _deathSounds, _deathMixerGroup);
+        AudioManager.Instance.MakeSound(transform, _deathSounds, _deathMixerGroup);
         Destroy(gameObject);
     }
 
@@ -100,6 +112,11 @@ public class Helicopter : Enemy
             _stop = true;
             _waitTimer = _waitTime;
         }
+    }
+
+    private void OnDestroy()
+    {
+        Destroy(_healthBar);
     }
 
     private void OnDrawGizmosSelected()

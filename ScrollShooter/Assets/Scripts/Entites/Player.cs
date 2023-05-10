@@ -132,7 +132,7 @@ public class Player : BaseEntity
     {
         CanUseEnergy = false;
         RenderEnergyLine();
-        AudioManager.Instance.MakeSound(transform.position, _chargeDown, _energyMixerGroup);
+        AudioManager.Instance.MakeSound(transform, _chargeDown, _energyMixerGroup);
     }
 
     public void UseEnergy(float energy)
@@ -198,7 +198,7 @@ public class Player : BaseEntity
             if (CurrentEnergy == MaxEnergy)
             {
                 CanUseEnergy = true;
-                AudioManager.Instance.MakeSound(transform.position, _chargeUp, _energyMixerGroup);
+                AudioManager.Instance.MakeSound(transform, _chargeUp, _energyMixerGroup);
                 HUD.Instance.ChangeEnergyBarColor(HUD.Instance.CanUseEnergyColor);
             }
         }

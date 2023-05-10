@@ -107,7 +107,7 @@ public class Controlls : MonoBehaviour
         {
             float jumpForce = Mathf.Sqrt(_jumpHeightCurrent * -2 * (Physics2D.gravity.y * _rigidbody2D.gravityScale));
             _rigidbody2D.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
-            AudioManager.Instance.MakeSound(transform.position, _jumps, _mixerGroup);
+            AudioManager.Instance.MakeSound(transform, _jumps, _mixerGroup, false, false);
         }
     }
 
@@ -173,7 +173,7 @@ public class Controlls : MonoBehaviour
         {
             if (!_isGrounded)
             {
-                AudioManager.Instance.MakeSound(transform.position, _lands, _mixerGroup);
+                AudioManager.Instance.MakeSound(transform, _lands, _mixerGroup, false, false);
             }
             _isGrounded = true;
         }
@@ -185,7 +185,7 @@ public class Controlls : MonoBehaviour
 
     public void Step()
     {
-        AudioManager.Instance.MakeSound(transform.position, _footSteps, _mixerGroup);
+        AudioManager.Instance.MakeSound(transform, _footSteps, _mixerGroup, false, false);
     }
 
     private void Brake()

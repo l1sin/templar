@@ -109,7 +109,7 @@ public class Shoot : MonoBehaviour
 
             _nextFirePistolTimer = _pistolFirePeriodCurrent;
             Player.Instance.UseEnergy(_pistolEnergyCostCurrent);
-            AudioManager.Instance.MakeSound(transform.position, _pistolSound, _mixerGroup);
+            AudioManager.Instance.MakeSound(transform, _pistolSound, _mixerGroup, false, false);
         }
     }
 
@@ -130,7 +130,7 @@ public class Shoot : MonoBehaviour
 
             _nextFireRailgunTimer = _railgunFirePeriodCurrent;
             Player.Instance.UseEnergy(_railgunEnergyCostCurrent);
-            AudioManager.Instance.MakeSound(transform.position, _railgunSound, _mixerGroup);
+            AudioManager.Instance.MakeSound(transform, _railgunSound, _mixerGroup, false, false);
         }
     }
 

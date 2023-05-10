@@ -14,6 +14,7 @@ public class UI : MonoBehaviour
     [SerializeField] public GameObject HUD;
     [SerializeField] public GameObject GameOverMenu;
     [SerializeField] public GameObject LevelCompleteMenu;
+    [SerializeField] public GameObject BossHPBar;
 
     [SerializeField] private Texture2D _systemCursor;
     [SerializeField] private Texture2D _crosshair;
@@ -27,7 +28,7 @@ public class UI : MonoBehaviour
         SetSingleton();
     }
 
-    public void InstantiateMenu(GameObject menu)
+    public GameObject InstantiateMenu(GameObject menu)
     {
         GameObject newMenu = Instantiate(menu);
 
@@ -40,12 +41,14 @@ public class UI : MonoBehaviour
         }    
         else newMenu.transform.SetParent(MenuQueue[MenuQueue.Count - 1].transform, false);
         MenuQueue.Add(newMenu);
-    }
+        return newMenu;
+    } 
 
-    public void InstantiateMenuNoQueue(GameObject menu)
+    public GameObject InstantiateMenuNoQueue(GameObject menu)
     {
         GameObject newMenu = Instantiate(menu);
         newMenu.transform.SetParent(_canvas, false);
+        return newMenu;
     }
 
     public void CloseLastMenu()

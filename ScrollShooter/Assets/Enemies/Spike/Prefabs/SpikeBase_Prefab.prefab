@@ -56,8 +56,7 @@ MonoBehaviour:
   _audioMixer: {fileID: 8075247928854164116, guid: f049ff7059f18e64b9e8e3a880d2ad45, type: 2}
   Drop: {fileID: 133492715723157407, guid: 39ffc3fbd809e7045a34105343518df3, type: 3}
   VFX: {fileID: 9209774075378230884, guid: 8eece7513d5c0e545935a155e6b09865, type: 3}
-  SpriteRenderers:
-  - {fileID: 8196130516812020311}
+  Renderer: {fileID: 8196130516812020311}
   _deathSounds:
   - {fileID: 8300000, guid: 6ed4ede63620be54a9ff7ab19b35b274, type: 3}
   _deathMixerGroup: {fileID: -1876883571504349357, guid: f049ff7059f18e64b9e8e3a880d2ad45, type: 2}
@@ -74,8 +73,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   _groundCheckRadius: 0.4
-  _changeDirectionTimer: 10
-  _changeDirectionTime: 3
 --- !u!50 &8196130516812020309
 Rigidbody2D:
   serializedVersion: 4

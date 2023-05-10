@@ -5,7 +5,7 @@ public class Enemy : BaseEntity
 {
     [SerializeField] public GameObject Drop;
     [SerializeField] protected GameObject VFX;
-    [SerializeField] protected SpriteRenderer[] SpriteRenderers;
+    [SerializeField] protected SpriteRenderer Renderer;
     [SerializeField] protected AudioClip[] _deathSounds;
     [SerializeField] protected AudioMixerGroup _deathMixerGroup;
     protected Transform Target;
@@ -13,7 +13,7 @@ public class Enemy : BaseEntity
     protected override void Awake()
     {
         base.Awake();
-        CurrentMaterial = SpriteRenderers[0].material;
+        CurrentMaterial = Renderer.material;
         ApplyMaterial();
         Target = Player.Instance.Target;
     }
@@ -21,15 +21,12 @@ public class Enemy : BaseEntity
     {
         Instantiate(Drop, transform.position, Quaternion.identity);
         Instantiate(VFX, transform.position, Quaternion.identity);
-        AudioManager.Instance.MakeSound(transform.position, _deathSounds, _deathMixerGroup);
+        AudioManager.Instance.MakeSound(transform, _deathSounds, _deathMixerGroup);
         Destroy(gameObject);
     }
 
     protected override void ApplyMaterial()
     {
-        foreach (Renderer renderer in SpriteRenderers)
-        {
-            renderer.material = CurrentMaterial;
-        }
+        Renderer.material = CurrentMaterial;
     }
 }

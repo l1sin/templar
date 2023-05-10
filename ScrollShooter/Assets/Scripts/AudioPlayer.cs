@@ -4,6 +4,8 @@ public class AudioPlayer : MonoBehaviour
 {
     [SerializeField] public AudioSource ASource;
     [SerializeField] public bool DontDestroy;
+    [SerializeField] public bool follow;
+    [SerializeField] public Transform followTarget;
 
     private void Awake()
     {
@@ -15,6 +17,10 @@ public class AudioPlayer : MonoBehaviour
         if (ASource.isPlaying == false)
         {
             Destroy(gameObject);
+        }
+        if (follow)
+        {
+            if (followTarget != null) transform.position = followTarget.position;
         }
     }
 }

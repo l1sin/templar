@@ -53,15 +53,15 @@ public class PlayerProjectile : BaseProjectile
                 {
                     rigidbody2D.AddForce(Direction * StoppingAction, ForceMode2D.Impulse);
                 }
-                if (_isRailgunProjectile) AudioManager.Instance.MakeSound(transform.position, _railgunImpacts, _impactMixerGroup);
-                else AudioManager.Instance.MakeSound(transform.position, _pistolImpacts, _impactMixerGroup);
+                if (_isRailgunProjectile) AudioManager.Instance.MakeSound(transform, _railgunImpacts, _impactMixerGroup);
+                else AudioManager.Instance.MakeSound(transform, _pistolImpacts, _impactMixerGroup);
                 DestroyProjectile();
             }
         }
     }
     private void Reflect()
     {
-        AudioManager.Instance.MakeSound(transform.position, _reflectSounds, _reflectMixerGroup);
+        AudioManager.Instance.MakeSound(transform, _reflectSounds, _reflectMixerGroup);
         Direction = Vector2.Reflect(Direction, _normal);
         transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, transform.localEulerAngles.y, Calculator.Vector2ToDeg(Direction));
     }
