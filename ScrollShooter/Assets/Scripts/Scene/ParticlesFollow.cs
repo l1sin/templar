@@ -8,15 +8,15 @@ public class ParticlesFollow : MonoBehaviour
     [SerializeField] private GameObject _particleSystem;
     [SerializeField] private List<GameObject> _systems;
 
-    [HideInInspector] private Vector2 _startPoint;
-    [HideInInspector] private Vector3 _center;
-    [HideInInspector] private GameObject[,] _particles;
-    [HideInInspector] private List<GameObject> _l;
-    [HideInInspector] private List<GameObject> _vC;
-    [HideInInspector] private List<GameObject> _r;
-    [HideInInspector] private List<GameObject> _d;
-    [HideInInspector] private List<GameObject> _hC;
-    [HideInInspector] private List<GameObject> _u;
+    private Vector2 _startPoint;
+    private Vector3 _center;
+    private GameObject[,] _particles;
+    [SerializeField] private List<GameObject> _l;
+    [SerializeField] private List<GameObject> _vC;
+    [SerializeField] private List<GameObject> _r;
+    [SerializeField] private List<GameObject> _d;
+    [SerializeField] private List<GameObject> _hC;
+    [SerializeField] private List<GameObject> _u;
 
     private void Update()
     {

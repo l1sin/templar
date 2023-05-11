@@ -47,6 +47,7 @@ public class Drone : Enemy
         _patrolPoints = new Vector2[2];
         _patrolPoints[0] = (Vector2)transform.position - _patrolDistance;
         _patrolPoints[1] = (Vector2)transform.position + _patrolDistance;
+        
     }
 
     protected override void Update()
@@ -133,15 +134,19 @@ public class Drone : Enemy
         _distance = (_destination - (Vector2)transform.position).magnitude;
         _rigidbody2D.AddForce(_direction * _acceleration * _rigidbody2D.mass, ForceMode2D.Force);
         CorrectDirection();
-        if (_spotted) _unableToReachTimer -= Time.deltaTime;
-        if (_unableToReachTimer <= 0)
+        if (_spotted)
         {
-            ChooseNewDestination();
-        }
-        if (_distance > _spotDistance * 2)
-        {
-            LosePlayer();
-        }
+            _unableToReachTimer -= Time.deltaTime;
+            if (_unableToReachTimer <= 0)
+            {
+                ChooseNewDestination();
+                Debug.Log("Unable to reach");
+            }
+            if (_distance > _spotDistance * 2)
+            {
+                LosePlayer();
+            }
+        } 
     }
 
 
@@ -171,6 +176,7 @@ public class Drone : Enemy
     {
         _spotted = true;
         _minigun.enabled = _spotted;
+        _unableToReachTimer = _unableToReachTime;
     }
 
     private void LosePlayer()

@@ -82,7 +82,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   _groundCheckRadius: 0.31
-  _unableToReachTime: 0
+  _unableToReachTime: 5
 --- !u!114 &7795716925349376696
 MonoBehaviour:
   m_ObjectHideFlags: 0
