@@ -44,12 +44,48 @@ SpriteAtlas:
     secondaryTextureSettings: {}
     variantMultiplier: 1
     packables:
-    - {fileID: 2800000, guid: ae2c2f28d5ccf1d40b811653f85c463a, type: 3}
+    - {fileID: 102900000, guid: 0cf80282d89c515419bc651986baaefc, type: 3}
     bindAsDefault: 1
     isAtlasV2: 0
     cachedData: {fileID: 0}
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
+  - {fileID: 484834970, guid: c23f58e09d621b6498def186e3c8f187, type: 3}
+  - {fileID: 1228388295, guid: c23f58e09d621b6498def186e3c8f187, type: 3}
+  - {fileID: 514021112, guid: c23f58e09d621b6498def186e3c8f187, type: 3}
+  - {fileID: -1459288986, guid: c23f58e09d621b6498def186e3c8f187, type: 3}
+  - {fileID: -1102410602, guid: c23f58e09d621b6498def186e3c8f187, type: 3}
+  - {fileID: 1633822427, guid: c23f58e09d621b6498def186e3c8f187, type: 3}
+  - {fileID: 177885206, guid: c23f58e09d621b6498def186e3c8f187, type: 3}
+  - {fileID: -879402360, guid: c23f58e09d621b6498def186e3c8f187, type: 3}
+  - {fileID: -1973862234, guid: c23f58e09d621b6498def186e3c8f187, type: 3}
+  - {fileID: 1914538297, guid: c23f58e09d621b6498def186e3c8f187, type: 3}
+  - {fileID: -84809994, guid: c23f58e09d621b6498def186e3c8f187, type: 3}
+  - {fileID: 336668380, guid: c23f58e09d621b6498def186e3c8f187, type: 3}
+  - {fileID: 1390226563, guid: c23f58e09d621b6498def186e3c8f187, type: 3}
+  - {fileID: -535427690, guid: c23f58e09d621b6498def186e3c8f187, type: 3}
+  - {fileID: -1593553101, guid: c23f58e09d621b6498def186e3c8f187, type: 3}
+  - {fileID: 299181909, guid: c23f58e09d621b6498def186e3c8f187, type: 3}
+  - {fileID: -1908510229, guid: 37116813d8758444e8d0be8218fcdf8f, type: 3}
+  - {fileID: 525695916, guid: 37116813d8758444e8d0be8218fcdf8f, type: 3}
+  - {fileID: -1797125355, guid: 37116813d8758444e8d0be8218fcdf8f, type: 3}
+  - {fileID: -1690562876, guid: 37116813d8758444e8d0be8218fcdf8f, type: 3}
+  - {fileID: -1947319583, guid: 37116813d8758444e8d0be8218fcdf8f, type: 3}
+  - {fileID: -1249703742, guid: 37116813d8758444e8d0be8218fcdf8f, type: 3}
+  - {fileID: 769547341, guid: 37116813d8758444e8d0be8218fcdf8f, type: 3}
+  - {fileID: -1671171325, guid: 37116813d8758444e8d0be8218fcdf8f, type: 3}
+  - {fileID: -779369032, guid: 37116813d8758444e8d0be8218fcdf8f, type: 3}
+  - {fileID: 1120086669, guid: 37116813d8758444e8d0be8218fcdf8f, type: 3}
+  - {fileID: 1369648361, guid: 37116813d8758444e8d0be8218fcdf8f, type: 3}
+  - {fileID: 1456136114, guid: 37116813d8758444e8d0be8218fcdf8f, type: 3}
+  - {fileID: -1876857445, guid: 37116813d8758444e8d0be8218fcdf8f, type: 3}
+  - {fileID: 1408043113, guid: 37116813d8758444e8d0be8218fcdf8f, type: 3}
+  - {fileID: 98149958, guid: 37116813d8758444e8d0be8218fcdf8f, type: 3}
+  - {fileID: -1474110712, guid: 37116813d8758444e8d0be8218fcdf8f, type: 3}
+  - {fileID: 1866616376, guid: 517a9de502287d140b90c196bfd84ffc, type: 3}
+  - {fileID: 1171687319, guid: 517a9de502287d140b90c196bfd84ffc, type: 3}
+  - {fileID: 1027502882, guid: 517a9de502287d140b90c196bfd84ffc, type: 3}
+  - {fileID: 1956046446, guid: 517a9de502287d140b90c196bfd84ffc, type: 3}
   - {fileID: 1523317441, guid: ae2c2f28d5ccf1d40b811653f85c463a, type: 3}
   - {fileID: -555477857, guid: ae2c2f28d5ccf1d40b811653f85c463a, type: 3}
   - {fileID: 1036140439, guid: ae2c2f28d5ccf1d40b811653f85c463a, type: 3}
@@ -80,7 +116,48 @@ SpriteAtlas:
   - {fileID: -208559440, guid: ae2c2f28d5ccf1d40b811653f85c463a, type: 3}
   - {fileID: -2029156982, guid: ae2c2f28d5ccf1d40b811653f85c463a, type: 3}
   - {fileID: 1536151140, guid: ae2c2f28d5ccf1d40b811653f85c463a, type: 3}
+  - {fileID: -1077073867, guid: 8ef2db9e8428eec49be0842236f8a65d, type: 3}
+  - {fileID: -1011908499, guid: 8ef2db9e8428eec49be0842236f8a65d, type: 3}
+  - {fileID: -1752465831, guid: 8ef2db9e8428eec49be0842236f8a65d, type: 3}
+  - {fileID: 580372052, guid: 8ef2db9e8428eec49be0842236f8a65d, type: 3}
+  - {fileID: -819411757, guid: 8ef2db9e8428eec49be0842236f8a65d, type: 3}
   m_PackedSpriteNamesToIndex:
+  - FloorDecoration_15
+  - FloorDecoration_14
+  - FloorDecoration_13
+  - FloorDecoration_12
+  - FloorDecoration_11
+  - FloorDecoration_10
+  - FloorDecoration_8
+  - FloorDecoration_9
+  - FloorDecoration_4
+  - FloorDecoration_5
+  - FloorDecoration_6
+  - FloorDecoration_7
+  - FloorDecoration_0
+  - FloorDecoration_1
+  - FloorDecoration_2
+  - FloorDecoration_3
+  - GroundDecoration_9
+  - GroundDecoration_8
+  - GroundDecoration_5
+  - GroundDecoration_4
+  - GroundDecoration_7
+  - GroundDecoration_6
+  - GroundDecoration_1
+  - GroundDecoration_0
+  - GroundDecoration_3
+  - GroundDecoration_2
+  - GroundDecoration_14
+  - GroundDecoration_15
+  - GroundDecoration_10
+  - GroundDecoration_11
+  - GroundDecoration_12
+  - GroundDecoration_13
+  - CaveMossDecor_0
+  - CaveMossDecor_1
+  - CaveMossDecor_2
+  - CaveMossDecor_3
   - Grass_6
   - Grass_7
   - Grass_4
@@ -111,6 +188,11 @@ SpriteAtlas:
   - Grass_21
   - Grass_22
   - Grass_23
+  - CaveMoss_3
+  - CaveMoss_2
+  - CaveMoss_1
+  - CaveMoss_0
+  - CaveMoss_4
   m_RenderDataMap: {}
   m_Tag: SpriteAtlas
   m_IsVariant: 0
