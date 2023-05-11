@@ -23,6 +23,7 @@ public class Drone : Enemy
     [SerializeField] private float _waitTime;
     [SerializeField] private LayerMask _groundMask;
     [SerializeField] private float _groundCheckRadius;
+    [SerializeField] private float _unableToReachTime;
     
     [Header("Hidden")]
 
@@ -34,6 +35,7 @@ public class Drone : Enemy
     private bool _goForth;
     private bool _spotted;
     private float _waitTimer;
+    private float _unableToReachTimer;
 
     [Header("Rotation")]
     private Vector3 _difference;
@@ -113,7 +115,7 @@ public class Drone : Enemy
         float randomY = Random.Range(0, _maxRandomY);
         Vector3 randomPosition = new Vector3(randomX, randomY, 0);
         _destination = Target.transform.position + Vector3.up * _altitude + randomPosition;
-        if (Physics2D.OverlapCircle(_destination, _groundCheckRadius, _groundMask)) ChooseNewDestination();
+        _unableToReachTimer = _unableToReachTime;
     }
 
     private void Patrol()
@@ -124,8 +126,8 @@ public class Drone : Enemy
 
         MoveToDestination();
 
-        if ((_patrolPoints[0] - (Vector2)transform.position).magnitude < 0.1f) _goForth = true;
-        else if ((_patrolPoints[1] - (Vector2)transform.position).magnitude < 0.1f) _goForth = false;
+        if ((_patrolPoints[0] - (Vector2)transform.position).magnitude < _reachDistance) _goForth = true;
+        else if ((_patrolPoints[1] - (Vector2)transform.position).magnitude < _reachDistance) _goForth = false;
     }
 
     private void MoveToDestination()
@@ -134,6 +136,15 @@ public class Drone : Enemy
         _distance = (_destination - (Vector2)transform.position).magnitude;
         _rigidbody2D.AddForce(_direction * _acceleration * _rigidbody2D.mass, ForceMode2D.Force);
         CorrectDirection();
+        if (_spotted) _unableToReachTimer -= Time.deltaTime;
+        if (_unableToReachTimer <= 0)
+        {
+            ChooseNewDestination();
+        }
+        if (_distance > _spotDistance * 2)
+        {
+            LosePlayer();
+        }
     }
 
 
@@ -162,6 +173,12 @@ public class Drone : Enemy
     private void SpotPlayer()
     {
         _spotted = true;
+        _minigun.enabled = _spotted;
+    }
+
+    private void LosePlayer()
+    {
+        _spotted = false;
         _minigun.enabled = _spotted;
     }
 
