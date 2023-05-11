@@ -22,15 +22,15 @@ public class Lasergun : MonoBehaviour
 
     [Header("SFX")]
     [SerializeField] private AudioClip[] _laserBeamSounds;
-    [HideInInspector] private GameObject[] _laserBeamSoundObjects;
     [SerializeField] private AudioMixerGroup _shotMixerGroup;
 
-    [Header("Internal Values")]
+    [Header("Hidden Values")]
     [HideInInspector] private float _laserBurstOnTimer;
     [HideInInspector] private float _laserBurstOffTimer;
     [HideInInspector] private float _laserNextDamageTimer;
     [HideInInspector] private bool _laserBurst = false;
     [HideInInspector] private Transform Target;
+    [HideInInspector] private GameObject[] _laserBeamSoundObjects;
 
     private void Awake()
     {
@@ -78,7 +78,7 @@ public class Lasergun : MonoBehaviour
         {
             _lineRenderers[i].enabled = true;
             _laserImpactRenderers[i].enabled = true;
-            RaycastHit2D hit = Physics2D.BoxCast(_lasergunShootingPoints[i].position, _beamSize, 0,  Calculator.CalculateDirection(_lasergunShootingPoints[i], Target), Mathf.Infinity, _stopLaserLayerMask);
+            RaycastHit2D hit = Physics2D.BoxCast(_lasergunShootingPoints[i].position, _beamSize, 0, Calculator.CalculateDirection(_lasergunShootingPoints[i], Target), Mathf.Infinity, _stopLaserLayerMask);
             if (hit)
             {
                 _lineRenderers[i].SetPosition(1, new Vector3(Mathf.Abs((hit.point - (Vector2)_lasergunShootingPoints[i].transform.position).magnitude), 0, 0));
@@ -117,6 +117,7 @@ public class Lasergun : MonoBehaviour
             }
         }
     }
+
     private void StopBurst()
     {
         if (_laserBurstOnTimer <= 0)
@@ -128,6 +129,7 @@ public class Lasergun : MonoBehaviour
             StopRenderingLaser();
         }
     }
+
     private void StartBurst()
     {
         if (_laserBurstOffTimer <= 0)

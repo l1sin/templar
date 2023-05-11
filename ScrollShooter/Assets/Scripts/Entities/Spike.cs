@@ -2,23 +2,27 @@ using UnityEngine;
 
 public class Spike : Enemy
 {
+    [Header("References")]
     [SerializeField] private Rigidbody2D _rigidbody2D;
+
+    [Header("Preferences")]
     [SerializeField] private float _acceleration = 6f;
     [SerializeField] private float _maxVelocity = 6f;
     [SerializeField] private float _contactDamage = 1f;
     [SerializeField] private float _attackCooldown = 1f;
-    private float _attackCooldownTimer;
-
     [SerializeField] private float _spotDistance;
     [SerializeField] private Vector2 _patrolDistance;
-    private Vector2[] _patrolPoints;
-    private Vector2 _playerDistance;
-    private bool _goForth;
     [SerializeField] private float _reachDistance = 0.2f;
-    [SerializeField] public bool Spotted = false;
     [SerializeField] private LayerMask _groundMask;
     [SerializeField] private float _groundCheckRadius;
-    private bool _isGrounded;
+
+    [Header("Hidden Values")]
+    [HideInInspector] private float _attackCooldownTimer;
+    [HideInInspector] private Vector2[] _patrolPoints;
+    [HideInInspector] private Vector2 _playerDistance;
+    [HideInInspector] private bool _goForth;
+    [HideInInspector] private bool _isGrounded;
+    [HideInInspector] public bool Spotted = false;
 
     protected override void Awake()
     {

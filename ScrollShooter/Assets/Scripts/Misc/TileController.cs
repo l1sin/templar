@@ -6,9 +6,7 @@ public class TileController : MonoBehaviour
 {
     [SerializeField] private Tilemap _tilemap;
     [SerializeField] private Camera _camera;
-
     [SerializeField] private List<TileData> _tileDatas;
-
     [SerializeField] private Dictionary<TileBase, TileData> _dataFromTiles;
 
     private void Awake()

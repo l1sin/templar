@@ -46,3 +46,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Money: 0
   TimeInSeconds: 0
+  _mainMenu: 0

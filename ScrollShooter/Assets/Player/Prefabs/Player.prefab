@@ -405,11 +405,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _cam: {fileID: 3918935321338379548}
+  _bodyController: {fileID: 3918935320517070030}
+  _centerAimPos: {fileID: 3918935320574373484}
   _cameraMovementScale: {x: 2, y: 2, z: 0}
   _cameraOffset: {x: 0, y: 2, z: 0}
   _moveCameraToCursor: 1
-  _bodyController: {fileID: 3918935320517070030}
-  _centerAimPos: {fileID: 3918935320574373484}
   _headFlex: 20
 --- !u!114 &3918935320517070034
 MonoBehaviour:
@@ -455,7 +455,7 @@ MonoBehaviour:
   _recoilForce: 10
   _railgunStoppingAction: 10
   _railgunEnergyCost: 7
-  _RailgunEffect: {fileID: 6791633324626640508, guid: 6f8f0fe6bece2354784177f3f9694fdc, type: 3}
+  _railgunEffect: {fileID: 6791633324626640508, guid: 6f8f0fe6bece2354784177f3f9694fdc, type: 3}
   _railgunSound:
   - {fileID: 8300000, guid: 529f77ca20ee69e44a70bb9c87999372, type: 3}
   _railgunProjectilePrefabPU: {fileID: 257472474344466498, guid: 327b8cefd9849cf44bbe305bc46a12fa, type: 3}
@@ -465,7 +465,7 @@ MonoBehaviour:
   _recoilForcePU: 15
   _railgunStoppingActionPU: 15
   _railgunEnergyCostPU: 7
-  _RailgunEffectPU: {fileID: 6791633324626640508, guid: d137de4dd8b9a614893c68e35c505dd5, type: 3}
+  _railgunEffectPU: {fileID: 6791633324626640508, guid: d137de4dd8b9a614893c68e35c505dd5, type: 3}
   _rigidbody2D: {fileID: 3918935320517070035}
   _bodyController: {fileID: 3918935320517070030}
   _aimGun: {fileID: 3918935320517070029}
@@ -594,22 +594,22 @@ MonoBehaviour:
   _hitSounds:
   - {fileID: 8300000, guid: b8846282125f59543be880e671129df4, type: 3}
   _audioMixer: {fileID: 8075247928854164116, guid: f049ff7059f18e64b9e8e3a880d2ad45, type: 2}
-  Powerup: 0
   _bodyController: {fileID: 3918935320517070030}
   _energyShield: {fileID: 3918935321523852067}
   _materialBlue: {fileID: 2100000, guid: 8c2551f5370471340ba7c658b5c257ac, type: 2}
   _materialRed: {fileID: 2100000, guid: a445ad3edc166a348997527b230ac797, type: 2}
-  _powerupTimer: 0
-  MaxEnergy: 100
-  CurrentEnergy: 0
-  _energyRegeneration: 1
-  _energyRegenerationPU: 2
   Target: {fileID: 3918935321961040565}
   _chargeUp:
   - {fileID: 8300000, guid: 7cf3010f9d29a7a459061c7640a1a587, type: 3}
   _chargeDown:
   - {fileID: 8300000, guid: 4858b52ec2164634c8ead98522b786f0, type: 3}
   _energyMixerGroup: {fileID: 3621897617049349139, guid: f049ff7059f18e64b9e8e3a880d2ad45, type: 2}
+  MaxEnergy: 100
+  CurrentEnergy: 0
+  _energyRegeneration: 1
+  _energyRegenerationPU: 2
+  _powerupTimer: 0
+  Powerup: 0
   EnergyRegenerationCurrent: 0
   CanUseEnergy: 0
   GameOver: 0

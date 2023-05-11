@@ -2,14 +2,16 @@ using UnityEngine;
 
 public class Drone : Enemy
 {
-    [Header("Main references")]
+    [Header("References")]
     [SerializeField] private Rigidbody2D _rigidbody2D;
     [SerializeField] private Minigun _minigun;
 
     [Header("Movement")]
-    [SerializeField] private float _spotDistance;
-    [SerializeField] private Vector2 _patrolDistance;
+    [SerializeField] private float _acceleration;
+    [SerializeField] private float _deceleration;
     [SerializeField] private float _maxVelocity;
+    [SerializeField] private Vector2 _patrolDistance;
+    [SerializeField] private float _spotDistance;
     [SerializeField] private float _altitude;
     [SerializeField] private float _maxRandomX;
     [SerializeField] private float _maxRandomY;
@@ -17,28 +19,23 @@ public class Drone : Enemy
     [SerializeField] private float _minRandomY;
     [SerializeField] private float _reachDistance;
     [SerializeField] private float _tooFarDistance;
-    [SerializeField] private float _acceleration;
-    [SerializeField] private float _deceleration;
     [SerializeField] private float _correctionDeceleration;
     [SerializeField] private float _waitTime;
     [SerializeField] private LayerMask _groundMask;
     [SerializeField] private float _groundCheckRadius;
     [SerializeField] private float _unableToReachTime;
     
-    [Header("Hidden")]
-
-    private Vector2[] _patrolPoints;
-    private Vector2 _direction;
-    private Vector2 _destination;
-    private float _distance;
-    private bool _stop;
-    private bool _goForth;
-    private bool _spotted;
-    private float _waitTimer;
-    private float _unableToReachTimer;
-
-    [Header("Rotation")]
-    private Vector3 _difference;
+    [Header("Hidden Values")]
+    [HideInInspector] private Vector2[] _patrolPoints;
+    [HideInInspector] private Vector2 _direction;
+    [HideInInspector] private Vector2 _destination;
+    [HideInInspector] private Vector3 _difference;
+    [HideInInspector] private float _distance;
+    [HideInInspector] private float _waitTimer;
+    [HideInInspector] private float _unableToReachTimer;
+    [HideInInspector] private bool _stop;
+    [HideInInspector] private bool _goForth;
+    [HideInInspector] private bool _spotted;
 
     protected override void Awake()
     {

@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class BaseProjectile : MonoBehaviour
 {
@@ -10,8 +9,8 @@ public class BaseProjectile : MonoBehaviour
     [SerializeField] protected float LifeTime;
     [SerializeField] protected GameObject HitEffect;
     [SerializeField] protected Effect[] Effects;
-    [SerializeField]protected LayerMask HitMask;
-    protected Vector2 Direction;
+    [SerializeField] protected LayerMask HitMask;
+    [HideInInspector] protected Vector2 Direction;
 
     private void Awake()
     {

@@ -3,27 +3,27 @@ using UnityEngine.Audio;
 
 public class Player : BaseEntity
 {
-    [SerializeField] public bool Powerup;
+    [Header("References")]
     [SerializeField] private BodyController _bodyController;
     [SerializeField] private Renderer _energyShield;
     [SerializeField] private Material _materialBlue;
     [SerializeField] private Material _materialRed;
-    [SerializeField] private float _powerupTimer;
-
-    [SerializeField] public float MaxEnergy;
-    [SerializeField] public float CurrentEnergy;
-    [SerializeField] private float _energyRegeneration;
-    [SerializeField] private float _energyRegenerationPU;
     [SerializeField] public Transform Target;
-
     [SerializeField] private AudioClip[] _chargeUp;
     [SerializeField] private AudioClip[] _chargeDown;
     [SerializeField] private AudioMixerGroup _energyMixerGroup;
 
+    [Header("Preferences")]
+    [SerializeField] public float MaxEnergy;
+    [SerializeField] public float CurrentEnergy;
+    [SerializeField] private float _energyRegeneration;
+    [SerializeField] private float _energyRegenerationPU;
+    [SerializeField] private float _powerupTimer;
+
+    [Header("Hidden Values")]
+    [HideInInspector] public bool Powerup;
     [HideInInspector] public float EnergyRegenerationCurrent;
-
     [HideInInspector] public bool CanUseEnergy;
-
     [HideInInspector] public bool GameOver;
     [HideInInspector] public bool LevelComplete;
 

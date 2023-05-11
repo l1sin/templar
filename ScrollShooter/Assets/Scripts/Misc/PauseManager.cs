@@ -3,9 +3,10 @@ using UnityEngine.SceneManagement;
 
 public class PauseManager : MonoBehaviour
 {
+    [HideInInspector] public static bool IsPaused;
+    [HideInInspector] private bool IsMainMenu;
+
     public static PauseManager Instance { get; private set; }
-    public static bool IsPaused;
-    private bool IsMainMenu;
 
     private void Awake()
     {

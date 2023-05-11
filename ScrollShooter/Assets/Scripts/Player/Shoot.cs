@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.Serialization;
 
 public class Shoot : MonoBehaviour
 {
@@ -24,13 +25,13 @@ public class Shoot : MonoBehaviour
     [SerializeField] private float _pistolEnergyCostPU;
     [SerializeField] private GameObject _pistolEffectPU;
 
-    private GameObject _pistolProjectilePrefabCurrent;
-    private float _pistolFirePeriodCurrent;
-    private float _pistolDamageCurrent;
-    private float _pistolProjectileSpeedCurrent;
-    private float _pistolStoppingActionCurrent;
-    private float _pistolEnergyCostCurrent;
-    private GameObject _pistolEffectCurrent;
+    [HideInInspector] private GameObject _pistolProjectilePrefabCurrent;
+    [HideInInspector] private float _pistolFirePeriodCurrent;
+    [HideInInspector] private float _pistolDamageCurrent;
+    [HideInInspector] private float _pistolProjectileSpeedCurrent;
+    [HideInInspector] private float _pistolStoppingActionCurrent;
+    [HideInInspector] private float _pistolEnergyCostCurrent;
+    [HideInInspector] private GameObject _pistolEffectCurrent;
 
     [Header("Railgun preferences")]
     [SerializeField] private Transform _railgunShootingPointR;
@@ -42,7 +43,7 @@ public class Shoot : MonoBehaviour
     [SerializeField] private float _recoilForce;
     [SerializeField] private float _railgunStoppingAction;
     [SerializeField] private float _railgunEnergyCost;
-    [SerializeField] private GameObject _RailgunEffect;
+    [SerializeField] private GameObject _railgunEffect;
     [SerializeField] private AudioClip[] _railgunSound;
 
     [Header("Railgun powerup")]
@@ -53,16 +54,16 @@ public class Shoot : MonoBehaviour
     [SerializeField] private float _recoilForcePU;
     [SerializeField] private float _railgunStoppingActionPU;
     [SerializeField] private float _railgunEnergyCostPU;
-    [SerializeField] private GameObject _RailgunEffectPU;
+    [SerializeField] private GameObject _railgunEffectPU;
 
-    private GameObject _railgunProjectilePrefabCurrent;
-    private float _railgunFirePeriodCurrent;
-    private float _railgunDamageCurrent;
-    private float _railgunProjectileSpeedCurrent;
-    private float _recoilForceCurrent;
-    private float _railgunStoppingActionCurrent;
-    private float _railgunEnergyCostCurrent;
-    private GameObject _railgunEffectCurrent;
+    [HideInInspector] private GameObject _railgunProjectilePrefabCurrent;
+    [HideInInspector] private float _railgunFirePeriodCurrent;
+    [HideInInspector] private float _railgunDamageCurrent;
+    [HideInInspector] private float _railgunProjectileSpeedCurrent;
+    [HideInInspector] private float _recoilForceCurrent;
+    [HideInInspector] private float _railgunStoppingActionCurrent;
+    [HideInInspector] private float _railgunEnergyCostCurrent;
+    [HideInInspector] private GameObject _railgunEffectCurrent;
 
     [Header("Component references")]
     [SerializeField] private Rigidbody2D _rigidbody2D;
@@ -76,7 +77,6 @@ public class Shoot : MonoBehaviour
     [HideInInspector] private float _nextFireRailgunTimer;
     [HideInInspector] private Transform _pistolShootingPoint;
     [HideInInspector] private Transform _railgunShootingPoint;
-
 
     private void Start()
     {
@@ -193,7 +193,7 @@ public class Shoot : MonoBehaviour
         _recoilForceCurrent = _recoilForcePU;
         _railgunStoppingActionCurrent = _railgunStoppingActionPU;
         _railgunEnergyCostCurrent = _railgunEnergyCostPU;
-        _railgunEffectCurrent = _RailgunEffectPU;
+        _railgunEffectCurrent = _railgunEffectPU;
     }
     private void SetPowerUpOff()
     {
@@ -205,15 +205,15 @@ public class Shoot : MonoBehaviour
         _pistolStoppingActionCurrent = _pistiolStoppingAction;
         _pistolEnergyCostCurrent = _pistolEnergyCost;
         _pistolEffectCurrent = _pistolEffect;
-        
+
         // Railgun Common
-        _railgunProjectilePrefabCurrent =_railgunProjectilePrefab;
+        _railgunProjectilePrefabCurrent = _railgunProjectilePrefab;
         _railgunFirePeriodCurrent = _railgunFirePeriod;
         _railgunDamageCurrent = _railgunDamage;
         _railgunProjectileSpeedCurrent = _railgunProjectileSpeed;
         _recoilForceCurrent = _recoilForce;
         _railgunStoppingActionCurrent = _railgunStoppingAction;
         _railgunEnergyCostCurrent = _railgunEnergyCost;
-        _railgunEffectCurrent = _RailgunEffect;
+        _railgunEffectCurrent = _railgunEffect;
     }
 }

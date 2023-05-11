@@ -36,7 +36,7 @@ public class AudioManager : MonoBehaviour
     {
         GameObject newSound = new GameObject(name);
         newSound.transform.position = transform.position;
-        AudioSource audioSource =  newSound.AddComponent<AudioSource>();
+        AudioSource audioSource = newSound.AddComponent<AudioSource>();
         AudioPlayer audioPlayer = newSound.AddComponent<AudioPlayer>();
 
         audioPlayer.ASource = audioSource;

@@ -2,22 +2,28 @@ using UnityEngine;
 
 public class HelicopterAttackPattern : MonoBehaviour
 {
+    [Header("References")]
     [SerializeField] private Minigun _minigun;
     [SerializeField] private Lasergun _lasergun;
     [SerializeField] private SpawnMinion _spawnMinion;
 
-    [SerializeField] private float _minigunCooldown;
-    [SerializeField] private float _lasergunCooldown;
-    [SerializeField] private float _spawnMinionCooldown;
-
-    [SerializeField] private float _minigunAttackLength;
-    [SerializeField] private float _lasergunAttackLength;
+    [Header("Common")]
     [SerializeField] private float _startAttackCooldown;
 
-    [SerializeField] private float _attackTimer;
+    [Header("Minigun Preferences")]
+    [SerializeField] private float _minigunCooldown;
+    [SerializeField] private float _minigunAttackLength;
 
-    [SerializeField] private float _attackCooldownTimer;
+    [Header("Lasergun Preferences")]
+    [SerializeField] private float _lasergunCooldown;
+    [SerializeField] private float _lasergunAttackLength;
 
+    [Header("Spawn Minion Preferences")]
+    [SerializeField] private float _spawnMinionCooldown;
+
+    [Header("Hidden Values")]
+    [HideInInspector] private float _attackTimer;
+    [HideInInspector] private float _attackCooldownTimer;
 
     private void Awake()
     {

@@ -4,21 +4,19 @@ using UnityEngine;
 public class ParticlesFollow : MonoBehaviour
 {
     [SerializeField] private Transform _followTarget;
-     private Vector3 _center;
-     private GameObject[,] _particles;
     [SerializeField] private Vector2 _size;
     [SerializeField] private GameObject _particleSystem;
-     private Vector2 _startPoint;
     [SerializeField] private List<GameObject> _systems;
 
-    [SerializeField] private List<GameObject> _l;
-    [SerializeField] private List<GameObject> _vC;
-    [SerializeField] private List<GameObject> _r;
-
-    [SerializeField] private List<GameObject> _d;
-    [SerializeField] private List<GameObject> _hC;
-    [SerializeField] private List<GameObject> _u;
-    
+    [HideInInspector] private Vector2 _startPoint;
+    [HideInInspector] private Vector3 _center;
+    [HideInInspector] private GameObject[,] _particles;
+    [HideInInspector] private List<GameObject> _l;
+    [HideInInspector] private List<GameObject> _vC;
+    [HideInInspector] private List<GameObject> _r;
+    [HideInInspector] private List<GameObject> _d;
+    [HideInInspector] private List<GameObject> _hC;
+    [HideInInspector] private List<GameObject> _u;
 
     private void Update()
     {
@@ -93,7 +91,7 @@ public class ParticlesFollow : MonoBehaviour
         for (int i = 0; i < 3; i++)
         {
             _hC.Add(_particles[i, 1]);
-        } 
+        }
         for (int i = 0; i < 3; i++)
         {
             _d.Add(_particles[i, 0]);
@@ -102,7 +100,7 @@ public class ParticlesFollow : MonoBehaviour
 
     private void MoveRight()
     {
-        foreach(var i in _l)
+        foreach (var i in _l)
         {
             i.transform.Translate(Vector2.right * _size.x * 3);
         }
@@ -115,7 +113,7 @@ public class ParticlesFollow : MonoBehaviour
     {
         foreach (var i in _d)
         {
-            i.transform.Translate(Vector2.up * _size.y * 3); 
+            i.transform.Translate(Vector2.up * _size.y * 3);
         }
         List<GameObject> temp = new List<GameObject>(_u);
         _u = new List<GameObject>(_d);

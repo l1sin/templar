@@ -1014,13 +1014,13 @@ TextureImporter:
     - texture: {fileID: 2800000, guid: 2e6baae95cae779439ddc5847de9d0e5, type: 3}
       name: _Emission
     nameFileIdTable:
-      Limb_0: -672575262
+      Limb_3: -432465142
       Run_8: -98294136
-      Run_9: -151783213
       Run_6: -1280253941
       Idle_4: 390754301
-      Jump&Fall_1: 912379746
+      Jump&Fall_0: -2096391443
       Run_2: 326749974
+      Idle_2: -2012907004
       Head: 749092826
       Walk_5: -1366897296
       Idle_1: -670936871
@@ -1041,20 +1041,20 @@ TextureImporter:
       Run_1: 562805328
       Limb_5: -625023986
       Walk_2: -79147120
+      Jump&Fall_1: 912379746
       Walk_7: -1050966307
-      Projectile: -875750690
       Run_3: 1882077181
-      Run_7: 1407625658
-      Limb_3: -432465142
-      Idle_2: -2012907004
-      Jump&Fall_0: -2096391443
+      Projectile: -875750690
       Walk_1: 1012969828
+      Run_4: 1449179046
+      Run_7: 1407625658
+      Run_0: -2088168114
       Walk_3: -1616008083
       Run_10: 1607715691
-      Limb_4: -1510997149
-      Run_4: 1449179046
+      Limb_0: -672575262
+      Run_9: -151783213
       Run_5: 1749741816
-      Run_0: -2088168114
+      Limb_4: -1510997149
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

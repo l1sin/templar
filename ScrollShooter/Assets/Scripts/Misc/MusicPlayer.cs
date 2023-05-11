@@ -4,15 +4,13 @@ using UnityEngine.SceneManagement;
 
 public class MusicPlayer : MonoBehaviour
 {
-    
+
     [SerializeField] private AudioClip _mainMenu;
     [SerializeField] private AudioClip _gameplay;
     [SerializeField] private AudioClip _bossBatte;
     [SerializeField] private AudioClip _win;
     [SerializeField] private AudioClip _loss;
-
     [SerializeField] private AudioMixerGroup _audioMixerGroup;
-
     [SerializeField] private AudioSource _audioSource;
 
     private void OnEnable()

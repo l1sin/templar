@@ -3,16 +3,19 @@ using UnityEngine.Audio;
 
 public class BaseEntity : MonoBehaviour
 {
+    [Header("Base Entity Properties")]
     [SerializeField] protected float MaxHealth;
     [SerializeField] protected float CurrentHealth;
-    private float _damageBlinkLength = 0.1f;
-    private float _damageBlinkTimer;
-    private bool _isDamaged;
-    protected Material CurrentMaterial;
     [SerializeField] protected Material DamageBlinkMaterial;
-    protected Material TempMaterial;
     [SerializeField] private AudioClip[] _hitSounds;
     [SerializeField] private AudioMixerGroup _audioMixer;
+
+    [Header("Hidden Values")]
+    [HideInInspector] private float _damageBlinkLength = 0.1f;
+    [HideInInspector] private float _damageBlinkTimer;
+    [HideInInspector] private bool _isDamaged;
+    [HideInInspector] protected Material CurrentMaterial;
+    [HideInInspector] protected Material TempMaterial;
 
     protected virtual void Awake()
     {

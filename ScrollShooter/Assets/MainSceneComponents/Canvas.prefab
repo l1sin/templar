@@ -113,7 +113,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 830243161f07faf4491b9114c676c3bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _canvas: {fileID: 2447091463369924483}
   MainMenu: {fileID: 6749601944617649587, guid: 56c4846b287ed334b9f65f5ac07a2b6f, type: 3}
   PauseMenu: {fileID: 6229816966346376431, guid: 7e4b2e51ebbd70f4ca1deb035946433b, type: 3}
   PauseOptions: {fileID: 6229816966346376431, guid: 7381bb624d456aa409d7d48de1b97985, type: 3}

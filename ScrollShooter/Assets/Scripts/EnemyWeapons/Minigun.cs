@@ -26,7 +26,7 @@ public class Minigun : MonoBehaviour
     [SerializeField] private AudioClip[] _richochets;
     [SerializeField] private AudioMixerGroup _shotMixerGroup;
 
-    [Header("Internal Values")]
+    [Header("Hidden Values")]
     [HideInInspector] private float _minigunShotAmount;
     [HideInInspector] private float _minigunBurstReloadTimer;
     [HideInInspector] private float _minigunNextFireTimer;
@@ -60,6 +60,7 @@ public class Minigun : MonoBehaviour
             }
         }
     }
+
     public void ResetThis()
     {
         foreach (Animator minigunAnimator in _minigunAnimators) minigunAnimator.SetFloat(GlobalStrings.MinigunSpeed, 0);

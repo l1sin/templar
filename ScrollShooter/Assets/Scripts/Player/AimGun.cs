@@ -2,22 +2,23 @@ using UnityEngine;
 
 public class AimGun : MonoBehaviour
 {
+    [Header("References")]
     [SerializeField] private Camera _cam;
+    [SerializeField] private BodyController _bodyController;
+    [SerializeField] private Transform _centerAimPos;
+
+    [Header("Preferences")]
     [SerializeField] public static Vector3 MousePosOffset;
     [SerializeField] private Vector3 _cameraMovementScale;
     [SerializeField] private Vector3 _cameraOffset;
-    
     [SerializeField] private bool _moveCameraToCursor;
-    [SerializeField] private BodyController _bodyController;
+    [SerializeField] private float _headFlex = 30f;
 
-    [SerializeField] private Transform _centerAimPos;
-
+    [Header("Hidden Values")]
     [HideInInspector] private Vector3 _mousePos;
     [HideInInspector] private Vector3 _mousePosVeiwport;
     [HideInInspector] private Vector3 _difference;
     [HideInInspector] public static float RotationZ;
-
-    [SerializeField] private float _headFlex = 30f;
 
     private void Update()
     {
@@ -60,12 +61,12 @@ public class AimGun : MonoBehaviour
     {
         if (RotationZ > -90 && RotationZ < 90)
         {
-            _bodyController.Head.transform.rotation = Quaternion.Euler(0f, 0f, Mathf.Clamp(RotationZ, -_headFlex, _headFlex) );
+            _bodyController.Head.transform.rotation = Quaternion.Euler(0f, 0f, Mathf.Clamp(RotationZ, -_headFlex, _headFlex));
 
         }
         else if (RotationZ > 90)
         {
-            _bodyController.Head.transform.rotation = Quaternion.Euler(180, 0, -Mathf.Clamp(RotationZ, 180 - _headFlex, 180) );
+            _bodyController.Head.transform.rotation = Quaternion.Euler(180, 0, -Mathf.Clamp(RotationZ, 180 - _headFlex, 180));
         }
         else if (RotationZ < -90)
         {
@@ -77,7 +78,7 @@ public class AimGun : MonoBehaviour
     {
         _mousePosVeiwport = Camera.main.WorldToViewportPoint(_mousePos);
         MousePosOffset = MoveViewportZeroToCenter(_mousePosVeiwport);
-        _cam.transform.localPosition = new Vector3 (MousePosOffset.x * _cameraMovementScale.x, MousePosOffset.y * _cameraMovementScale.y, _cam.transform.position.z) + _cameraOffset;
+        _cam.transform.localPosition = new Vector3(MousePosOffset.x * _cameraMovementScale.x, MousePosOffset.y * _cameraMovementScale.y, _cam.transform.position.z) + _cameraOffset;
     }
 
     private Vector3 MoveViewportZeroToCenter(Vector3 ViewPortCoordinates)
@@ -90,7 +91,6 @@ public class AimGun : MonoBehaviour
     }
 
     // It just works.
-
     private void ChangeHandsToLookRight()
     {
         _bodyController.LeftHandActiveBackRRenderer.enabled = true;

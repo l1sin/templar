@@ -3,13 +3,11 @@ using UnityEngine.Audio;
 
 public class PlayerProjectile : BaseProjectile
 {
+    [SerializeField] private TrailRenderer _trail;
     [SerializeField] private bool _isRailgunProjectile;
     [SerializeField] private Vector3 _normal;
-    [SerializeField] private TrailRenderer _trail;
-
     [SerializeField] private AudioClip[] _reflectSounds;
     [SerializeField] private AudioMixerGroup _reflectMixerGroup;
-
     [SerializeField] private AudioClip[] _pistolImpacts;
     [SerializeField] private AudioClip[] _railgunImpacts;
     [SerializeField] private AudioMixerGroup _impactMixerGroup;
@@ -74,5 +72,4 @@ public class PlayerProjectile : BaseProjectile
         }
         Destroy(gameObject);
     }
-
 }

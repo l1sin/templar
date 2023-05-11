@@ -45,7 +45,7 @@ public class AutoDecorate : MonoBehaviour
 
     private List<Vector3Int> GetUpperTiles(List<Vector3Int> list)
     {
-        List <Vector3Int> newList = new List<Vector3Int>();
+        List<Vector3Int> newList = new List<Vector3Int>();
 
         for (int i = list.Count - 1; i >= 0; i--)
         {

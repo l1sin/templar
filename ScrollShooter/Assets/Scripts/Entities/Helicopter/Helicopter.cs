@@ -3,13 +3,17 @@ using UnityEngine.UI;
 
 public class Helicopter : Enemy
 {
+    [Header("References")]
     [SerializeField] private Rigidbody2D _rigidbody2D;
+    [SerializeField] private GameObject _winTimerPrefab;
+
+    [Header("Preferences")]
+    [SerializeField] private LayerMask _groundMask;
+    [SerializeField] private float _groundCheckRadius;
     [SerializeField] private float _maxVelocity;
     [SerializeField] private float _acceleration;
-    [SerializeField] private Vector2 _destination;
-    [SerializeField] private float _distance;
-    [SerializeField] private Vector2 _direction;
-
+    [SerializeField] private float _deceleration;
+    [SerializeField] private float _waitTime;
     [SerializeField] private float _altitude;
     [SerializeField] private float _maxRandomX;
     [SerializeField] private float _maxRandomY;
@@ -17,18 +21,15 @@ public class Helicopter : Enemy
     [SerializeField] private float _minRandomY;
     [SerializeField] private float _reachDistance;
 
-    [SerializeField] private float _waitTime;
-    [SerializeField] private float _waitTimer;
+    [Header("Hidden Values")]
+    [HideInInspector] private Vector2 _destination;
+    [HideInInspector] private Vector2 _direction;
+    [HideInInspector] private float _distance;
+    [HideInInspector] private float _waitTimer;
+    [HideInInspector] private bool _stop;
+    [HideInInspector] private GameObject _healthBar;
+    [HideInInspector] private Image _healthBarImage;
 
-    [SerializeField] private bool _stop;
-    [SerializeField] private float _deceleration;
-
-    [SerializeField] private LayerMask _groundMask;
-    [SerializeField] private float _groundCheckRadius;
-
-    [SerializeField] private GameObject _winTimerPrefab;
-    private GameObject _healthBar;
-    private Image _healthBarImage;
     protected override void Awake()
     {
         base.Awake();

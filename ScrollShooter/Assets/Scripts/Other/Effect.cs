@@ -12,7 +12,7 @@ public class Effect : MonoBehaviour
         {
             _destroyTime -= Time.deltaTime;
             if (_destroyTime <= 0) Destroy(gameObject);
-        } 
+        }
     }
     public void SeparateParent()
     {

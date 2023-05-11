@@ -4,8 +4,6 @@ using UnityEngine.SceneManagement;
 
 public class UI : MonoBehaviour
 {
-    [SerializeField] private Transform _canvas;
-
     [Header("UI prefabs")]
     [SerializeField] public GameObject MainMenu;
     [SerializeField] public GameObject PauseMenu;
@@ -16,10 +14,12 @@ public class UI : MonoBehaviour
     [SerializeField] public GameObject LevelCompleteMenu;
     [SerializeField] public GameObject BossHPBar;
 
+    [Header("Cursors")]
     [SerializeField] private Texture2D _systemCursor;
     [SerializeField] private Texture2D _crosshair;
 
-    public List<GameObject> MenuQueue;
+    [Header("Menu Queue")]
+    [SerializeField] public List<GameObject> MenuQueue;
 
     public static UI Instance { get; private set; }
 
@@ -34,7 +34,7 @@ public class UI : MonoBehaviour
 
         if (MenuQueue.Count == 0)
         {
-            newMenu.transform.SetParent(_canvas, false);
+            newMenu.transform.SetParent(transform, false);
             GameObject newBackground =  Instantiate(DarkBG);
             newBackground.transform.SetParent(newMenu.transform, false);
             newBackground.transform.SetSiblingIndex(0);
@@ -47,7 +47,7 @@ public class UI : MonoBehaviour
     public GameObject InstantiateMenuNoQueue(GameObject menu)
     {
         GameObject newMenu = Instantiate(menu);
-        newMenu.transform.SetParent(_canvas, false);
+        newMenu.transform.SetParent(transform, false);
         return newMenu;
     }
 
@@ -99,22 +99,22 @@ public class UI : MonoBehaviour
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        for (int i = 0; i < _canvas.transform.childCount; i++)
+        for (int i = 0; i < transform.transform.childCount; i++)
         {
-            Destroy(_canvas.GetChild(i).gameObject);
+            Destroy(transform.GetChild(i).gameObject);
         }
         MenuQueue.Clear();
 
         if (scene.buildIndex == 0)
         {
             GameObject newMenu = Instantiate(MainMenu);
-            newMenu.transform.SetParent(_canvas, false);
+            newMenu.transform.SetParent(transform, false);
             SetSystemCursor();
         }
         else
         {
             GameObject hud = Instantiate(HUD);
-            hud.transform.SetParent(_canvas, false);
+            hud.transform.SetParent(transform, false);
             SetCrosshair();
         }
     }

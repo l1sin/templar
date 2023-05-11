@@ -44,7 +44,7 @@ public class PlayerInput : MonoBehaviour
                 {
                     UI.Instance.InstantiateMenu(UI.Instance.PauseMenu);
                     UI.Instance.SetSystemCursor();
-                } 
+                }
             }
             else
             {

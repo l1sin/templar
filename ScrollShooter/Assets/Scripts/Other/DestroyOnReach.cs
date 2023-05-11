@@ -5,13 +5,13 @@ public class DestroyOnReach : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI _text;
     [SerializeField] private float _destroyTime;
-    private float _destroyTimer;
-    private bool _destroy = false;
+    [HideInInspector] private float _destroyTimer;
+    [HideInInspector] private bool _destroy = false;
 
     private void Awake()
     {
         _destroy = false;
-        _destroyTimer =  _destroyTime;
+        _destroyTimer = _destroyTime;
     }
 
     private void Update()

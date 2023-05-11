@@ -20,11 +20,11 @@ public class Controlls : MonoBehaviour
     [SerializeField] private float _decelerationPU;
     [SerializeField] private float _jumpHeightPU;
 
-    private float _accelerationCurrent;
-    private float _maxVelocityCurrent;
-    private float _maxWalkVelocityCurrent;
-    private float _decelerationCurrent;
-    private float _jumpHeightCurrent;
+    [HideInInspector] private float _accelerationCurrent;
+    [HideInInspector] private float _maxVelocityCurrent;
+    [HideInInspector] private float _maxWalkVelocityCurrent;
+    [HideInInspector] private float _decelerationCurrent;
+    [HideInInspector] private float _jumpHeightCurrent;
 
     [Header("IsGrounded Stuff")]
     [SerializeField] private bool _isGrounded;
@@ -41,7 +41,8 @@ public class Controlls : MonoBehaviour
     [Header("Animation preferences")]
     [SerializeField] private float _animationSpeed = 1f;
     [SerializeField] private float _animationSpeedPU = 1.5f;
-    private float _animationSpeedCurrent;
+
+    [HideInInspector] private float _animationSpeedCurrent;
 
     [Header("Audio")]
     [SerializeField] private AudioClip[] _footSteps;

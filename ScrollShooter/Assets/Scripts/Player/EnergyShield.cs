@@ -97,11 +97,11 @@ public class EnergyShield : MonoBehaviour
         if (Player.Instance.CanUseEnergy)
         {
             Player.Instance.UseEnergy(damage * _absorbDamageMultiplierCurrent);
-            if (!Player.Instance.CanUseEnergy) 
+            if (!Player.Instance.CanUseEnergy)
             {
                 AudioManager.Instance.MakeSound(transform, _breakSound, _shieldMixerGroup);
                 Instantiate(_shieldBreakEffectCurrent, _energyShield.transform.position, _energyShield.transform.rotation);
             }
-        } 
+        }
     }
 }

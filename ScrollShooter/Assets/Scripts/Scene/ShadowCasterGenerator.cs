@@ -5,7 +5,7 @@ using UnityEngine.Tilemaps;
 
 public class ShadowCasterGenerator : MonoBehaviour
 {
-    [SerializeField] private Tilemap _tilemap;  
+    [SerializeField] private Tilemap _tilemap;
     [SerializeField] private GameObject _shadowCasterParentObject;
     [SerializeField] private bool _selfShadows = true;
 
@@ -60,7 +60,7 @@ public class ShadowCasterGenerator : MonoBehaviour
                 InstantiateShadowCaster(tile, figureGameObject.transform);
             }
             SeparateShadowCastersIntoGroups(checkedTiles);
-        } 
+        }
     }
 
     private void CheckIfItIsNeighbour(List<Vector3Int> checkedTiles, Vector3Int checkedTile, List<Vector3Int> figure)
@@ -96,7 +96,6 @@ public class ShadowCasterGenerator : MonoBehaviour
 
         tilemap.CompressBounds();
 
-
         for (int i = tilemap.origin.z; i <= tilemap.origin.z + tilemap.cellBounds.size.z - 1; i++)
         {
             for (int j = tilemap.origin.y; j <= tilemap.origin.y + tilemap.cellBounds.size.y - 1; j++)
@@ -109,16 +108,13 @@ public class ShadowCasterGenerator : MonoBehaviour
         }
         return newList;
     }
-
     private List<Vector3Int> RemoveNullTiles(List<Vector3Int> list)
     {
-        foreach (Vector3Int tile in list)
+        for (int i = list.Count - 1; i >= 0; i--)
         {
-            if (_tilemap.GetTile(tile) == null)
+            if (_tilemap.GetTile(list[i]) == null)
             {
-                list.Remove(tile);
-                RemoveNullTiles(list);
-                return list;
+                list.Remove(list[i]);
             }
         }
         return list;

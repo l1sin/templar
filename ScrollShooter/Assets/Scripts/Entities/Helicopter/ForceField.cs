@@ -8,17 +8,13 @@ public class ForceField : MonoBehaviour
     [SerializeField][Range(0f, 1f)] private float _maxAlpha;
     [SerializeField][Range(0f, 1f)] private float _ignitionAlpha;
     [SerializeField][Range(0f, 1f)] private float _phase;
-    [HideInInspector] private MaterialPropertyBlock _materialPropertyBlock;
     [SerializeField][GradientUsage(true)] private Gradient _gradient;
 
-    [Header("Stats")]
+    [Header("Preferences")]
     [SerializeField] private float _maxForceFieldHealth;
     [SerializeField] private float _currentForceFieldHealth;
     [SerializeField] private float _forceFieldRegenerationTime;
-
     [SerializeField] private float _ignitionTime;
-    
-
     [SerializeField] private Collider2D _collider2D;
     [SerializeField] private float _repulseForce;
 
@@ -27,12 +23,13 @@ public class ForceField : MonoBehaviour
     [SerializeField] private AudioMixerGroup _forceFieldMixerGroup;
 
     [Header("Hidden values")]
-    [SerializeField] private float _currentAlpha;
-    [SerializeField] private bool _forceFieldEnabled;
-    [SerializeField] private float _forceFieldRegenerationTimer;
-    [SerializeField] private float _ignitionInterpolator;
-    [SerializeField] private bool _ignitionInterpolatorGoUp;
-    [SerializeField] private bool _ignitionComplete;
+    [HideInInspector] private float _currentAlpha;
+    [HideInInspector] private bool _forceFieldEnabled;
+    [HideInInspector] private float _forceFieldRegenerationTimer;
+    [HideInInspector] private float _ignitionInterpolator;
+    [HideInInspector] private bool _ignitionInterpolatorGoUp;
+    [HideInInspector] private bool _ignitionComplete;
+    [HideInInspector] private MaterialPropertyBlock _materialPropertyBlock;
 
     private void Awake()
     {
@@ -51,6 +48,7 @@ public class ForceField : MonoBehaviour
         if (!_forceFieldEnabled) RegenerateForceField();
         if (!_ignitionComplete) Ignite();
     }
+
     public void GetDamage(float damage)
     {
         _currentForceFieldHealth -= damage;

@@ -7,7 +7,6 @@ public class HUD : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _moneyText;
     [SerializeField] private Image _healthLine;
     [SerializeField] private Image _energyLine;
-
     [SerializeField] public Color CanUseEnergyColor;
     [SerializeField] public Color NoEnergyColor;
 

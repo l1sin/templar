@@ -3,12 +3,12 @@ using UnityEngine;
 public class Parallax : MonoBehaviour
 {
     [SerializeField] private Transform _parallaxAnchor;
-    [HideInInspector] private Vector3 _lastAnchorPos;
     [SerializeField] private GameObject[] _parallaxObjects;
-    [HideInInspector] private Vector3 _deltaXMovement;
     [SerializeField] private float[] _parallaxEffectivenessX;
     [SerializeField] private float[] _parallaxEffectivenessY;
     [SerializeField] private SpriteRenderer[] _renderers;
+    [HideInInspector] private Vector3 _deltaXMovement;
+    [HideInInspector] private Vector3 _lastAnchorPos;
 
     private void Start()
     {

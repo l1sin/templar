@@ -64,9 +64,11 @@ MonoBehaviour:
   _deathMixerGroup: {fileID: -1876883571504349357, guid: f049ff7059f18e64b9e8e3a880d2ad45, type: 2}
   _rigidbody2D: {fileID: 2976927901525278954}
   _minigun: {fileID: 7795716925349376696}
-  _spotDistance: 9
-  _patrolDistance: {x: 3, y: 0}
+  _acceleration: 30
+  _deceleration: 30
   _maxVelocity: 10
+  _patrolDistance: {x: 3, y: 0}
+  _spotDistance: 9
   _altitude: 3
   _maxRandomX: 3
   _maxRandomY: 2
@@ -74,15 +76,13 @@ MonoBehaviour:
   _minRandomY: 0
   _reachDistance: 0.5
   _tooFarDistance: 7
-  _acceleration: 30
-  _deceleration: 30
   _correctionDeceleration: 1
   _waitTime: 0.2
   _groundMask:
     serializedVersion: 2
     m_Bits: 64
   _groundCheckRadius: 0.31
-  _spotCooldownTime: 4
+  _unableToReachTime: 0
 --- !u!114 &7795716925349376696
 MonoBehaviour:
   m_ObjectHideFlags: 0

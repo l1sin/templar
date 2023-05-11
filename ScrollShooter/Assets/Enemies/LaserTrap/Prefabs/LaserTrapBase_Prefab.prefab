@@ -224,25 +224,25 @@ MonoBehaviour:
   _deathSounds:
   - {fileID: 8300000, guid: 6ed4ede63620be54a9ff7ab19b35b274, type: 3}
   _deathMixerGroup: {fileID: -1876883571504349357, guid: f049ff7059f18e64b9e8e3a880d2ad45, type: 2}
+  _shootingPoint: {fileID: 99767821449882118}
+  _lineRenderer: {fileID: 99767821684619475}
+  _animator: {fileID: 159440850}
+  _laserImpactVFX: {fileID: 8376018721345068489}
+  _laserImpactRenderer: {fileID: 1435940860017973530}
+  _laserBeamSound:
+  - {fileID: 8300000, guid: 4eec13c93cc4d0d42a6299c1e20a2ff8, type: 3}
+  _laserBeamMixerGroup: {fileID: -2021402441661938335, guid: f049ff7059f18e64b9e8e3a880d2ad45, type: 2}
   _layerGroundMask:
     serializedVersion: 2
     m_Bits: 1088
   _layerHitMask:
     serializedVersion: 2
     m_Bits: 1216
-  _shootingPoint: {fileID: 99767821449882118}
-  _lineRenderer: {fileID: 99767821684619475}
   _beamSize: {x: 0.19, y: 0.19}
-  _animator: {fileID: 159440850}
   _damage: 1
   _damagePeriod: 0.2
   _burstOnPeriod: 1
   _burstOffPeriod: 4
-  _laserImpactVFX: {fileID: 8376018721345068489}
-  _laserImpactRenderer: {fileID: 1435940860017973530}
-  _laserBeamSound:
-  - {fileID: 8300000, guid: 4eec13c93cc4d0d42a6299c1e20a2ff8, type: 3}
-  _laserBeamMixerGroup: {fileID: -2021402441661938335, guid: f049ff7059f18e64b9e8e3a880d2ad45, type: 2}
 --- !u!61 &2040152516537405184
 BoxCollider2D:
   m_ObjectHideFlags: 0

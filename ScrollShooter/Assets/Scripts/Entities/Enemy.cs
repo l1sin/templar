@@ -3,12 +3,15 @@ using UnityEngine.Audio;
 
 public class Enemy : BaseEntity
 {
+    [Header("Enemy Properties")]
     [SerializeField] public GameObject Drop;
     [SerializeField] protected GameObject VFX;
     [SerializeField] protected SpriteRenderer Renderer;
     [SerializeField] protected AudioClip[] _deathSounds;
     [SerializeField] protected AudioMixerGroup _deathMixerGroup;
-    protected Transform Target;
+
+    [Header("Hidden Values")]
+    [HideInInspector]protected Transform Target;
 
     protected override void Awake()
     {

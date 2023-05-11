@@ -3,12 +3,12 @@ using UnityEngine.Audio;
 
 public class BaseCollectible : MonoBehaviour
 {
-    private float _speed = 0.25f;
-    private float _altitude = 0.1f;
-    private Vector2[] _points;
-    private bool _goUp;
     [SerializeField] private AudioClip[] _sounds;
     [SerializeField] private AudioMixerGroup _audioMixerGroup;
+    [HideInInspector] private float _speed = 0.25f;
+    [HideInInspector] private float _altitude = 0.1f;
+    [HideInInspector] private Vector2[] _points;
+    [HideInInspector] private bool _goUp;
 
     private void Awake()
     {

@@ -3,27 +3,30 @@ using UnityEngine.Audio;
 
 public class LaserTrap : Enemy
 {
-    [SerializeField] private LayerMask _layerGroundMask;
-    [SerializeField] private LayerMask _layerHitMask;
+    [Header("References")]
     [SerializeField] private Transform _shootingPoint;
     [SerializeField] private LineRenderer _lineRenderer;
-    [SerializeField] private Vector2 _beamSize;
     [SerializeField] private Animator _animator;
-    [SerializeField] private float _damage;
-    [SerializeField] private float _damagePeriod;
-    [SerializeField] private float _burstOnPeriod;
-    [SerializeField] private float _burstOffPeriod;
     [SerializeField] private GameObject _laserImpactVFX;
     [SerializeField] private Renderer _laserImpactRenderer;
     [SerializeField] private AudioClip[] _laserBeamSound;
     [SerializeField] private AudioMixerGroup _laserBeamMixerGroup;
-    private GameObject _laserBeamSoundGameObject;
 
-    private float _burstOnTimer;
-    private float _burstOffTimer;
-    private float _nextDamageTimer;
+    [Header("Laser Beam Preferences")]
+    [SerializeField] private LayerMask _layerGroundMask;
+    [SerializeField] private LayerMask _layerHitMask;
+    [SerializeField] private Vector2 _beamSize;
+    [SerializeField] private float _damage;
+    [SerializeField] private float _damagePeriod;
+    [SerializeField] private float _burstOnPeriod;
+    [SerializeField] private float _burstOffPeriod;
 
-    private bool _burst = false;
+    [Header("Hidden Values")]
+    [HideInInspector] private GameObject _laserBeamSoundGameObject;
+    [HideInInspector] private float _burstOnTimer;
+    [HideInInspector] private float _burstOffTimer;
+    [HideInInspector] private float _nextDamageTimer;
+    [HideInInspector] private bool _burst = false;
 
     protected override void Awake()
     {
@@ -60,7 +63,7 @@ public class LaserTrap : Enemy
         {
             _lineRenderer.SetPosition(1, new Vector3(Mathf.Abs((hit.point - (Vector2)_shootingPoint.transform.position).magnitude), 0, 0));
             float newRotationZ = Mathf.Atan2(hit.normal.y, hit.normal.x) * Mathf.Rad2Deg;
-            _laserImpactVFX.transform.rotation = Quaternion.Euler(0,0, newRotationZ + 180);
+            _laserImpactVFX.transform.rotation = Quaternion.Euler(0, 0, newRotationZ + 180);
             _laserImpactVFX.transform.localPosition = new Vector3(Mathf.Abs((hit.point - (Vector2)_shootingPoint.transform.position).magnitude), 0, 0);
         }
     }
@@ -85,7 +88,7 @@ public class LaserTrap : Enemy
             {
                 Player.Instance.gameObject.GetComponent<EnergyShield>().AbsorbDamage(_damage);
                 _nextDamageTimer = _damagePeriod;
-            }   
+            }
         }
     }
 

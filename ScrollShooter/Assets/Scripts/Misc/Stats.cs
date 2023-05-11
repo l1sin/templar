@@ -20,7 +20,7 @@ public class Stats : MonoBehaviour
         if (!Player.Instance.LevelComplete || !Player.Instance.GameOver)
         {
             TimeInSeconds += Time.deltaTime;
-        }  
+        }
     }
 
     public void AddMoney(float money)
