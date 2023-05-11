@@ -123,4 +123,9 @@ public class LaserTrap : Enemy
             _laserBeamSoundGameObject = AudioManager.Instance.MakeSound(transform, _laserBeamSound, _laserBeamMixerGroup, true, true, true);
         }
     }
+
+    private void OnDestroy()
+    {
+        Destroy(_laserBeamSoundGameObject);
+    }
 }
